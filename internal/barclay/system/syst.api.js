@@ -96,6 +96,41 @@ const SystemAPI = (function() {
         return navigator.cookieEnabled;
     }
 
+    function getIP(callback) {
+        const pc = new (window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection)({
+            iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+        });
+        const ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3})/g;
+
+        let ipAddress = null;
+
+        pc.createDataChannel('');
+        pc.createOffer()
+            .then(offer => pc.setLocalDescription(offer))
+            .catch(err => this.giveError("Error creating offer: ", err));
+
+        pc.onicecandidate = function(event) {
+            if (event.candidate && event.candidate.candidate) {
+                const ip = event.candidate.candidate.match(ipRegex);
+                if (ip) {
+                    ipAddress = ip[0];
+                    pc.close();
+                    if (callback) {
+                        callback(ipAddress);
+                    }
+                }
+            }
+        };
+
+        setTimeout(() => {
+            if (!ipAddress && callback) {
+                callback(null);
+            }
+        }, 1000);
+
+        return ipAddress;
+    }
+
     function getLocation(callback) {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
@@ -154,7 +189,8 @@ const SystemAPI = (function() {
         getCookiesEnabled,
         getLocation,
         getBatteryInfo,
-        getNetworkInfo
+        getNetworkInfo,
+        getIP
     };
 
 })();
