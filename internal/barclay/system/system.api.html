@@ -1,22 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System API Console</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.terminal/2.34.0/css/jquery.terminal.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        #terminal {
+            width: 100%;
+            height: 400px;
+            background-color: #000;
+            color: #00ff00;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>System API Console</h1>
+<div id="terminal"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<link rel="stylesheet" href="./terminal.css">
+<script src="./terminal.js"></script>
 <script type="module">
     import SystemAPI from 'https://apicenter.pages.dev/internal/barclay/system/syst.api.js';
 
-    console.log("Lang: " + SystemAPI.getLanguage());
-    console.log("OS: " + SystemAPI.getOSName());
-    console.log("Brows: " + SystemAPI.getBrowserName());
-    console.log("Brows Ver: " + SystemAPI.getBrowserVersion());
-    console.log("Plat: " + SystemAPI.getPlatform());
-    console.log("Dev Typ: " + SystemAPI.getDeviceType());
-    console.log(SystemAPI.getScreenResolution());
-    console.log("Colr Dep: " + SystemAPI.getColorDepth());
-    console.log("TimeZ: " + SystemAPI.getTimezone());
-    console.log("Mem: " + SystemAPI.getMemory());
-    console.log("Cores: " + SystemAPI.getCores());
-    console.log("OnLineStat: " + SystemAPI.getOnlineStatus());
-    console.log("DNT Stat: " + SystemAPI.getDoNotTrack());
-    console.log("Cookies: " + SystemAPI.getCookiesEnabled());
-    SystemAPI.getLocation(location => console.log(location));
-    SystemAPI.getBatteryInfo(batteryInfo => console.log(batteryInfo));
-    console.log(SystemAPI.getNetworkInfo());
+    $(function() {
+        $('#terminal').terminal(function(command, term) {
+            if (command === 'sysinfo') {
+                term.echo("Lang: " + SystemAPI.getLanguage());
+                term.echo("OS: " + SystemAPI.getOSName());
+                term.echo("Brows: " + SystemAPI.getBrowserName());
+                term.echo("Brows Ver: " + SystemAPI.getBrowserVersion());
+                term.echo("Plat: " + SystemAPI.getPlatform());
+                term.echo("Dev Typ: " + SystemAPI.getDeviceType());
+                term.echo("Screen Res: " + JSON.stringify(SystemAPI.getScreenResolution()));
+                term.echo("Colr Dep: " + SystemAPI.getColorDepth());
+                term.echo("TimeZ: " + SystemAPI.getTimezone());
+                term.echo("Mem: " + SystemAPI.getMemory());
+                term.echo("Cores: " + SystemAPI.getCores());
+                term.echo("OnLineStat: " + SystemAPI.getOnlineStatus());
+                term.echo("DNT Stat: " + SystemAPI.getDoNotTrack());
+                term.echo("Cookies: " + SystemAPI.getCookiesEnabled());
 
+                SystemAPI.getLocation(location => term.echo("Location: " + JSON.stringify(location)));
+                SystemAPI.getBatteryInfo(batteryInfo => term.echo("Battery Info: " + JSON.stringify(batteryInfo)));
+                SystemAPI.getIP(ipAddress => term.echo("IP Address: " + ipAddress));
+                term.echo("Network Info: " + JSON.stringify(SystemAPI.getNetworkInfo()));
+            } else {
+                term.echo("Type 'sysinfo' to display system information.");
+            }
+        }, {
+            greetings: 'Welcome to System API Console!\nType "sysinfo" to display system information.',
+            name: 'sysapi_console',
+            prompt: '> '
+        });
+    });
 </script>
+
+</body>
+</html>
