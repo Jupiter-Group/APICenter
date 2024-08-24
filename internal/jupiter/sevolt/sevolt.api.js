@@ -8,7 +8,7 @@ const glob = {
     version: "1.9.3",
     description: "A set of utility functions for web development",
     showInfo: function() {
-        this.giveInfo(`Name: ${this.name}`);
+        UtilityLibrary.giveInfo(`Name: ${this.name}`);
         this.giveInfo(`Developer: ${this.developer}`);
         this.giveInfo(`Version: ${this.version}`);
         this.giveInfo(`Description: ${this.description}`);
