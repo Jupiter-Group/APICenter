@@ -2,8 +2,6 @@
 // Use of this source code is governed by a completely open license
 // that can be found in the LICENSE file.
 
-import UtilityLibrary from './sevolt.api.js';
-
 export function checkVersion(currentVersion) {
     const requiredVersion = "1.9.3";
 
@@ -25,8 +23,8 @@ export function checkVersion(currentVersion) {
     const comparison = compareVersions(currentVersion, requiredVersion);
 
     if (comparison === -1) {
-        UtilityLibrary.giveWarn(`Error: Your version (${currentVersion}) is lower than the required version (${requiredVersion}). Please update the utility library.`);
+        console.warn(`Error: Your version (${currentVersion}) is lower than the required version (${requiredVersion}). Please update the utility library.`);
     } else {
-        UtilityLibrary.giveMessage(`Version check passed. Current version: ${currentVersion}`);
+        console.log(`Version check passed. Current version: ${currentVersion}`);
     }
 }
