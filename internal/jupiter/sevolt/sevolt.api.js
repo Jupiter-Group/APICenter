@@ -2,10 +2,12 @@
 // Use of this source code is governed by a completely open license
 // that can be found in the LICENSE file.
 
+// DO NOT REMOVE THIS, IT GIVES INFO ON THE API.
 const glob = {
     name: "Sevolt API",
     developer: "Jupiter Group",
-    version: "1.9.3",
+    // Ensure this is updated every release.
+    version: "2.1.1",
     description: "A set of utility functions for web development",
     showInfo: function() {
         console.log(`Name: ${this.name}`);
@@ -17,6 +19,7 @@ const glob = {
 
 (function(){glob.showInfo();})();
 
+// DO NOT REMOVE THIS, IT CHECKS IF THE VERSION IN USE IS UP-TO-DATE AND WORKING.
 import { checkVersion } from './versioner.api.js';
 checkVersion(glob.version);
 

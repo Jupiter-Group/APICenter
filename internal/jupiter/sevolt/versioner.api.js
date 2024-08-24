@@ -3,7 +3,7 @@
 // that can be found in the LICENSE file.
 
 export function checkVersion(currentVersion) {
-    const requiredVersion = "1.9.3";
+    const requiredVersion = "2.0.0"; // Stable version.
 
     function compareVersions(v1, v2) {
         const v1parts = v1.split('.').map(Number);
