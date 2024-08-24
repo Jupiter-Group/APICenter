@@ -159,21 +159,4 @@ const SystemAPI = (function() {
 
 })();
 
-// Example usage:
-// console.log(SystemAPI.getLanguage());
-// console.log(SystemAPI.getOSName());
-// console.log(SystemAPI.getBrowserName());
-// console.log(SystemAPI.getBrowserVersion());
-// console.log(SystemAPI.getPlatform());
-// console.log(SystemAPI.getDeviceType());
-// console.log(SystemAPI.getScreenResolution());
-// console.log(SystemAPI.getColorDepth());
-// console.log(SystemAPI.getTimezone());
-// console.log(SystemAPI.getMemory());
-// console.log(SystemAPI.getCores());
-// console.log(SystemAPI.getOnlineStatus());
-// console.log(SystemAPI.getDoNotTrack());
-// console.log(SystemAPI.getCookiesEnabled());
-// SystemAPI.getLocation(location => console.log(location));
-// SystemAPI.getBatteryInfo(batteryInfo => console.log(batteryInfo));
-// console.log(SystemAPI.getNetworkInfo());
+export default SystemAPI;
