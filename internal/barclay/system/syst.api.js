@@ -1,3 +1,22 @@
+const glob = {
+    name: "Sys API",
+    developer: "Barclay Web; Jupiter Group",
+    // Ensure this is updated every release.
+    version: "0.0.2",
+    description: "Get information about the user's system.",
+    showInfo: function() {
+        console.log(`Name: ${this.name}`);
+        console.log(`Developer: ${this.developer}`);
+        console.log(`Version: ${this.version}`);
+        console.log(`Description: ${this.description}`);
+    }
+};
+
+(function(){glob.showInfo();})();
+
+import { checkVersion } from './versioner.api.js';
+checkVersion(glob.version);
+
 // system.api.js
 const SystemAPI = (function() {
 
