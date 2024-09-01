@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI Full Example</title>
+    <!-- jQuery and jQuery UI CDN -->
+    <script src="./cobalt.js"></script>
+    <script src="./cobalt-ui.js"></script>
+    <link rel="stylesheet" href="./cobalt-ui.css">
+    <style>
+        /* Custom CSS */
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .ui-widget {
+            margin-bottom: 20px;
+        }
+
+
+        #amount {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>jQuery UI Full Example</h1>
+    
+    <!-- Accordion -->
+    <div id="accordion">
+        <h3>Section 1</h3>
+        <div>
+            <p>Content for section 1.</p>
+        </div>
+        <h3>Section 2</h3>
+        <div>
+            <p>Content for section 2.</p>
+        </div>
+        <h3>Section 3</h3>
+        <div>
+            <p>Content for section 3.</p>
+        </div>
+    </div>
+
+    <!-- Autocomplete -->
+    <label for="tags">Autocomplete: </label>
+    <input id="tags">
+
+    <!-- Datepicker -->
+    <p>Date: <input type="text" id="datepicker"></p>
+
+    <!-- Menu -->
+    <ul id="menu">
+        <li class="ui-state-disabled"><div>Home</div></li>
+        <li>
+            <div>About</div>
+            <ul>
+                <li><div>Company</div></li>
+                <li><div>Team</div></li>
+            </ul>
+        </li>
+        <li><div>Contact</div></li>
+    </ul>
+
+    <!-- Progressbar -->
+    <div id="progressbar"></div>
+
+    <!-- Selectable -->
+    <ol id="selectable">
+        <li class="ui-widget-content">Item 1</li>
+        <li class="ui-widget-content">Item 2</li>
+        <li class="ui-widget-content">Item 3</li>
+        <li class="ui-widget-content">Item 4</li>
+        <li class="ui-widget-content">Item 5</li>
+    </ol>
+
+    <!-- Tabs -->
+    <div id="tabs">
+        <ul>
+            <li><a href="#tabs-1">Nunc tincidunt</a></li>
+            <li><a href="#tabs-2">Proin dolor</a></li>
+            <li><a href="#tabs-3">Aenean lacinia</a></li>
+        </ul>
+        <div id="tabs-1">
+            <p>Content for tab 1.</p>
+        </div>
+        <div id="tabs-2">
+            <p>Content for tab 2.</p>
+        </div>
+        <div id="tabs-3">
+            <p>Content for tab 3.</p>
+        </div>
+    </div>
+
+    <!-- Custom Button that triggers dialog -->
+    <div id="open-dialog" class="custom-button">Open Dialog</div>
+    
+    <!-- Custom Dialog -->
+    <div id="custom-dialog" title="My Custom Dialog">
+        <p>This is a custom jQuery UI dialog!</p>
+        <div id="slider-container">
+            <p>
+                <label for="amount">Selected value:</label>
+                <span id="amount">50</span>
+            </p>
+            <div id="slider" class="custom-slider"></div>
+        </div>
+    </div>
+
+    <script>
+        $(function() {
+            // Initialize Accordion
+            $("#accordion").accordion();
+
+            // Initialize Autocomplete
+            var availableTags = [
+                "ActionScript",
+                "AppleScript",
+                "Asp",
+                "BASIC",
+                "C",
+                "C++",
+                "Clojure",
+                "COBOL",
+                "ColdFusion",
+                "Erlang",
+                "Fortran",
+                "Groovy",
+                "Haskell",
+                "Java",
+                "JavaScript",
+                "Lisp",
+                "Perl",
+                "PHP",
+                "Python",
+                "Ruby",
+                "Scala",
+                "Scheme"
+            ];
+            $("#tags").autocomplete({
+                source: availableTags
+            });
+
+            // Initialize Datepicker
+            $("#datepicker").datepicker();
+
+            // Initialize Menu
+            $("#menu").menu();
+
+            // Initialize Progressbar
+            $("#progressbar").progressbar({
+                value: 50
+            });
+
+            // Initialize Selectable
+            $("#selectable").selectable();
+
+            // Initialize Tabs
+            $("#tabs").tabs();
+
+            // Initialize the dialog
+            $("#custom-dialog").dialog({
+                autoOpen: false,
+                modal: true,
+                buttons: {
+                    "Close": function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            // Open the dialog using jQuery-based button
+            $("#open-dialog").button().on("click", function() {
+                $("#custom-dialog").dialog("open");
+            });
+
+            // Initialize the slider
+            $("#slider").slider({
+                value: 50,
+                min: 0,
+                max: 100,
+                slide: function(event, ui) {
+                    $("#amount").text(ui.value);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
