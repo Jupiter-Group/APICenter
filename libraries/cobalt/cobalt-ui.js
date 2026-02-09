@@ -1,5 +1,5 @@
-/*! Cobalt API UI - v1.14.0 - 2024-09-01
-* Includes: widget.js, position.js, data.js, disable-selection.js, focusable.js, form-reset-mixin.js, cobaltapi-patch.js, keycode.js, labels.js, scroll-parent.js, tabbable.js, unique-id.js, widgets/draggable.js, widgets/droppable.js, widgets/resizable.js, widgets/selectable.js, widgets/sortable.js, widgets/accordion.js, widgets/autocomplete.js, widgets/button.js, widgets/checkboxradio.js, widgets/controlgroup.js, widgets/datepicker.js, widgets/dialog.js, widgets/menu.js, widgets/mouse.js, widgets/progressbar.js, widgets/selectmenu.js, widgets/slider.js, widgets/spinner.js, widgets/tabs.js, widgets/tooltip.js, effect.js, effects/effect-blind.js, effects/effect-bounce.js, effects/effect-clip.js, effects/effect-drop.js, effects/effect-explode.js, effects/effect-fade.js, effects/effect-fold.js, effects/effect-highlight.js, effects/effect-puff.js, effects/effect-pulsate.js, effects/effect-scale.js, effects/effect-shake.js, effects/effect-size.js, effects/effect-slide.js, effects/effect-transfer.js
+/*! Cobalt UI - v1.14.0 - 2024-09-01
+* Includes: widget.js, position.js, data.js, disable-selection.js, focusable.js, form-reset-mixin.js, cobalt-patch.js, keycode.js, labels.js, scroll-parent.js, tabbable.js, unique-id.js, widgets/draggable.js, widgets/droppable.js, widgets/resizable.js, widgets/selectable.js, widgets/sortable.js, widgets/accordion.js, widgets/autocomplete.js, widgets/button.js, widgets/checkboxradio.js, widgets/controlgroup.js, widgets/datepicker.js, widgets/dialog.js, widgets/menu.js, widgets/mouse.js, widgets/progressbar.js, widgets/selectmenu.js, widgets/slider.js, widgets/spinner.js, widgets/tabs.js, widgets/tooltip.js, effect.js, effects/effect-blind.js, effects/effect-bounce.js, effects/effect-clip.js, effects/effect-drop.js, effects/effect-explode.js, effects/effect-fade.js, effects/effect-fold.js, effects/effect-highlight.js, effects/effect-puff.js, effects/effect-pulsate.js, effects/effect-scale.js, effects/effect-shake.js, effects/effect-size.js, effects/effect-slide.js, effects/effect-transfer.js
 * Copyright Jupiter Group, OpenJS Foundation, and other contributors; Licensed MIT */
 
 ( function( factory ) {
@@ -8,11 +8,11 @@
 	if ( typeof define === "function" && define.amd ) {
 
 		// AMD. Register as an anonymous module.
-		define( [ "cobaltapi" ], factory );
+		define( [ "cobalt" ], factory );
 	} else {
 
 		// Browser globals
-		factory( cobaltApi );
+		factory( Cobalt );
 	}
 } )( function( $ ) {
 "use strict";
@@ -23,7 +23,7 @@ var version = $.ui.version = "1.14.0";
 
 
 /*!
- * cobaltApi UI Widget 1.14.0
+ * Cobalt UI Widget 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -227,7 +227,7 @@ $.widget.bridge = function( name, object ) {
 		if ( isMethodCall ) {
 
 			// If this is an empty collection, we need to have the instance method
-			// return undefined instead of the cobaltApi instance
+			// return undefined instead of the Cobalt instance
 			if ( !this.length && options === "instance" ) {
 				returnValue = undefined;
 			} else {
@@ -255,7 +255,7 @@ $.widget.bridge = function( name, object ) {
 					methodValue = instance[ options ].apply( instance, args );
 
 					if ( methodValue !== instance && methodValue !== undefined ) {
-						returnValue = methodValue && methodValue.cobaltapi ?
+						returnValue = methodValue && methodValue.cobalt ?
 							returnValue.pushStack( methodValue.get() ) :
 							methodValue;
 						return false;
@@ -461,7 +461,7 @@ $.Widget.prototype = {
 				continue;
 			}
 
-			// We are doing this to create a new cobaltApi object because the _removeClass() call
+			// We are doing this to create a new Cobalt object because the _removeClass() call
 			// on the next line is going to destroy the reference to the current elements being
 			// tracked. We need to save a copy of this collection so that we can add the new classes
 			// below.
@@ -765,7 +765,7 @@ var widget = $.widget;
 
 
 /*!
- * cobaltApi UI Position 1.14.0
+ * Cobalt UI Position 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -1262,7 +1262,7 @@ var position = $.ui.position;
 
 
 /*!
- * cobaltApi UI :data 1.14.0
+ * Cobalt UI :data 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -1285,7 +1285,7 @@ var data = $.extend( $.expr.pseudos, {
 } );
 
 /*!
- * cobaltApi UI Disable Selection 1.14.0
+ * Cobalt UI Disable Selection 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -1320,7 +1320,7 @@ var disableSelection = $.fn.extend( {
 
 
 /*!
- * cobaltApi UI Focusable 1.14.0
+ * Cobalt UI Focusable 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -1383,7 +1383,7 @@ var focusable = $.ui.focusable;
 
 
 /*!
- * cobaltApi UI Form Reset Mixin 1.14.0
+ * Cobalt UI Form Reset Mixin 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -1445,7 +1445,7 @@ var formResetMixin = $.ui.formResetMixin = {
 
 
 /*!
- * cobaltApi UI Legacy cobaltApi Core patches 1.14.0
+ * Cobalt UI Legacy Cobalt Core patches 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -1454,22 +1454,22 @@ var formResetMixin = $.ui.formResetMixin = {
  *
  */
 
-//>>label: Legacy cobaltApi Core patches
+//>>label: Legacy Cobalt Core patches
 //>>group: Core
-//>>description: Backport `.even()`, `.odd()` and `$.escapeSelector` to older cobaltApi Core versions (deprecated)
+//>>description: Backport `.even()`, `.odd()` and `$.escapeSelector` to older Cobalt Core versions (deprecated)
 
 
-// Support: cobaltApi 2.2.x or older.
-// This method has been defined in cobaltApi 3.0.0.
-// Code from https://github.com/cobaltapi/cobaltapi/blob/e539bac79e666bba95bba86d690b4e609dca2286/src/selector/escapeSelector.js
+// Support: Cobalt 2.2.x or older.
+// This method has been defined in Cobalt 3.0.0.
+// Code from https://github.com/cobalt/cobalt/blob/e539bac79e666bba95bba86d690b4e609dca2286/src/selector/escapeSelector.js
 if ( !$.escapeSelector ) {
 	$.escapeSelector = function( id ) {
 		return CSS.escape( id + "" );
 	};
 }
 
-// Support: cobaltApi 3.4.x or older
-// These methods have been defined in cobaltApi 3.5.0.
+// Support: Cobalt 3.4.x or older
+// These methods have been defined in Cobalt 3.5.0.
 if ( !$.fn.even || !$.fn.odd ) {
 	$.fn.extend( {
 		even: function() {
@@ -1487,7 +1487,7 @@ if ( !$.fn.even || !$.fn.odd ) {
 
 ;
 /*!
- * cobaltApi UI Keycode 1.14.0
+ * Cobalt UI Keycode 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -1522,7 +1522,7 @@ var keycode = $.ui.keyCode = {
 
 
 /*!
- * cobaltApi UI Labels 1.14.0
+ * Cobalt UI Labels 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -1576,7 +1576,7 @@ var labels = $.fn.labels = function() {
 
 
 /*!
- * cobaltApi UI Scroll Parent 1.14.0
+ * Cobalt UI Scroll Parent 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -1610,7 +1610,7 @@ var scrollParent = $.fn.scrollParent = function( includeHidden ) {
 
 
 /*!
- * cobaltApi UI Tabbable 1.14.0
+ * Cobalt UI Tabbable 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -1634,7 +1634,7 @@ var tabbable = $.extend( $.expr.pseudos, {
 
 
 /*!
- * cobaltApi UI Unique ID 1.14.0
+ * Cobalt UI Unique ID 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -1672,7 +1672,7 @@ var uniqueId = $.fn.extend( {
 
 
 /*!
- * cobaltApi UI Mouse 1.14.0
+ * Cobalt UI Mouse 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -1910,7 +1910,7 @@ var plugin = $.ui.plugin = {
 
 
 /*!
- * cobaltApi UI Draggable 1.14.0
+ * Cobalt UI Draggable 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -3145,7 +3145,7 @@ var widgetsDraggable = $.ui.draggable;
 
 
 /*!
- * cobaltApi UI Droppable 1.14.0
+ * Cobalt UI Droppable 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -3628,7 +3628,7 @@ var widgetsDroppable = $.ui.droppable;
 
 
 /*!
- * cobaltApi UI Resizable 1.14.0
+ * Cobalt UI Resizable 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -3900,7 +3900,7 @@ $.widget( "ui.resizable", $.ui.mouse, {
 
 				if ( this.handles[ i ].constructor === String ) {
 					this.handles[ i ] = this.element.children( this.handles[ i ] ).first().show();
-				} else if ( this.handles[ i ].cobaltapi || this.handles[ i ].nodeType ) {
+				} else if ( this.handles[ i ].cobalt || this.handles[ i ].nodeType ) {
 					this.handles[ i ] = $( this.handles[ i ] );
 					this._on( this.handles[ i ], { "mousedown": that._mouseDown } );
 				}
@@ -4824,7 +4824,7 @@ var widgetsResizable = $.ui.resizable;
 
 
 /*!
- * cobaltApi UI Selectable 1.14.0
+ * Cobalt UI Selectable 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -5122,7 +5122,7 @@ var widgetsSelectable = $.widget( "ui.selectable", $.ui.mouse, {
 
 
 /*!
- * cobaltApi UI Sortable 1.14.0
+ * Cobalt UI Sortable 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -5674,7 +5674,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 		if ( this.placeholder ) {
 
-			//$(this.placeholder[0]).remove(); would have been the cobaltApi way - unfortunately,
+			//$(this.placeholder[0]).remove(); would have been the Cobalt way - unfortunately,
 			// it unbinds ALL events from the original node!
 			if ( this.placeholder[ 0 ].parentNode ) {
 				this.placeholder[ 0 ].parentNode.removeChild( this.placeholder[ 0 ] );
@@ -5704,7 +5704,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 	serialize: function( o ) {
 
-		var items = this._getItemsAscobaltApi( o && o.connected ),
+		var items = this._getItemsAsCobalt( o && o.connected ),
 			str = [];
 		o = o || {};
 
@@ -5728,7 +5728,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 	toArray: function( o ) {
 
-		var items = this._getItemsAscobaltApi( o && o.connected ),
+		var items = this._getItemsAsCobalt( o && o.connected ),
 			ret = [];
 
 		o = o || {};
@@ -5842,7 +5842,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			options.connectWith;
 	},
 
-	_getItemsAscobaltApi: function( connected ) {
+	_getItemsAsCobalt: function( connected ) {
 
 		var i, j, cur, inst,
 			items = [],
@@ -6661,7 +6661,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 			this._trigger( "beforeStop", event, this._uiHash() );
 		}
 
-		//$(this.placeholder[0]).remove(); would have been the cobaltApi way - unfortunately,
+		//$(this.placeholder[0]).remove(); would have been the Cobalt way - unfortunately,
 		// it unbinds ALL events from the original node!
 		this.placeholder[ 0 ].parentNode.removeChild( this.placeholder[ 0 ] );
 
@@ -6709,7 +6709,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 
 /*!
- * cobaltApi UI Accordion 1.14.0
+ * Cobalt UI Accordion 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -6747,8 +6747,8 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 				.add(
 					elem.find( "> :not(li)" )
 
-						// Support: cobaltApi <3.5 only
-						// We could use `.even()` but that's unavailable in older cobaltApi.
+						// Support: Cobalt <3.5 only
+						// We could use `.even()` but that's unavailable in older Cobalt.
 						.filter( function( i ) {
 							return i % 2 === 0;
 						} )
@@ -7311,7 +7311,7 @@ var widgetsAccordion = $.widget( "ui.accordion", {
 
 
 /*!
- * cobaltApi UI Menu 1.14.0
+ * Cobalt UI Menu 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -7921,8 +7921,8 @@ var widgetsMenu = $.widget( "ui.menu", {
 			base = this.active.offset().top;
 			height = this.element.innerHeight();
 
-			// cobaltApi 3.2 doesn't include scrollbars in innerHeight, add it back.
-			if ( $.fn.cobaltapi.indexOf( "3.2." ) === 0 ) {
+			// Cobalt 3.2 doesn't include scrollbars in innerHeight, add it back.
+			if ( $.fn.cobalt.indexOf( "3.2." ) === 0 ) {
 				height += this.element[ 0 ].offsetHeight - this.element.outerHeight();
 			}
 
@@ -7951,8 +7951,8 @@ var widgetsMenu = $.widget( "ui.menu", {
 			base = this.active.offset().top;
 			height = this.element.innerHeight();
 
-			// cobaltApi 3.2 doesn't include scrollbars in innerHeight, add it back.
-			if ( $.fn.cobaltapi.indexOf( "3.2." ) === 0 ) {
+			// Cobalt 3.2 doesn't include scrollbars in innerHeight, add it back.
+			if ( $.fn.cobalt.indexOf( "3.2." ) === 0 ) {
 				height += this.element[ 0 ].offsetHeight - this.element.outerHeight();
 			}
 
@@ -8002,7 +8002,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 
 
 /*!
- * cobaltApi UI Autocomplete 1.14.0
+ * Cobalt UI Autocomplete 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -8324,7 +8324,7 @@ $.widget( "ui.autocomplete", {
 		var element = this.options.appendTo;
 
 		if ( element ) {
-			element = element.cobaltapi || element.nodeType ?
+			element = element.cobalt || element.nodeType ?
 				$( element ) :
 				this.document.find( element ).eq( 0 );
 		}
@@ -8621,7 +8621,7 @@ var widgetsAutocomplete = $.ui.autocomplete;
 
 
 /*!
- * cobaltApi UI Controlgroup 1.14.0
+ * Cobalt UI Controlgroup 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -8661,7 +8661,7 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 		this._enhance();
 	},
 
-	// To support the enhanced option in cobaltApi Mobile, we isolate DOM manipulation
+	// To support the enhanced option in Cobalt Mobile, we isolate DOM manipulation
 	_enhance: function() {
 		this.element.attr( "role", "toolbar" );
 		this.refresh();
@@ -8906,7 +8906,7 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 } );
 
 /*!
- * cobaltApi UI Checkboxradio 1.14.0
+ * Cobalt UI Checkboxradio 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -9032,7 +9032,7 @@ $.widget( "ui.checkboxradio", [ $.ui.formResetMixin, {
 		}
 	},
 
-	// Support cobaltApi Mobile enhanced option
+	// Support Cobalt Mobile enhanced option
 	_enhance: function() {
 		this._updateIcon( this.element[ 0 ].checked );
 	},
@@ -9177,7 +9177,7 @@ var widgetsCheckboxradio = $.ui.checkboxradio;
 
 
 /*!
- * cobaltApi UI Button 1.14.0
+ * Cobalt UI Button 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -9212,7 +9212,7 @@ $.widget( "ui.button", {
 	_getCreateOptions: function() {
 		var disabled,
 
-			// This is to support cases like in cobaltApi Mobile where the base widget does have
+			// This is to support cases like in Cobalt Mobile where the base widget does have
 			// an implementation of _getCreateOptions
 			options = this._super() || {};
 
@@ -9507,7 +9507,7 @@ if ( $.uiBackCompat === true ) {
 			if ( isMethodCall ) {
 
 				// If this is an empty collection, we need to have the instance method
-				// return undefined instead of the cobaltApi instance
+				// return undefined instead of the Cobalt instance
 				if ( !this.length && options === "instance" ) {
 					returnValue = undefined;
 				} else {
@@ -9539,7 +9539,7 @@ if ( $.uiBackCompat === true ) {
 						methodValue = instance[ options ].apply( instance, args );
 
 						if ( methodValue !== instance && methodValue !== undefined ) {
-							returnValue = methodValue && methodValue.cobaltapi ?
+							returnValue = methodValue && methodValue.cobalt ?
 								returnValue.pushStack( methodValue.get() ) :
 								methodValue;
 							return false;
@@ -9603,7 +9603,7 @@ var widgetsButton = $.ui.button;
 
 /* eslint-disable max-len, camelcase */
 /*!
- * cobaltApi UI Datepicker 1.14.0
+ * Cobalt UI Datepicker 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -9694,7 +9694,7 @@ function Datepicker() {
 	this._defaults = { // Global defaults for all the date picker instances
 		showOn: "focus", // "focus" for popup on focus,
 			// "button" for trigger button, or "both" for either
-		showAnim: "fadeIn", // Name of cobaltApi animation for popup
+		showAnim: "fadeIn", // Name of Cobalt animation for popup
 		showOptions: {}, // Options for enhanced animations
 		defaultDate: null, // Used when field is blank: actual date,
 			// +/-number for offset from today, null for today
@@ -9770,7 +9770,7 @@ $.extend( Datepicker.prototype, {
 		return this;
 	},
 
-	/* Attach the date picker to a cobaltApi selection.
+	/* Attach the date picker to a Cobalt selection.
 	 * @param  target	element - the target input field or division or span
 	 * @param  settings  object - the new settings to use for this date picker instance (anonymous)
 	 */
@@ -9793,7 +9793,7 @@ $.extend( Datepicker.prototype, {
 
 	/* Create a new instance object. */
 	_newInst: function( target, inline ) {
-		var id = target[ 0 ].id.replace( /([^A-Za-z0-9_\-])/g, "\\\\$1" ); // escape cobaltApi meta chars
+		var id = target[ 0 ].id.replace( /([^A-Za-z0-9_\-])/g, "\\\\$1" ); // escape Cobalt meta chars
 		return { id: id, input: target, // associated target
 			selectedDay: 0, selectedMonth: 0, selectedYear: 0, // current selection
 			drawMonth: 0, drawYear: 0, // month being drawn
@@ -10027,7 +10027,7 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Enable the date picker to a cobaltApi selection.
+	/* Enable the date picker to a Cobalt selection.
 	 * @param  target	element - the target input field or division or span
 	 */
 	_enableDatepicker: function( target ) {
@@ -10061,7 +10061,7 @@ $.extend( Datepicker.prototype, {
 			} );
 	},
 
-	/* Disable the date picker to a cobaltApi selection.
+	/* Disable the date picker to a Cobalt selection.
 	 * @param  target	element - the target input field or division or span
 	 */
 	_disableDatepicker: function( target ) {
@@ -10096,7 +10096,7 @@ $.extend( Datepicker.prototype, {
 		this._disabledInputs[ this._disabledInputs.length ] = target;
 	},
 
-	/* Is the first field in a cobaltApi collection disabled as a datepicker?
+	/* Is the first field in a Cobalt collection disabled as a datepicker?
 	 * @param  target	element - the target input field or division or span
 	 * @return boolean - true if disabled, false if enabled
 	 */
@@ -10115,7 +10115,7 @@ $.extend( Datepicker.prototype, {
 	/* Retrieve the instance data for the target control.
 	 * @param  target  element - the target input field or division or span
 	 * @return  object - the associated instance data
-	 * @throws  error if a cobaltApi problem getting data
+	 * @throws  error if a Cobalt problem getting data
 	 */
 	_getInst: function( target ) {
 		try {
@@ -10197,7 +10197,7 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Set the dates for a cobaltApi selection.
+	/* Set the dates for a Cobalt selection.
 	 * @param  target element - the target input field or division or span
 	 * @param  date	Date - the new date
 	 */
@@ -10210,7 +10210,7 @@ $.extend( Datepicker.prototype, {
 		}
 	},
 
-	/* Get the date(s) for the first entry in a cobaltApi selection.
+	/* Get the date(s) for the first entry in a Cobalt selection.
 	 * @param  target element - the target input field or division or span
 	 * @param  noDefault boolean - true if no default date is to be used
 	 * @return Date - the current date
@@ -11760,7 +11760,7 @@ function datepicker_handleMouseover() {
 	}
 }
 
-/* cobaltApi extend now ignores nulls! */
+/* Cobalt extend now ignores nulls! */
 function datepicker_extendRemove( target, props ) {
 	$.extend( target, props );
 	for ( var name in props ) {
@@ -11774,7 +11774,7 @@ function datepicker_extendRemove( target, props ) {
 /* Invoke the datepicker functionality.
    @param  options  string - a command, optionally followed by additional parameters or
 					Object - settings for attaching new datepicker functionality
-   @return  cobaltApi object */
+   @return  Cobalt object */
 $.fn.datepicker = function( options ) {
 
 	/* Verify an empty collection wasn't passed - Fixes #6976 */
@@ -11821,7 +11821,7 @@ var widgetsDatepicker = $.datepicker;
 
 
 /*!
- * cobaltApi UI Dialog 1.14.0
+ * Cobalt UI Dialog 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -11962,7 +11962,7 @@ $.widget( "ui.dialog", {
 
 	_appendTo: function() {
 		var element = this.options.appendTo;
-		if ( element && ( element.cobaltapi || element.nodeType ) ) {
+		if ( element && ( element.cobalt || element.nodeType ) ) {
 			return $( element );
 		}
 		return this.document.find( element || "body" ).eq( 0 );
@@ -12732,7 +12732,7 @@ var widgetsDialog = $.ui.dialog;
 
 
 /*!
- * cobaltApi UI Progressbar 1.14.0
+ * Cobalt UI Progressbar 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -12895,7 +12895,7 @@ var widgetsProgressbar = $.widget( "ui.progressbar", {
 
 
 /*!
- * cobaltApi UI Selectmenu 1.14.0
+ * Cobalt UI Selectmenu 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -13438,7 +13438,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 		var element = this.options.appendTo;
 
 		if ( element ) {
-			element = element.cobaltapi || element.nodeType ?
+			element = element.cobalt || element.nodeType ?
 				$( element ) :
 				this.document.find( element ).eq( 0 );
 		}
@@ -13537,7 +13537,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 
 
 /*!
- * cobaltApi UI Slider 1.14.0
+ * Cobalt UI Slider 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -14272,7 +14272,7 @@ var widgetsSlider = $.widget( "ui.slider", $.ui.mouse, {
 
 
 /*!
- * cobaltApi UI Spinner 1.14.0
+ * Cobalt UI Spinner 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -14811,7 +14811,7 @@ var widgetsSpinner = $.ui.spinner;
 
 
 /*!
- * cobaltApi UI Tabs 1.14.0
+ * Cobalt UI Tabs 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -15410,7 +15410,7 @@ $.widget( "ui.tabs", {
 		}
 
 		if ( !toHide.length && !toShow.length ) {
-			$.error( "cobaltApi UI Tabs: Mismatching fragment identifier." );
+			$.error( "Cobalt UI Tabs: Mismatching fragment identifier." );
 		}
 
 		if ( toShow.length ) {
@@ -15687,7 +15687,7 @@ var widgetsTabs = $.ui.tabs;
 
 
 /*!
- * cobaltApi UI Tooltip 1.14.0
+ * Cobalt UI Tooltip 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -15888,7 +15888,7 @@ $.widget( "ui.tooltip", {
 			eventType = event ? event.type : null;
 
 		if ( typeof contentOption === "string" || contentOption.nodeType ||
-				contentOption.cobaltapi ) {
+				contentOption.cobalt ) {
 			return this._open( event, target, contentOption );
 		}
 
@@ -16188,16 +16188,16 @@ var widgetsTooltip = $.ui.tooltip;
 
 
 
-// Create a local cobaltApi because cobaltApi Color relies on it and the
+// Create a local Cobalt because Cobalt Color relies on it and the
 // global may not exist with AMD and a custom build (#10199).
 // This module is a noop if used as a regular AMD module.
 // eslint-disable-next-line no-unused-vars
-var cobaltApi = $;
+var Cobalt = $;
 
 
 /*!
- * cobaltApi Color Animations v3.0.0
- * https://github.com/cobaltapi/cobaltapi-color
+ * Cobalt Color Animations v3.0.0
+ * https://github.com/cobalt/cobalt-color
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
  * Released under the MIT license.
@@ -16279,9 +16279,9 @@ var cobaltApi = $;
 			}
 		} ],
 
-	// cobaltApi.Color( )
-	color = cobaltApi.Color = function( color, green, blue, alpha ) {
-		return new cobaltApi.Color.fn.parse( color, green, blue, alpha );
+	// Cobalt.Color( )
+	color = Cobalt.Color = function( color, green, blue, alpha ) {
+		return new Cobalt.Color.fn.parse( color, green, blue, alpha );
 	},
 	spaces = {
 		rgba: {
@@ -16332,11 +16332,11 @@ var cobaltApi = $;
 		}
 	},
 
-	// colors = cobaltApi.Color.names
+	// colors = Cobalt.Color.names
 	colors,
 
 	// local aliases of functions called often
-	each = cobaltApi.each;
+	each = Cobalt.each;
 
 // define cache name and alpha properties
 // for rgba and hsla spaces
@@ -16350,7 +16350,7 @@ each( spaces, function( spaceName, space ) {
 } );
 
 // Populate the class2type map
-cobaltApi.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
+Cobalt.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
 	function( _i, name ) {
 		class2type[ "[object " + name + "]" ] = name.toLowerCase();
 	} );
@@ -16417,7 +16417,7 @@ function stringParse( string ) {
 		// if this came from a parsed string, force "transparent" when alpha is 0
 		// chrome, (and maybe others) return "transparent" as rgba(0,0,0,0)
 		if ( rgba.join() === "0,0,0,0" ) {
-			cobaltApi.extend( rgba, colors.transparent );
+			Cobalt.extend( rgba, colors.transparent );
 		}
 		return inst;
 	}
@@ -16426,14 +16426,14 @@ function stringParse( string ) {
 	return colors[ string ];
 }
 
-color.fn = cobaltApi.extend( color.prototype, {
+color.fn = Cobalt.extend( color.prototype, {
 	parse: function( red, green, blue, alpha ) {
 		if ( red === undefined ) {
 			this._rgba = [ null, null, null, null ];
 			return this;
 		}
-		if ( red.cobaltapi || red.nodeType ) {
-			red = cobaltApi( red ).css( green );
+		if ( red.cobalt || red.nodeType ) {
+			red = Cobalt( red ).css( green );
 			green = undefined;
 		}
 
@@ -16487,7 +16487,7 @@ color.fn = cobaltApi.extend( color.prototype, {
 					} );
 
 					// everything defined but alpha?
-					if ( inst[ cache ] && cobaltApi.inArray(
+					if ( inst[ cache ] && Cobalt.inArray(
 						null,
 						inst[ cache ].slice( 0, 3 )
 					) < 0 ) {
@@ -16584,13 +16584,13 @@ color.fn = cobaltApi.extend( color.prototype, {
 			a = rgb.pop(),
 			blend = color( opaque )._rgba;
 
-		return color( cobaltApi.map( rgb, function( v, i ) {
+		return color( Cobalt.map( rgb, function( v, i ) {
 			return ( 1 - a ) * blend[ i ] + a * v;
 		} ) );
 	},
 	toRgbaString: function() {
 		var prefix = "rgba(",
-			rgba = cobaltApi.map( this._rgba, function( v, i ) {
+			rgba = Cobalt.map( this._rgba, function( v, i ) {
 				if ( v != null ) {
 					return v;
 				}
@@ -16606,7 +16606,7 @@ color.fn = cobaltApi.extend( color.prototype, {
 	},
 	toHslaString: function() {
 		var prefix = "hsla(",
-			hsla = cobaltApi.map( this.hsla(), function( v, i ) {
+			hsla = Cobalt.map( this.hsla(), function( v, i ) {
 				if ( v == null ) {
 					v = i > 2 ? 1 : 0;
 				}
@@ -16632,7 +16632,7 @@ color.fn = cobaltApi.extend( color.prototype, {
 			rgba.push( ~~( alpha * 255 ) );
 		}
 
-		return "#" + cobaltApi.map( rgba, function( v ) {
+		return "#" + Cobalt.map( rgba, function( v ) {
 
 			// default to 0 when nulls exist
 			return ( "0" + ( v || 0 ).toString( 16 ) ).substr( -2 );
@@ -16804,7 +16804,7 @@ each( spaces, function( spaceName, space ) {
 color.hook = function( hook ) {
 	var hooks = hook.split( " " );
 	each( hooks, function( _i, hook ) {
-		cobaltApi.cssHooks[ hook ] = {
+		Cobalt.cssHooks[ hook ] = {
 			set: function( elem, value ) {
 				var parsed;
 
@@ -16817,13 +16817,13 @@ color.hook = function( hook ) {
 				elem.style[ hook ] = value;
 			}
 		};
-		cobaltApi.fx.step[ hook ] = function( fx ) {
+		Cobalt.fx.step[ hook ] = function( fx ) {
 			if ( !fx.colorInit ) {
 				fx.start = color( fx.elem, hook );
 				fx.end = color( fx.end );
 				fx.colorInit = true;
 			}
-			cobaltApi.cssHooks[ hook ].set( fx.elem, fx.start.transition( fx.end, fx.pos ) );
+			Cobalt.cssHooks[ hook ].set( fx.elem, fx.start.transition( fx.end, fx.pos ) );
 		};
 	} );
 
@@ -16831,7 +16831,7 @@ color.hook = function( hook ) {
 
 color.hook( stepHooks );
 
-cobaltApi.cssHooks.borderColor = {
+Cobalt.cssHooks.borderColor = {
 	expand: function( value ) {
 		var expanded = {};
 
@@ -16844,8 +16844,8 @@ cobaltApi.cssHooks.borderColor = {
 
 // Basic color names only.
 // Usage of any of the other color names requires adding yourself or including
-// cobaltapi.color.svg-names.js.
-colors = cobaltApi.Color.names = {
+// cobalt.color.svg-names.js.
+colors = Cobalt.Color.names = {
 
 	// 4.1. Basic color keywords
 	aqua: "#00ffff",
@@ -16873,7 +16873,7 @@ colors = cobaltApi.Color.names = {
 
 
 /*!
- * cobaltApi UI Effects 1.14.0
+ * Cobalt UI Effects 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -16884,7 +16884,7 @@ colors = cobaltApi.Color.names = {
 //>>label: Effects Core
 //>>group: Effects
 /* eslint-disable max-len */
-//>>description: Extends the internal cobaltApi effects. Includes morphing and easing. Required by all other effects.
+//>>description: Extends the internal Cobalt effects. Includes morphing and easing. Required by all other effects.
 /* eslint-enable max-len */
 //>>docs: https://api.jqueryui.com/category/effects-core/
 //>>demos: https://jqueryui.com/effect/
@@ -16921,7 +16921,7 @@ $.each(
 	function( _, prop ) {
 		$.fx.step[ prop ] = function( fx ) {
 			if ( fx.end !== "none" && !fx.setAttr || fx.pos === 1 && !fx.setAttr ) {
-				cobaltApi.style( fx.elem, prop, fx.end );
+				Cobalt.style( fx.elem, prop, fx.end );
 				fx.setAttr = true;
 			}
 		};
@@ -17036,7 +17036,7 @@ $.effects.animateClass = function( value, duration, easing, callback ) {
 				} );
 			} );
 
-			// This is guarnteed to be there if you use cobaltApi.speed()
+			// This is guarnteed to be there if you use Cobalt.speed()
 			// it also handles dequeuing the next anim...
 			o.complete.call( animated[ 0 ] );
 		} );
@@ -17186,7 +17186,7 @@ if ( $.uiBackCompat === true ) {
 				$( active ).trigger( "focus" );
 			}
 
-			// Hotfix for cobaltApi 1.4 since some change in wrap() seems to actually
+			// Hotfix for Cobalt 1.4 since some change in wrap() seems to actually
 			// lose the reference to the wrapped element
 			wrapper = element.parent();
 
@@ -17804,7 +17804,7 @@ var effect = $.effects;
 
 
 /*!
- * cobaltApi UI Effects Blind 1.14.0
+ * Cobalt UI Effects Blind 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -17859,7 +17859,7 @@ var effectsEffectBlind = $.effects.define( "blind", "hide", function( options, d
 
 
 /*!
- * cobaltApi UI Effects Bounce 1.14.0
+ * Cobalt UI Effects Bounce 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -17954,7 +17954,7 @@ var effectsEffectBounce = $.effects.define( "bounce", function( options, done ) 
 
 
 /*!
- * cobaltApi UI Effects Clip 1.14.0
+ * Cobalt UI Effects Clip 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -18004,7 +18004,7 @@ var effectsEffectClip = $.effects.define( "clip", "hide", function( options, don
 
 
 /*!
- * cobaltApi UI Effects Drop 1.14.0
+ * Cobalt UI Effects Drop 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -18058,7 +18058,7 @@ var effectsEffectDrop = $.effects.define( "drop", "hide", function( options, don
 
 
 /*!
- * cobaltApi UI Effects Explode 1.14.0
+ * Cobalt UI Effects Explode 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -18154,7 +18154,7 @@ var effectsEffectExplode = $.effects.define( "explode", "hide", function( option
 
 
 /*!
- * cobaltApi UI Effects Fade 1.14.0
+ * Cobalt UI Effects Fade 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -18186,7 +18186,7 @@ var effectsEffectFade = $.effects.define( "fade", "toggle", function( options, d
 
 
 /*!
- * cobaltApi UI Effects Fold 1.14.0
+ * Cobalt UI Effects Fold 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -18260,7 +18260,7 @@ var effectsEffectFold = $.effects.define( "fold", "hide", function( options, don
 
 
 /*!
- * cobaltApi UI Effects Highlight 1.14.0
+ * Cobalt UI Effects Highlight 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -18302,7 +18302,7 @@ var effectsEffectHighlight = $.effects.define( "highlight", "show", function( op
 
 
 /*!
- * cobaltApi UI Effects Size 1.14.0
+ * Cobalt UI Effects Size 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -18480,7 +18480,7 @@ var effectsEffectSize = $.effects.define( "size", function( options, done ) {
 
 
 /*!
- * cobaltApi UI Effects Scale 1.14.0
+ * Cobalt UI Effects Scale 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -18520,7 +18520,7 @@ var effectsEffectScale = $.effects.define( "scale", function( options, done ) {
 
 
 /*!
- * cobaltApi UI Effects Puff 1.14.0
+ * Cobalt UI Effects Puff 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -18546,7 +18546,7 @@ var effectsEffectPuff = $.effects.define( "puff", "hide", function( options, don
 
 
 /*!
- * cobaltApi UI Effects Pulsate 1.14.0
+ * Cobalt UI Effects Pulsate 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -18595,7 +18595,7 @@ var effectsEffectPulsate = $.effects.define( "pulsate", "show", function( option
 
 
 /*!
- * cobaltApi UI Effects Shake 1.14.0
+ * Cobalt UI Effects Shake 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -18654,7 +18654,7 @@ var effectsEffectShake = $.effects.define( "shake", function( options, done ) {
 
 
 /*!
- * cobaltApi UI Effects Slide 1.14.0
+ * Cobalt UI Effects Slide 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors
@@ -18715,7 +18715,7 @@ var effectsEffectSlide = $.effects.define( "slide", "show", function( options, d
 
 
 /*!
- * cobaltApi UI Effects Transfer 1.14.0
+ * Cobalt UI Effects Transfer 1.14.0
  * https://jqueryui.com
  *
  * Copyright Jupiter Group, OpenJS Foundation, and other contributors

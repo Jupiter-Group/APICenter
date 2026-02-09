@@ -13,17 +13,17 @@
 	if ( typeof module === "object" && typeof module.exports === "object" ) {
 
 		// For CommonJS and CommonJS-like environments where a proper `window`
-		// is present, execute the factory and get cobaltApi.
+		// is present, execute the factory and get Cobalt.
 		// For environments that do not have a `window` with a `document`
 		// (such as Node.js), expose a factory as module.exports.
 		// This accentuates the need for the creation of a real `window`.
-		// e.g. var cobaltApi = require("cobaltapi")(window);
+		// e.g. var Cobalt = require("cobalt")(window);
 		// See ticket trac-14549 for more info.
 		module.exports = global.document ?
 			factory( global, true ) :
 			function( w ) {
 				if ( !w.document ) {
-					throw new Error( "cobaltApi requires a window with a document" );
+					throw new Error( "Cobalt requires a window with a document" );
 				}
 				return factory( w );
 			};
@@ -36,7 +36,7 @@
 
 // Edge <= 12 - 13+, Firefox <=18 - 45+, IE 10 - 11, Safari 5.1 - 9+, iOS 6 - 9.1
 // throw exceptions when non-strict code (e.g., ASP.NET 4.5) accesses strict mode
-// arguments.callee.caller (trac-13335). But as of cobaltApi 3.0 (2016), strict mode should be common
+// arguments.callee.caller (trac-13335). But as of Cobalt 3.0 (2016), strict mode should be common
 // enough that all such attempts are guarded in a try block.
 "use strict";
 
@@ -117,7 +117,7 @@ var document = window.document;
 				// See https://github.com/whatwg/html/issues/2369
 				// See https://html.spec.whatwg.org/#nonce-attributes
 				// The `node.getAttribute` check was added for the sake of
-				// `cobaltApi.globalEval` so that it can fake a nonce-containing node
+				// `Cobalt.globalEval` so that it can fake a nonce-containing node
 				// via an object.
 				val = node[ i ] || node.getAttribute && node.getAttribute( i );
 				if ( val ) {
@@ -149,22 +149,22 @@ var version = "3.7.1",
 
 	rhtmlSuffix = /HTML$/i,
 
-	// Define a local copy of cobaltApi
-	cobaltApi = function( selector, context ) {
+	// Define a local copy of Cobalt
+	Cobalt = function( selector, context ) {
 
-		// The cobaltApi object is actually just the init constructor 'enhanced'
-		// Need init if cobaltApi is called (just allow error to be thrown if not included)
-		return new cobaltApi.fn.init( selector, context );
+		// The Cobalt object is actually just the init constructor 'enhanced'
+		// Need init if Cobalt is called (just allow error to be thrown if not included)
+		return new Cobalt.fn.init( selector, context );
 	};
 
-cobaltApi.fn = cobaltApi.prototype = {
+Cobalt.fn = Cobalt.prototype = {
 
-	// The current version of cobaltApi being used
-	cobaltapi: version,
+	// The current version of Cobalt being used
+	cobalt: version,
 
-	constructor: cobaltApi,
+	constructor: Cobalt,
 
-	// The default length of a cobaltApi object is 0
+	// The default length of a Cobalt object is 0
 	length: 0,
 
 	toArray: function() {
@@ -188,8 +188,8 @@ cobaltApi.fn = cobaltApi.prototype = {
 	// (returning the new matched element set)
 	pushStack: function( elems ) {
 
-		// Build a new cobaltApi matched element set
-		var ret = cobaltApi.merge( this.constructor(), elems );
+		// Build a new Cobalt matched element set
+		var ret = Cobalt.merge( this.constructor(), elems );
 
 		// Add the old object onto the stack (as a reference)
 		ret.prevObject = this;
@@ -200,11 +200,11 @@ cobaltApi.fn = cobaltApi.prototype = {
 
 	// Execute a callback for every element in the matched set.
 	each: function( callback ) {
-		return cobaltApi.each( this, callback );
+		return Cobalt.each( this, callback );
 	},
 
 	map: function( callback ) {
-		return this.pushStack( cobaltApi.map( this, function( elem, i ) {
+		return this.pushStack( Cobalt.map( this, function( elem, i ) {
 			return callback.call( elem, i, elem );
 		} ) );
 	},
@@ -222,13 +222,13 @@ cobaltApi.fn = cobaltApi.prototype = {
 	},
 
 	even: function() {
-		return this.pushStack( cobaltApi.grep( this, function( _elem, i ) {
+		return this.pushStack( Cobalt.grep( this, function( _elem, i ) {
 			return ( i + 1 ) % 2;
 		} ) );
 	},
 
 	odd: function() {
-		return this.pushStack( cobaltApi.grep( this, function( _elem, i ) {
+		return this.pushStack( Cobalt.grep( this, function( _elem, i ) {
 			return i % 2;
 		} ) );
 	},
@@ -244,13 +244,13 @@ cobaltApi.fn = cobaltApi.prototype = {
 	},
 
 	// For internal use only.
-	// Behaves like an Array's method, not like a cobaltApi method.
+	// Behaves like an Array's method, not like a Cobalt method.
 	push: push,
 	sort: arr.sort,
 	splice: arr.splice
 };
 
-cobaltApi.extend = cobaltApi.fn.extend = function() {
+Cobalt.extend = Cobalt.fn.extend = function() {
 	var options, name, src, copy, copyIsArray, clone,
 		target = arguments[ 0 ] || {},
 		i = 1,
@@ -271,7 +271,7 @@ cobaltApi.extend = cobaltApi.fn.extend = function() {
 		target = {};
 	}
 
-	// Extend cobaltApi itself if only one argument is passed
+	// Extend Cobalt itself if only one argument is passed
 	if ( i === length ) {
 		target = this;
 		i--;
@@ -293,14 +293,14 @@ cobaltApi.extend = cobaltApi.fn.extend = function() {
 				}
 
 				// Recurse if we're merging plain objects or arrays
-				if ( deep && copy && ( cobaltApi.isPlainObject( copy ) ||
+				if ( deep && copy && ( Cobalt.isPlainObject( copy ) ||
 					( copyIsArray = Array.isArray( copy ) ) ) ) {
 					src = target[ name ];
 
 					// Ensure proper type for the source value
 					if ( copyIsArray && !Array.isArray( src ) ) {
 						clone = [];
-					} else if ( !copyIsArray && !cobaltApi.isPlainObject( src ) ) {
+					} else if ( !copyIsArray && !Cobalt.isPlainObject( src ) ) {
 						clone = {};
 					} else {
 						clone = src;
@@ -308,7 +308,7 @@ cobaltApi.extend = cobaltApi.fn.extend = function() {
 					copyIsArray = false;
 
 					// Never move original objects, clone them
-					target[ name ] = cobaltApi.extend( deep, clone, copy );
+					target[ name ] = Cobalt.extend( deep, clone, copy );
 
 				// Don't bring in undefined values
 				} else if ( copy !== undefined ) {
@@ -322,12 +322,12 @@ cobaltApi.extend = cobaltApi.fn.extend = function() {
 	return target;
 };
 
-cobaltApi.extend( {
+Cobalt.extend( {
 
-	// Unique for each copy of cobaltApi on the page
-	expando: "cobaltApi" + ( version + Math.random() ).replace( /\D/g, "" ),
+	// Unique for each copy of Cobalt on the page
+	expando: "Cobalt" + ( version + Math.random() ).replace( /\D/g, "" ),
 
-	// Assume cobaltApi is ready without the ready module
+	// Assume Cobalt is ready without the ready module
 	isReady: true,
 
 	error: function( msg ) {
@@ -340,7 +340,7 @@ cobaltApi.extend( {
 		var proto, Ctor;
 
 		// Detect obvious negatives
-		// Use toString instead of cobaltApi.type to catch host objects
+		// Use toString instead of Cobalt.type to catch host objects
 		if ( !obj || toString.call( obj ) !== "[object Object]" ) {
 			return false;
 		}
@@ -407,7 +407,7 @@ cobaltApi.extend( {
 			while ( ( node = elem[ i++ ] ) ) {
 
 				// Do not traverse comment nodes
-				ret += cobaltApi.text( node );
+				ret += Cobalt.text( node );
 			}
 		}
 		if ( nodeType === 1 || nodeType === 11 ) {
@@ -431,7 +431,7 @@ cobaltApi.extend( {
 
 		if ( arr != null ) {
 			if ( isArrayLike( Object( arr ) ) ) {
-				cobaltApi.merge( ret,
+				Cobalt.merge( ret,
 					typeof arr === "string" ?
 						[ arr ] : arr
 				);
@@ -526,17 +526,17 @@ cobaltApi.extend( {
 	// A global GUID counter for objects
 	guid: 1,
 
-	// cobaltApi.support is not used in Core but other projects attach their
+	// Cobalt.support is not used in Core but other projects attach their
 	// properties to it so it needs to exist.
 	support: support
 } );
 
 if ( typeof Symbol === "function" ) {
-	cobaltApi.fn[ Symbol.iterator ] = arr[ Symbol.iterator ];
+	Cobalt.fn[ Symbol.iterator ] = arr[ Symbol.iterator ];
 }
 
 // Populate the class2type map
-cobaltApi.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
+Cobalt.each( "Boolean Number String Function Array Date RegExp Object Error Symbol".split( " " ),
 	function( _i, name ) {
 		class2type[ "[object " + name + "]" ] = name.toLowerCase();
 	} );
@@ -585,7 +585,7 @@ var rtrimCSS = new RegExp(
 
 
 // Note: an element does not contain itself
-cobaltApi.contains = function( a, b ) {
+Cobalt.contains = function( a, b ) {
 	var bup = b && b.parentNode;
 
 	return a === bup || !!( bup && bup.nodeType === 1 && (
@@ -621,7 +621,7 @@ function fcssescape( ch, asCodePoint ) {
 	return "\\" + ch;
 }
 
-cobaltApi.escapeSelector = function( sel ) {
+Cobalt.escapeSelector = function( sel ) {
 	return ( sel + "" ).replace( rcssescape, fcssescape );
 };
 
@@ -648,7 +648,7 @@ var i,
 	matches,
 
 	// Instance-specific data
-	expando = cobaltApi.expando,
+	expando = Cobalt.expando,
 	dirruns = 0,
 	done = 0,
 	classCache = createCache(),
@@ -900,7 +900,7 @@ function find( selector, context, results, seed ) {
 
 						// Capture the context ID, setting it first if necessary
 						if ( ( nid = context.getAttribute( "id" ) ) ) {
-							nid = cobaltApi.escapeSelector( nid );
+							nid = Cobalt.escapeSelector( nid );
 						} else {
 							context.setAttribute( "id", ( nid = expando ) );
 						}
@@ -948,7 +948,7 @@ function createCache() {
 	function cache( key, value ) {
 
 		// Use (key + " ") to avoid collision with native prototype properties
-		// (see https://github.com/cobaltapi/sizzle/issues/157)
+		// (see https://github.com/cobalt/sizzle/issues/157)
 		if ( keys.push( key + " " ) > Expr.cacheLength ) {
 
 			// Only keep the most recent entries
@@ -960,7 +960,7 @@ function createCache() {
 }
 
 /**
- * Mark a function for special use by cobaltApi selector module
+ * Mark a function for special use by Cobalt selector module
  * @param {Function} fn The function to mark
  */
 function markFunction( fn ) {
@@ -1090,7 +1090,7 @@ function createPositionalPseudo( fn ) {
 }
 
 /**
- * Checks a node for validity as a cobaltApi selector context
+ * Checks a node for validity as a Cobalt selector context
  * @param {Element|Object=} context
  * @returns {Element|Object|Boolean} The input node if acceptable, otherwise a falsy value
  */
@@ -1119,7 +1119,7 @@ function setDocument( node ) {
 	// Update global variables
 	document = doc;
 	documentElement = document.documentElement;
-	documentIsHTML = !cobaltApi.isXMLDoc( document );
+	documentIsHTML = !Cobalt.isXMLDoc( document );
 
 	// Support: iOS 7 only, IE 9 - 11+
 	// Older browsers didn't support unprefixed `matches`.
@@ -1150,9 +1150,9 @@ function setDocument( node ) {
 	// The broken getElementById methods don't pick up programmatically-set names,
 	// so use a roundabout getElementsByName test
 	support.getById = assert( function( el ) {
-		documentElement.appendChild( el ).id = cobaltApi.expando;
+		documentElement.appendChild( el ).id = Cobalt.expando;
 		return !document.getElementsByName ||
-			!document.getElementsByName( cobaltApi.expando ).length;
+			!document.getElementsByName( Cobalt.expando ).length;
 	} );
 
 	// Support: IE 9 only
@@ -1175,7 +1175,7 @@ function setDocument( node ) {
 	// one valid selector).
 	// Note that we treat complete lack of support for `:has()` as if it were
 	// spec-compliant support, which is fine because use of `:has()` in such
-	// environments will fail in the qSA path and fall back to cobaltApi traversal
+	// environments will fail in the qSA path and fall back to Cobalt traversal
 	// anyway.
 	support.cssHas = assert( function() {
 		try {
@@ -1298,7 +1298,7 @@ function setDocument( node ) {
 		// Support: Chrome <=105+, Firefox <=104+, Safari <=15.4+
 		// In some of the document kinds, these selectors wouldn't work natively.
 		// This is probably OK but for backwards compatibility we want to maintain
-		// handling them through cobaltApi traversal in cobaltApi 3.x.
+		// handling them through Cobalt traversal in Cobalt 3.x.
 		if ( !el.querySelectorAll( ":checked" ).length ) {
 			rbuggyQSA.push( ":checked" );
 		}
@@ -1314,7 +1314,7 @@ function setDocument( node ) {
 		// Support: Chrome <=105+, Firefox <=104+, Safari <=15.4+
 		// In some of the document kinds, these selectors wouldn't work natively.
 		// This is probably OK but for backwards compatibility we want to maintain
-		// handling them through cobaltApi traversal in cobaltApi 3.x.
+		// handling them through Cobalt traversal in Cobalt 3.x.
 		documentElement.appendChild( el ).disabled = true;
 		if ( el.querySelectorAll( ":disabled" ).length !== 2 ) {
 			rbuggyQSA.push( ":enabled", ":disabled" );
@@ -1451,7 +1451,7 @@ find.contains = function( context, elem ) {
 	if ( ( context.ownerDocument || context ) != document ) {
 		setDocument( context );
 	}
-	return cobaltApi.contains( context, elem );
+	return Cobalt.contains( context, elem );
 };
 
 
@@ -1488,7 +1488,7 @@ find.error = function( msg ) {
  * Document sorting and removing duplicates
  * @param {ArrayLike} results
  */
-cobaltApi.uniqueSort = function( results ) {
+Cobalt.uniqueSort = function( results ) {
 	var elem,
 		duplicates = [],
 		j = 0,
@@ -1515,17 +1515,17 @@ cobaltApi.uniqueSort = function( results ) {
 	}
 
 	// Clear input after sorting to release objects
-	// See https://github.com/cobaltapi/sizzle/pull/225
+	// See https://github.com/cobalt/sizzle/pull/225
 	sortInput = null;
 
 	return results;
 };
 
-cobaltApi.fn.uniqueSort = function() {
-	return this.pushStack( cobaltApi.uniqueSort( slice.apply( this ) ) );
+Cobalt.fn.uniqueSort = function() {
+	return this.pushStack( Cobalt.uniqueSort( slice.apply( this ) ) );
 };
 
-Expr = cobaltApi.expr = {
+Expr = Cobalt.expr = {
 
 	// Can be adjusted by the user
 	cacheLength: 50,
@@ -1819,7 +1819,7 @@ Expr = cobaltApi.expr = {
 
 			// The user may use createPseudo to indicate that
 			// arguments are needed to create the filter function
-			// just as cobaltApi does
+			// just as Cobalt does
 			if ( fn[ expando ] ) {
 				return fn( argument );
 			}
@@ -1876,7 +1876,7 @@ Expr = cobaltApi.expr = {
 					matcher( input, null, xml, results );
 
 					// Don't keep the element
-					// (see https://github.com/cobaltapi/sizzle/issues/299)
+					// (see https://github.com/cobalt/sizzle/issues/299)
 					input[ 0 ] = null;
 					return !results.pop();
 				};
@@ -1891,7 +1891,7 @@ Expr = cobaltApi.expr = {
 		contains: markFunction( function( text ) {
 			text = text.replace( runescape, funescape );
 			return function( elem ) {
-				return ( elem.textContent || cobaltApi.text( elem ) ).indexOf( text ) > -1;
+				return ( elem.textContent || Cobalt.text( elem ) ).indexOf( text ) > -1;
 			};
 		} ),
 
@@ -2394,7 +2394,7 @@ function matcherFromTokens( tokens ) {
 					matchAnyContext( elem, context, xml ) );
 
 			// Avoid hanging onto element
-			// (see https://github.com/cobaltapi/sizzle/issues/299)
+			// (see https://github.com/cobalt/sizzle/issues/299)
 			checkContext = null;
 			return ret;
 		} ];
@@ -2544,7 +2544,7 @@ function matcherFromGroupMatchers( elementMatchers, setMatchers ) {
 				if ( outermost && !seed && setMatched.length > 0 &&
 					( matchedCount + setMatchers.length ) > 1 ) {
 
-					cobaltApi.uniqueSort( results );
+					Cobalt.uniqueSort( results );
 				}
 			}
 
@@ -2595,10 +2595,10 @@ function compile( selector, match /* Internal Use Only */ ) {
 }
 
 /**
- * A low-level selection function that works with cobaltApi's compiled
+ * A low-level selection function that works with Cobalt's compiled
  *  selector functions
  * @param {String|Function} selector A selector or a pre-compiled
- *  selector function built with cobaltApi selector compile
+ *  selector function built with Cobalt selector compile
  * @param {Element} context
  * @param {Array} [results]
  * @param {Array} [seed] A set of elements to match against
@@ -2695,11 +2695,11 @@ support.sortDetached = assert( function( el ) {
 	return el.compareDocumentPosition( document.createElement( "fieldset" ) ) & 1;
 } );
 
-cobaltApi.find = find;
+Cobalt.find = find;
 
 // Deprecated
-cobaltApi.expr[ ":" ] = cobaltApi.expr.pseudos;
-cobaltApi.unique = cobaltApi.uniqueSort;
+Cobalt.expr[ ":" ] = Cobalt.expr.pseudos;
+Cobalt.unique = Cobalt.uniqueSort;
 
 // These have always been private, but they used to be documented as part of
 // Sizzle so let's maintain them for now for backwards compatibility purposes.
@@ -2708,12 +2708,12 @@ find.select = select;
 find.setDocument = setDocument;
 find.tokenize = tokenize;
 
-find.escape = cobaltApi.escapeSelector;
-find.getText = cobaltApi.text;
-find.isXML = cobaltApi.isXMLDoc;
-find.selectors = cobaltApi.expr;
-find.support = cobaltApi.support;
-find.uniqueSort = cobaltApi.uniqueSort;
+find.escape = Cobalt.escapeSelector;
+find.getText = Cobalt.text;
+find.isXML = Cobalt.isXMLDoc;
+find.selectors = Cobalt.expr;
+find.support = Cobalt.support;
+find.uniqueSort = Cobalt.uniqueSort;
 
 	/* eslint-enable */
 
@@ -2726,7 +2726,7 @@ var dir = function( elem, dir, until ) {
 
 	while ( ( elem = elem[ dir ] ) && elem.nodeType !== 9 ) {
 		if ( elem.nodeType === 1 ) {
-			if ( truncate && cobaltApi( elem ).is( until ) ) {
+			if ( truncate && Cobalt( elem ).is( until ) ) {
 				break;
 			}
 			matched.push( elem );
@@ -2749,7 +2749,7 @@ var siblings = function( n, elem ) {
 };
 
 
-var rneedsContext = cobaltApi.expr.match.needsContext;
+var rneedsContext = Cobalt.expr.match.needsContext;
 
 var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|)$/i );
 
@@ -2758,30 +2758,30 @@ var rsingleTag = ( /^<([a-z][^\/\0>:\x20\t\r\n\f]*)[\x20\t\r\n\f]*\/?>(?:<\/\1>|
 // Implement the identical functionality for filter and not
 function winnow( elements, qualifier, not ) {
 	if ( isFunction( qualifier ) ) {
-		return cobaltApi.grep( elements, function( elem, i ) {
+		return Cobalt.grep( elements, function( elem, i ) {
 			return !!qualifier.call( elem, i, elem ) !== not;
 		} );
 	}
 
 	// Single element
 	if ( qualifier.nodeType ) {
-		return cobaltApi.grep( elements, function( elem ) {
+		return Cobalt.grep( elements, function( elem ) {
 			return ( elem === qualifier ) !== not;
 		} );
 	}
 
-	// Arraylike of elements (cobaltApi, arguments, Array)
+	// Arraylike of elements (Cobalt, arguments, Array)
 	if ( typeof qualifier !== "string" ) {
-		return cobaltApi.grep( elements, function( elem ) {
+		return Cobalt.grep( elements, function( elem ) {
 			return ( indexOf.call( qualifier, elem ) > -1 ) !== not;
 		} );
 	}
 
 	// Filtered directly for both simple and complex selectors
-	return cobaltApi.filter( qualifier, elements, not );
+	return Cobalt.filter( qualifier, elements, not );
 }
 
-cobaltApi.filter = function( expr, elems, not ) {
+Cobalt.filter = function( expr, elems, not ) {
 	var elem = elems[ 0 ];
 
 	if ( not ) {
@@ -2789,24 +2789,24 @@ cobaltApi.filter = function( expr, elems, not ) {
 	}
 
 	if ( elems.length === 1 && elem.nodeType === 1 ) {
-		return cobaltApi.find.matchesSelector( elem, expr ) ? [ elem ] : [];
+		return Cobalt.find.matchesSelector( elem, expr ) ? [ elem ] : [];
 	}
 
-	return cobaltApi.find.matches( expr, cobaltApi.grep( elems, function( elem ) {
+	return Cobalt.find.matches( expr, Cobalt.grep( elems, function( elem ) {
 		return elem.nodeType === 1;
 	} ) );
 };
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	find: function( selector ) {
 		var i, ret,
 			len = this.length,
 			self = this;
 
 		if ( typeof selector !== "string" ) {
-			return this.pushStack( cobaltApi( selector ).filter( function() {
+			return this.pushStack( Cobalt( selector ).filter( function() {
 				for ( i = 0; i < len; i++ ) {
-					if ( cobaltApi.contains( self[ i ], this ) ) {
+					if ( Cobalt.contains( self[ i ], this ) ) {
 						return true;
 					}
 				}
@@ -2816,10 +2816,10 @@ cobaltApi.fn.extend( {
 		ret = this.pushStack( [] );
 
 		for ( i = 0; i < len; i++ ) {
-			cobaltApi.find( selector, self[ i ], ret );
+			Cobalt.find( selector, self[ i ], ret );
 		}
 
-		return len > 1 ? cobaltApi.uniqueSort( ret ) : ret;
+		return len > 1 ? Cobalt.uniqueSort( ret ) : ret;
 	},
 	filter: function( selector ) {
 		return this.pushStack( winnow( this, selector || [], false ) );
@@ -2834,7 +2834,7 @@ cobaltApi.fn.extend( {
 			// If this is a positional/relative selector, check membership in the returned set
 			// so $("p:first").is("p:last") won't return true for a doc with two "p".
 			typeof selector === "string" && rneedsContext.test( selector ) ?
-				cobaltApi( selector ) :
+				Cobalt( selector ) :
 				selector || [],
 			false
 		).length;
@@ -2842,11 +2842,11 @@ cobaltApi.fn.extend( {
 } );
 
 
-// Initialize a cobaltApi object
+// Initialize a Cobalt object
 
 
-// A central reference to the root cobaltApi(document)
-var rootcobaltApi,
+// A central reference to the root Cobalt(document)
+var rootCobalt,
 
 	// A simple way to check for HTML strings
 	// Prioritize #id over <tag> to avoid XSS via location.hash (trac-9521)
@@ -2854,7 +2854,7 @@ var rootcobaltApi,
 	// Shortcut simple #id case for speed
 	rquickExpr = /^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]+))$/,
 
-	init = cobaltApi.fn.init = function( selector, context, root ) {
+	init = Cobalt.fn.init = function( selector, context, root ) {
 		var match, elem;
 
 		// HANDLE: $(""), $(null), $(undefined), $(false)
@@ -2862,9 +2862,9 @@ var rootcobaltApi,
 			return this;
 		}
 
-		// Method init() accepts an alternate rootcobaltApi
-		// so migrate can support cobaltApi.sub (gh-2101)
-		root = root || rootcobaltApi;
+		// Method init() accepts an alternate rootCobalt
+		// so migrate can support Cobalt.sub (gh-2101)
+		root = root || rootCobalt;
 
 		// Handle HTML strings
 		if ( typeof selector === "string" ) {
@@ -2884,18 +2884,18 @@ var rootcobaltApi,
 
 				// HANDLE: $(html) -> $(array)
 				if ( match[ 1 ] ) {
-					context = context instanceof cobaltApi ? context[ 0 ] : context;
+					context = context instanceof Cobalt ? context[ 0 ] : context;
 
 					// Option to run scripts is true for back-compat
 					// Intentionally let the error be thrown if parseHTML is not present
-					cobaltApi.merge( this, cobaltApi.parseHTML(
+					Cobalt.merge( this, Cobalt.parseHTML(
 						match[ 1 ],
 						context && context.nodeType ? context.ownerDocument || context : document,
 						true
 					) );
 
 					// HANDLE: $(html, props)
-					if ( rsingleTag.test( match[ 1 ] ) && cobaltApi.isPlainObject( context ) ) {
+					if ( rsingleTag.test( match[ 1 ] ) && Cobalt.isPlainObject( context ) ) {
 						for ( match in context ) {
 
 							// Properties of context are called as methods if possible
@@ -2917,7 +2917,7 @@ var rootcobaltApi,
 
 					if ( elem ) {
 
-						// Inject the element directly into the cobaltApi object
+						// Inject the element directly into the Cobalt object
 						this[ 0 ] = elem;
 						this.length = 1;
 					}
@@ -2925,7 +2925,7 @@ var rootcobaltApi,
 				}
 
 			// HANDLE: $(expr, $(...))
-			} else if ( !context || context.cobaltapi ) {
+			} else if ( !context || context.cobalt ) {
 				return ( context || root ).find( selector );
 
 			// HANDLE: $(expr, context)
@@ -2947,17 +2947,17 @@ var rootcobaltApi,
 				root.ready( selector ) :
 
 				// Execute immediately if ready is not present
-				selector( cobaltApi );
+				selector( Cobalt );
 		}
 
-		return cobaltApi.makeArray( selector, this );
+		return Cobalt.makeArray( selector, this );
 	};
 
-// Give the init function the cobaltApi prototype for later instantiation
-init.prototype = cobaltApi.fn;
+// Give the init function the Cobalt prototype for later instantiation
+init.prototype = Cobalt.fn;
 
 // Initialize central reference
-rootcobaltApi = cobaltApi( document );
+rootCobalt = Cobalt( document );
 
 
 var rparentsprev = /^(?:parents|prev(?:Until|All))/,
@@ -2970,15 +2970,15 @@ var rparentsprev = /^(?:parents|prev(?:Until|All))/,
 		prev: true
 	};
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	has: function( target ) {
-		var targets = cobaltApi( target, this ),
+		var targets = Cobalt( target, this ),
 			l = targets.length;
 
 		return this.filter( function() {
 			var i = 0;
 			for ( ; i < l; i++ ) {
-				if ( cobaltApi.contains( this, targets[ i ] ) ) {
+				if ( Cobalt.contains( this, targets[ i ] ) ) {
 					return true;
 				}
 			}
@@ -2990,7 +2990,7 @@ cobaltApi.fn.extend( {
 			i = 0,
 			l = this.length,
 			matched = [],
-			targets = typeof selectors !== "string" && cobaltApi( selectors );
+			targets = typeof selectors !== "string" && Cobalt( selectors );
 
 		// Positional selectors never match, since there's no _selection_ context
 		if ( !rneedsContext.test( selectors ) ) {
@@ -3001,9 +3001,9 @@ cobaltApi.fn.extend( {
 					if ( cur.nodeType < 11 && ( targets ?
 						targets.index( cur ) > -1 :
 
-						// Don't pass non-elements to cobaltApi#find
+						// Don't pass non-elements to Cobalt#find
 						cur.nodeType === 1 &&
-							cobaltApi.find.matchesSelector( cur, selectors ) ) ) {
+							Cobalt.find.matchesSelector( cur, selectors ) ) ) {
 
 						matched.push( cur );
 						break;
@@ -3012,7 +3012,7 @@ cobaltApi.fn.extend( {
 			}
 		}
 
-		return this.pushStack( matched.length > 1 ? cobaltApi.uniqueSort( matched ) : matched );
+		return this.pushStack( matched.length > 1 ? Cobalt.uniqueSort( matched ) : matched );
 	},
 
 	// Determine the position of an element within the set
@@ -3025,21 +3025,21 @@ cobaltApi.fn.extend( {
 
 		// Index in selector
 		if ( typeof elem === "string" ) {
-			return indexOf.call( cobaltApi( elem ), this[ 0 ] );
+			return indexOf.call( Cobalt( elem ), this[ 0 ] );
 		}
 
 		// Locate the position of the desired element
 		return indexOf.call( this,
 
-			// If it receives a cobaltApi object, the first element is used
-			elem.cobaltapi ? elem[ 0 ] : elem
+			// If it receives a Cobalt object, the first element is used
+			elem.cobalt ? elem[ 0 ] : elem
 		);
 	},
 
 	add: function( selector, context ) {
 		return this.pushStack(
-			cobaltApi.uniqueSort(
-				cobaltApi.merge( this.get(), cobaltApi( selector, context ) )
+			Cobalt.uniqueSort(
+				Cobalt.merge( this.get(), Cobalt( selector, context ) )
 			)
 		);
 	},
@@ -3056,7 +3056,7 @@ function sibling( cur, dir ) {
 	return cur;
 }
 
-cobaltApi.each( {
+Cobalt.each( {
 	parent: function( elem ) {
 		var parent = elem.parentNode;
 		return parent && parent.nodeType !== 11 ? parent : null;
@@ -3109,25 +3109,25 @@ cobaltApi.each( {
 			elem = elem.content || elem;
 		}
 
-		return cobaltApi.merge( [], elem.childNodes );
+		return Cobalt.merge( [], elem.childNodes );
 	}
 }, function( name, fn ) {
-	cobaltApi.fn[ name ] = function( until, selector ) {
-		var matched = cobaltApi.map( this, fn, until );
+	Cobalt.fn[ name ] = function( until, selector ) {
+		var matched = Cobalt.map( this, fn, until );
 
 		if ( name.slice( -5 ) !== "Until" ) {
 			selector = until;
 		}
 
 		if ( selector && typeof selector === "string" ) {
-			matched = cobaltApi.filter( selector, matched );
+			matched = Cobalt.filter( selector, matched );
 		}
 
 		if ( this.length > 1 ) {
 
 			// Remove duplicates
 			if ( !guaranteedUnique[ name ] ) {
-				cobaltApi.uniqueSort( matched );
+				Cobalt.uniqueSort( matched );
 			}
 
 			// Reverse order for parents* and prev-derivatives
@@ -3146,7 +3146,7 @@ var rnothtmlwhite = ( /[^\x20\t\r\n\f]+/g );
 // Convert String-formatted options into Object-formatted ones
 function createOptions( options ) {
 	var object = {};
-	cobaltApi.each( options.match( rnothtmlwhite ) || [], function( _, flag ) {
+	Cobalt.each( options.match( rnothtmlwhite ) || [], function( _, flag ) {
 		object[ flag ] = true;
 	} );
 	return object;
@@ -3174,13 +3174,13 @@ function createOptions( options ) {
  *	stopOnFalse:	interrupt callings when a callback returns false
  *
  */
-cobaltApi.Callbacks = function( options ) {
+Cobalt.Callbacks = function( options ) {
 
 	// Convert options from String-formatted to Object-formatted if needed
 	// (we check in cache first)
 	options = typeof options === "string" ?
 		createOptions( options ) :
-		cobaltApi.extend( {}, options );
+		Cobalt.extend( {}, options );
 
 	var // Flag to know if list is currently firing
 		firing,
@@ -3262,7 +3262,7 @@ cobaltApi.Callbacks = function( options ) {
 					}
 
 					( function add( args ) {
-						cobaltApi.each( args, function( _, arg ) {
+						Cobalt.each( args, function( _, arg ) {
 							if ( isFunction( arg ) ) {
 								if ( !options.unique || !self.has( arg ) ) {
 									list.push( arg );
@@ -3284,9 +3284,9 @@ cobaltApi.Callbacks = function( options ) {
 
 			// Remove a callback from the list
 			remove: function() {
-				cobaltApi.each( arguments, function( _, arg ) {
+				Cobalt.each( arguments, function( _, arg ) {
 					var index;
-					while ( ( index = cobaltApi.inArray( arg, list, index ) ) > -1 ) {
+					while ( ( index = Cobalt.inArray( arg, list, index ) ) > -1 ) {
 						list.splice( index, 1 );
 
 						// Handle firing indexes
@@ -3302,7 +3302,7 @@ cobaltApi.Callbacks = function( options ) {
 			// If no argument is given, return whether or not list has callbacks attached.
 			has: function( fn ) {
 				return fn ?
-					cobaltApi.inArray( fn, list ) > -1 :
+					Cobalt.inArray( fn, list ) > -1 :
 					list.length > 0;
 			},
 
@@ -3399,7 +3399,7 @@ function adoptValue( value, resolve, reject, noValue ) {
 		}
 
 	// For Promises/A+, convert exceptions into rejections
-	// Since cobaltApi.when doesn't unwrap thenables, we can skip the extra checks appearing in
+	// Since Cobalt.when doesn't unwrap thenables, we can skip the extra checks appearing in
 	// Deferred#then to conditionally suppress rejection.
 	} catch ( value ) {
 
@@ -3409,19 +3409,19 @@ function adoptValue( value, resolve, reject, noValue ) {
 	}
 }
 
-cobaltApi.extend( {
+Cobalt.extend( {
 
 	Deferred: function( func ) {
 		var tuples = [
 
 				// action, add listener, callbacks,
 				// ... .then handlers, argument index, [final state]
-				[ "notify", "progress", cobaltApi.Callbacks( "memory" ),
-					cobaltApi.Callbacks( "memory" ), 2 ],
-				[ "resolve", "done", cobaltApi.Callbacks( "once memory" ),
-					cobaltApi.Callbacks( "once memory" ), 0, "resolved" ],
-				[ "reject", "fail", cobaltApi.Callbacks( "once memory" ),
-					cobaltApi.Callbacks( "once memory" ), 1, "rejected" ]
+				[ "notify", "progress", Cobalt.Callbacks( "memory" ),
+					Cobalt.Callbacks( "memory" ), 2 ],
+				[ "resolve", "done", Cobalt.Callbacks( "once memory" ),
+					Cobalt.Callbacks( "once memory" ), 0, "resolved" ],
+				[ "reject", "fail", Cobalt.Callbacks( "once memory" ),
+					Cobalt.Callbacks( "once memory" ), 1, "rejected" ]
 			],
 			state = "pending",
 			promise = {
@@ -3440,8 +3440,8 @@ cobaltApi.extend( {
 				pipe: function( /* fnDone, fnFail, fnProgress */ ) {
 					var fns = arguments;
 
-					return cobaltApi.Deferred( function( newDefer ) {
-						cobaltApi.each( tuples, function( _i, tuple ) {
+					return Cobalt.Deferred( function( newDefer ) {
+						Cobalt.each( tuples, function( _i, tuple ) {
 
 							// Map tuples (progress, done, fail) to arguments (done, fail, progress)
 							var fn = isFunction( fns[ tuple[ 4 ] ] ) && fns[ tuple[ 4 ] ];
@@ -3554,8 +3554,8 @@ cobaltApi.extend( {
 											mightThrow();
 										} catch ( e ) {
 
-											if ( cobaltApi.Deferred.exceptionHook ) {
-												cobaltApi.Deferred.exceptionHook( e,
+											if ( Cobalt.Deferred.exceptionHook ) {
+												Cobalt.Deferred.exceptionHook( e,
 													process.error );
 											}
 
@@ -3586,22 +3586,22 @@ cobaltApi.extend( {
 
 								// Call an optional hook to record the error, in case of exception
 								// since it's otherwise lost when execution goes async
-								if ( cobaltApi.Deferred.getErrorHook ) {
-									process.error = cobaltApi.Deferred.getErrorHook();
+								if ( Cobalt.Deferred.getErrorHook ) {
+									process.error = Cobalt.Deferred.getErrorHook();
 
 								// The deprecated alias of the above. While the name suggests
-								// returning the stack, not an error instance, cobaltApi just passes
+								// returning the stack, not an error instance, Cobalt just passes
 								// it directly to `console.warn` so both will work; an instance
 								// just better cooperates with source maps.
-								} else if ( cobaltApi.Deferred.getStackHook ) {
-									process.error = cobaltApi.Deferred.getStackHook();
+								} else if ( Cobalt.Deferred.getStackHook ) {
+									process.error = Cobalt.Deferred.getStackHook();
 								}
 								window.setTimeout( process );
 							}
 						};
 					}
 
-					return cobaltApi.Deferred( function( newDefer ) {
+					return Cobalt.Deferred( function( newDefer ) {
 
 						// progress_handlers.add( ... )
 						tuples[ 0 ][ 3 ].add(
@@ -3642,13 +3642,13 @@ cobaltApi.extend( {
 				// Get a promise for this deferred
 				// If obj is provided, the promise aspect is added to the object
 				promise: function( obj ) {
-					return obj != null ? cobaltApi.extend( obj, promise ) : promise;
+					return obj != null ? Cobalt.extend( obj, promise ) : promise;
 				}
 			},
 			deferred = {};
 
 		// Add list-specific methods
-		cobaltApi.each( tuples, function( i, tuple ) {
+		Cobalt.each( tuples, function( i, tuple ) {
 			var list = tuple[ 2 ],
 				stateString = tuple[ 5 ];
 
@@ -3729,7 +3729,7 @@ cobaltApi.extend( {
 			resolveValues = slice.call( arguments ),
 
 			// the primary Deferred
-			primary = cobaltApi.Deferred(),
+			primary = Cobalt.Deferred(),
 
 			// subordinate callback factory
 			updateFunc = function( i ) {
@@ -3769,15 +3769,15 @@ cobaltApi.extend( {
 // warn about them ASAP rather than swallowing them by default.
 var rerrorNames = /^(Eval|Internal|Range|Reference|Syntax|Type|URI)Error$/;
 
-// If `cobaltApi.Deferred.getErrorHook` is defined, `asyncError` is an error
+// If `Cobalt.Deferred.getErrorHook` is defined, `asyncError` is an error
 // captured before the async barrier to get the original error cause
 // which may otherwise be hidden.
-cobaltApi.Deferred.exceptionHook = function( error, asyncError ) {
+Cobalt.Deferred.exceptionHook = function( error, asyncError ) {
 
 	// Support: IE 8 - 9 only
 	// Console exists when dev tools are open, which can happen at any time
 	if ( window.console && window.console.warn && error && rerrorNames.test( error.name ) ) {
-		window.console.warn( "cobaltApi.Deferred exception: " + error.message,
+		window.console.warn( "Cobalt.Deferred exception: " + error.message,
 			error.stack, asyncError );
 	}
 };
@@ -3785,7 +3785,7 @@ cobaltApi.Deferred.exceptionHook = function( error, asyncError ) {
 
 
 
-cobaltApi.readyException = function( error ) {
+Cobalt.readyException = function( error ) {
 	window.setTimeout( function() {
 		throw error;
 	} );
@@ -3795,24 +3795,24 @@ cobaltApi.readyException = function( error ) {
 
 
 // The deferred used on DOM ready
-var readyList = cobaltApi.Deferred();
+var readyList = Cobalt.Deferred();
 
-cobaltApi.fn.ready = function( fn ) {
+Cobalt.fn.ready = function( fn ) {
 
 	readyList
 		.then( fn )
 
-		// Wrap cobaltApi.readyException in a function so that the lookup
+		// Wrap Cobalt.readyException in a function so that the lookup
 		// happens at the time of error handling instead of callback
 		// registration.
 		.catch( function( error ) {
-			cobaltApi.readyException( error );
+			Cobalt.readyException( error );
 		} );
 
 	return this;
 };
 
-cobaltApi.extend( {
+Cobalt.extend( {
 
 	// Is the DOM ready to be used? Set to true once it occurs.
 	isReady: false,
@@ -3825,30 +3825,30 @@ cobaltApi.extend( {
 	ready: function( wait ) {
 
 		// Abort if there are pending holds or we're already ready
-		if ( wait === true ? --cobaltApi.readyWait : cobaltApi.isReady ) {
+		if ( wait === true ? --Cobalt.readyWait : Cobalt.isReady ) {
 			return;
 		}
 
 		// Remember that the DOM is ready
-		cobaltApi.isReady = true;
+		Cobalt.isReady = true;
 
 		// If a normal DOM Ready event fired, decrement, and wait if need be
-		if ( wait !== true && --cobaltApi.readyWait > 0 ) {
+		if ( wait !== true && --Cobalt.readyWait > 0 ) {
 			return;
 		}
 
 		// If there are functions bound, to execute
-		readyList.resolveWith( document, [ cobaltApi ] );
+		readyList.resolveWith( document, [ Cobalt ] );
 	}
 } );
 
-cobaltApi.ready.then = readyList.then;
+Cobalt.ready.then = readyList.then;
 
 // The ready event handler and self cleanup method
 function completed() {
 	document.removeEventListener( "DOMContentLoaded", completed );
 	window.removeEventListener( "load", completed );
-	cobaltApi.ready();
+	Cobalt.ready();
 }
 
 // Catch cases where $(document).ready() is called
@@ -3859,7 +3859,7 @@ if ( document.readyState === "complete" ||
 	( document.readyState !== "loading" && !document.documentElement.doScroll ) ) {
 
 	// Handle it asynchronously to allow scripts the opportunity to delay ready
-	window.setTimeout( cobaltApi.ready );
+	window.setTimeout( Cobalt.ready );
 
 } else {
 
@@ -3906,7 +3906,7 @@ var access = function( elems, fn, key, value, chainable, emptyGet, raw ) {
 			} else {
 				bulk = fn;
 				fn = function( elem, _key, value ) {
-					return bulk.call( cobaltApi( elem ), value );
+					return bulk.call( Cobalt( elem ), value );
 				};
 			}
 		}
@@ -3965,7 +3965,7 @@ var acceptData = function( owner ) {
 
 
 function Data() {
-	this.expando = cobaltApi.expando + Data.uid++;
+	this.expando = Cobalt.expando + Data.uid++;
 }
 
 Data.uid = 1;
@@ -4096,7 +4096,7 @@ Data.prototype = {
 		}
 
 		// Remove the expando if there's no more data
-		if ( key === undefined || cobaltApi.isEmptyObject( cache ) ) {
+		if ( key === undefined || Cobalt.isEmptyObject( cache ) ) {
 
 			// Support: Chrome <=35 - 45
 			// Webkit & Blink performance suffers when deleting properties
@@ -4111,7 +4111,7 @@ Data.prototype = {
 	},
 	hasData: function( owner ) {
 		var cache = owner[ this.expando ];
-		return cache !== undefined && !cobaltApi.isEmptyObject( cache );
+		return cache !== undefined && !Cobalt.isEmptyObject( cache );
 	}
 };
 var dataPriv = new Data();
@@ -4181,7 +4181,7 @@ function dataAttr( elem, key, data ) {
 	return data;
 }
 
-cobaltApi.extend( {
+Cobalt.extend( {
 	hasData: function( elem ) {
 		return dataUser.hasData( elem ) || dataPriv.hasData( elem );
 	},
@@ -4205,7 +4205,7 @@ cobaltApi.extend( {
 	}
 } );
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	data: function( key, value ) {
 		var i, name, data,
 			elem = this[ 0 ],
@@ -4247,9 +4247,9 @@ cobaltApi.fn.extend( {
 		return access( this, function( value ) {
 			var data;
 
-			// The calling cobaltApi object (element matches) is not empty
+			// The calling Cobalt object (element matches) is not empty
 			// (and therefore has an element appears at this[ 0 ]) and the
-			// `value` parameter was not undefined. An empty cobaltApi object
+			// `value` parameter was not undefined. An empty Cobalt object
 			// will result in `undefined` for elem = this[ 0 ] which will
 			// throw an exception if an attempt to read a data cache is made.
 			if ( elem && value === undefined ) {
@@ -4289,7 +4289,7 @@ cobaltApi.fn.extend( {
 } );
 
 
-cobaltApi.extend( {
+Cobalt.extend( {
 	queue: function( elem, type, data ) {
 		var queue;
 
@@ -4300,7 +4300,7 @@ cobaltApi.extend( {
 			// Speed up dequeue by getting out quickly if this is just a lookup
 			if ( data ) {
 				if ( !queue || Array.isArray( data ) ) {
-					queue = dataPriv.access( elem, type, cobaltApi.makeArray( data ) );
+					queue = dataPriv.access( elem, type, Cobalt.makeArray( data ) );
 				} else {
 					queue.push( data );
 				}
@@ -4312,12 +4312,12 @@ cobaltApi.extend( {
 	dequeue: function( elem, type ) {
 		type = type || "fx";
 
-		var queue = cobaltApi.queue( elem, type ),
+		var queue = Cobalt.queue( elem, type ),
 			startLength = queue.length,
 			fn = queue.shift(),
-			hooks = cobaltApi._queueHooks( elem, type ),
+			hooks = Cobalt._queueHooks( elem, type ),
 			next = function() {
-				cobaltApi.dequeue( elem, type );
+				Cobalt.dequeue( elem, type );
 			};
 
 		// If the fx queue is dequeued, always remove the progress sentinel
@@ -4348,14 +4348,14 @@ cobaltApi.extend( {
 	_queueHooks: function( elem, type ) {
 		var key = type + "queueHooks";
 		return dataPriv.get( elem, key ) || dataPriv.access( elem, key, {
-			empty: cobaltApi.Callbacks( "once memory" ).add( function() {
+			empty: Cobalt.Callbacks( "once memory" ).add( function() {
 				dataPriv.remove( elem, [ type + "queue", key ] );
 			} )
 		} );
 	}
 } );
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	queue: function( type, data ) {
 		var setter = 2;
 
@@ -4366,25 +4366,25 @@ cobaltApi.fn.extend( {
 		}
 
 		if ( arguments.length < setter ) {
-			return cobaltApi.queue( this[ 0 ], type );
+			return Cobalt.queue( this[ 0 ], type );
 		}
 
 		return data === undefined ?
 			this :
 			this.each( function() {
-				var queue = cobaltApi.queue( this, type, data );
+				var queue = Cobalt.queue( this, type, data );
 
 				// Ensure a hooks for this queue
-				cobaltApi._queueHooks( this, type );
+				Cobalt._queueHooks( this, type );
 
 				if ( type === "fx" && queue[ 0 ] !== "inprogress" ) {
-					cobaltApi.dequeue( this, type );
+					Cobalt.dequeue( this, type );
 				}
 			} );
 	},
 	dequeue: function( type ) {
 		return this.each( function() {
-			cobaltApi.dequeue( this, type );
+			Cobalt.dequeue( this, type );
 		} );
 	},
 	clearQueue: function( type ) {
@@ -4396,7 +4396,7 @@ cobaltApi.fn.extend( {
 	promise: function( type, obj ) {
 		var tmp,
 			count = 1,
-			defer = cobaltApi.Deferred(),
+			defer = Cobalt.Deferred(),
 			elements = this,
 			i = this.length,
 			resolve = function() {
@@ -4434,7 +4434,7 @@ var documentElement = document.documentElement;
 
 
 	var isAttached = function( elem ) {
-			return cobaltApi.contains( elem.ownerDocument, elem );
+			return Cobalt.contains( elem.ownerDocument, elem );
 		},
 		composed = { composed: true };
 
@@ -4445,13 +4445,13 @@ var documentElement = document.documentElement;
 	// leading to errors. We need to check for `getRootNode`.
 	if ( documentElement.getRootNode ) {
 		isAttached = function( elem ) {
-			return cobaltApi.contains( elem.ownerDocument, elem ) ||
+			return Cobalt.contains( elem.ownerDocument, elem ) ||
 				elem.getRootNode( composed ) === elem.ownerDocument;
 		};
 	}
 var isHiddenWithinTree = function( elem, el ) {
 
-		// isHiddenWithinTree might be called from cobaltApi#filter function;
+		// isHiddenWithinTree might be called from Cobalt#filter function;
 		// in that case, element will be second argument
 		elem = el || elem;
 
@@ -4465,7 +4465,7 @@ var isHiddenWithinTree = function( elem, el ) {
 			// in the document.
 			isAttached( elem ) &&
 
-			cobaltApi.css( elem, "display" ) === "none";
+			Cobalt.css( elem, "display" ) === "none";
 	};
 
 
@@ -4478,15 +4478,15 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 				return tween.cur();
 			} :
 			function() {
-				return cobaltApi.css( elem, prop, "" );
+				return Cobalt.css( elem, prop, "" );
 			},
 		initial = currentValue(),
-		unit = valueParts && valueParts[ 3 ] || ( cobaltApi.cssNumber[ prop ] ? "" : "px" ),
+		unit = valueParts && valueParts[ 3 ] || ( Cobalt.cssNumber[ prop ] ? "" : "px" ),
 
 		// Starting value computation is required for potential unit mismatches
 		initialInUnit = elem.nodeType &&
-			( cobaltApi.cssNumber[ prop ] || unit !== "px" && +initial ) &&
-			rcssNum.exec( cobaltApi.css( elem, prop ) );
+			( Cobalt.cssNumber[ prop ] || unit !== "px" && +initial ) &&
+			rcssNum.exec( Cobalt.css( elem, prop ) );
 
 	if ( initialInUnit && initialInUnit[ 3 ] !== unit ) {
 
@@ -4494,7 +4494,7 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 		// Halve the iteration target value to prevent interference from CSS upper bounds (gh-2144)
 		initial = initial / 2;
 
-		// Trust units reported by cobaltApi.css
+		// Trust units reported by Cobalt.css
 		unit = unit || initialInUnit[ 3 ];
 
 		// Iteratively approximate from a nonzero starting point
@@ -4504,7 +4504,7 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 
 			// Evaluate and update our best guess (doubling guesses that zero out).
 			// Finish if the scale equals or crosses 1 (making the old*new product non-positive).
-			cobaltApi.style( elem, prop, initialInUnit + unit );
+			Cobalt.style( elem, prop, initialInUnit + unit );
 			if ( ( 1 - scale ) * ( 1 - ( scale = currentValue() / initial || 0.5 ) ) <= 0 ) {
 				maxIterations = 0;
 			}
@@ -4513,7 +4513,7 @@ function adjustCSS( elem, prop, valueParts, tween ) {
 		}
 
 		initialInUnit = initialInUnit * 2;
-		cobaltApi.style( elem, prop, initialInUnit + unit );
+		Cobalt.style( elem, prop, initialInUnit + unit );
 
 		// Make sure we update the tween properties later on
 		valueParts = valueParts || [];
@@ -4549,7 +4549,7 @@ function getDefaultDisplay( elem ) {
 	}
 
 	temp = doc.body.appendChild( doc.createElement( nodeName ) );
-	display = cobaltApi.css( temp, "display" );
+	display = Cobalt.css( temp, "display" );
 
 	temp.parentNode.removeChild( temp );
 
@@ -4609,7 +4609,7 @@ function showHide( elements, show ) {
 	return elements;
 }
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	show: function() {
 		return showHide( this, true );
 	},
@@ -4623,9 +4623,9 @@ cobaltApi.fn.extend( {
 
 		return this.each( function() {
 			if ( isHiddenWithinTree( this ) ) {
-				cobaltApi( this ).show();
+				Cobalt( this ).show();
 			} else {
-				cobaltApi( this ).hide();
+				Cobalt( this ).hide();
 			}
 		} );
 	}
@@ -4710,7 +4710,7 @@ function getAll( context, tag ) {
 	}
 
 	if ( tag === undefined || tag && nodeName( context, tag ) ) {
-		return cobaltApi.merge( [ context ], ret );
+		return Cobalt.merge( [ context ], ret );
 	}
 
 	return ret;
@@ -4751,7 +4751,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 
 				// Support: Android <=4.0 only, PhantomJS 1 only
 				// push.apply(_, arraylike) throws on ancient WebKit
-				cobaltApi.merge( nodes, elem.nodeType ? [ elem ] : elem );
+				Cobalt.merge( nodes, elem.nodeType ? [ elem ] : elem );
 
 			// Convert non-html into a text node
 			} else if ( !rhtml.test( elem ) ) {
@@ -4764,7 +4764,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 				// Deserialize a standard representation
 				tag = ( rtagName.exec( elem ) || [ "", "" ] )[ 1 ].toLowerCase();
 				wrap = wrapMap[ tag ] || wrapMap._default;
-				tmp.innerHTML = wrap[ 1 ] + cobaltApi.htmlPrefilter( elem ) + wrap[ 2 ];
+				tmp.innerHTML = wrap[ 1 ] + Cobalt.htmlPrefilter( elem ) + wrap[ 2 ];
 
 				// Descend through wrappers to the right content
 				j = wrap[ 0 ];
@@ -4774,7 +4774,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 
 				// Support: Android <=4.0 only, PhantomJS 1 only
 				// push.apply(_, arraylike) throws on ancient WebKit
-				cobaltApi.merge( nodes, tmp.childNodes );
+				Cobalt.merge( nodes, tmp.childNodes );
 
 				// Remember the top-level container
 				tmp = fragment.firstChild;
@@ -4792,7 +4792,7 @@ function buildFragment( elems, context, scripts, selection, ignored ) {
 	while ( ( elem = nodes[ i++ ] ) ) {
 
 		// Skip elements already in the context collection (trac-4087)
-		if ( selection && cobaltApi.inArray( elem, selection ) > -1 ) {
+		if ( selection && Cobalt.inArray( elem, selection ) > -1 ) {
 			if ( ignored ) {
 				ignored.push( elem );
 			}
@@ -4883,15 +4883,15 @@ function on( elem, types, selector, data, fn, one ) {
 		fn = function( event ) {
 
 			// Can use an empty set, since event contains the info
-			cobaltApi().off( event );
+			Cobalt().off( event );
 			return origFn.apply( this, arguments );
 		};
 
 		// Use same guid so caller can remove using origFn
-		fn.guid = origFn.guid || ( origFn.guid = cobaltApi.guid++ );
+		fn.guid = origFn.guid || ( origFn.guid = Cobalt.guid++ );
 	}
 	return elem.each( function() {
-		cobaltApi.event.add( this, types, fn, data, selector );
+		Cobalt.event.add( this, types, fn, data, selector );
 	} );
 }
 
@@ -4899,7 +4899,7 @@ function on( elem, types, selector, data, fn, one ) {
  * Helper functions for managing events -- not part of the public interface.
  * Props to Dean Edwards' addEvent library for many of the ideas.
  */
-cobaltApi.event = {
+Cobalt.event = {
 
 	global: {},
 
@@ -4925,12 +4925,12 @@ cobaltApi.event = {
 		// Ensure that invalid selectors throw exceptions at attach time
 		// Evaluate against documentElement in case elem is a non-element node (e.g., document)
 		if ( selector ) {
-			cobaltApi.find.matchesSelector( documentElement, selector );
+			Cobalt.find.matchesSelector( documentElement, selector );
 		}
 
 		// Make sure that the handler has a unique ID, used to find/remove it later
 		if ( !handler.guid ) {
-			handler.guid = cobaltApi.guid++;
+			handler.guid = Cobalt.guid++;
 		}
 
 		// Init the element's event structure and main handler, if this is the first
@@ -4940,10 +4940,10 @@ cobaltApi.event = {
 		if ( !( eventHandle = elemData.handle ) ) {
 			eventHandle = elemData.handle = function( e ) {
 
-				// Discard the second event of a cobaltApi.event.trigger() and
+				// Discard the second event of a Cobalt.event.trigger() and
 				// when an event is called after a page has unloaded
-				return typeof cobaltApi !== "undefined" && cobaltApi.event.triggered !== e.type ?
-					cobaltApi.event.dispatch.apply( elem, arguments ) : undefined;
+				return typeof Cobalt !== "undefined" && Cobalt.event.triggered !== e.type ?
+					Cobalt.event.dispatch.apply( elem, arguments ) : undefined;
 			};
 		}
 
@@ -4961,23 +4961,23 @@ cobaltApi.event = {
 			}
 
 			// If event changes its type, use the special event handlers for the changed type
-			special = cobaltApi.event.special[ type ] || {};
+			special = Cobalt.event.special[ type ] || {};
 
 			// If selector defined, determine special event api type, otherwise given type
 			type = ( selector ? special.delegateType : special.bindType ) || type;
 
 			// Update special based on newly reset type
-			special = cobaltApi.event.special[ type ] || {};
+			special = Cobalt.event.special[ type ] || {};
 
 			// handleObj is passed to all event handlers
-			handleObj = cobaltApi.extend( {
+			handleObj = Cobalt.extend( {
 				type: type,
 				origType: origType,
 				data: data,
 				handler: handler,
 				guid: handler.guid,
 				selector: selector,
-				needsContext: selector && cobaltApi.expr.match.needsContext.test( selector ),
+				needsContext: selector && Cobalt.expr.match.needsContext.test( selector ),
 				namespace: namespaces.join( "." )
 			}, handleObjIn );
 
@@ -5012,7 +5012,7 @@ cobaltApi.event = {
 			}
 
 			// Keep track of which events have ever been used, for event optimization
-			cobaltApi.event.global[ type ] = true;
+			Cobalt.event.global[ type ] = true;
 		}
 
 	},
@@ -5040,12 +5040,12 @@ cobaltApi.event = {
 			// Unbind all events (on this namespace, if provided) for the element
 			if ( !type ) {
 				for ( type in events ) {
-					cobaltApi.event.remove( elem, type + types[ t ], handler, selector, true );
+					Cobalt.event.remove( elem, type + types[ t ], handler, selector, true );
 				}
 				continue;
 			}
 
-			special = cobaltApi.event.special[ type ] || {};
+			special = Cobalt.event.special[ type ] || {};
 			type = ( selector ? special.delegateType : special.bindType ) || type;
 			handlers = events[ type ] || [];
 			tmp = tmp[ 2 ] &&
@@ -5078,7 +5078,7 @@ cobaltApi.event = {
 				if ( !special.teardown ||
 					special.teardown.call( elem, namespaces, elemData.handle ) === false ) {
 
-					cobaltApi.removeEvent( elem, type, elemData.handle );
+					Cobalt.removeEvent( elem, type, elemData.handle );
 				}
 
 				delete events[ type ];
@@ -5086,7 +5086,7 @@ cobaltApi.event = {
 		}
 
 		// Remove data and the expando if it's no longer used
-		if ( cobaltApi.isEmptyObject( events ) ) {
+		if ( Cobalt.isEmptyObject( events ) ) {
 			dataPriv.remove( elem, "handle events" );
 		}
 	},
@@ -5096,15 +5096,15 @@ cobaltApi.event = {
 		var i, j, ret, matched, handleObj, handlerQueue,
 			args = new Array( arguments.length ),
 
-			// Make a writable cobaltApi.Event from the native event object
-			event = cobaltApi.event.fix( nativeEvent ),
+			// Make a writable Cobalt.Event from the native event object
+			event = Cobalt.event.fix( nativeEvent ),
 
 			handlers = (
 				dataPriv.get( this, "events" ) || Object.create( null )
 			)[ event.type ] || [],
-			special = cobaltApi.event.special[ event.type ] || {};
+			special = Cobalt.event.special[ event.type ] || {};
 
-		// Use the fix-ed cobaltApi.Event rather than the (read-only) native event
+		// Use the fix-ed Cobalt.Event rather than the (read-only) native event
 		args[ 0 ] = event;
 
 		for ( i = 1; i < arguments.length; i++ ) {
@@ -5119,7 +5119,7 @@ cobaltApi.event = {
 		}
 
 		// Determine handlers
-		handlerQueue = cobaltApi.event.handlers.call( this, event, handlers );
+		handlerQueue = Cobalt.event.handlers.call( this, event, handlers );
 
 		// Run delegates first; they may want to stop propagation beneath us
 		i = 0;
@@ -5138,7 +5138,7 @@ cobaltApi.event = {
 					event.handleObj = handleObj;
 					event.data = handleObj.data;
 
-					ret = ( ( cobaltApi.event.special[ handleObj.origType ] || {} ).handle ||
+					ret = ( ( Cobalt.event.special[ handleObj.origType ] || {} ).handle ||
 						handleObj.handler ).apply( matched.elem, args );
 
 					if ( ret !== undefined ) {
@@ -5194,8 +5194,8 @@ cobaltApi.event = {
 
 						if ( matchedSelectors[ sel ] === undefined ) {
 							matchedSelectors[ sel ] = handleObj.needsContext ?
-								cobaltApi( sel, this ).index( cur ) > -1 :
-								cobaltApi.find( sel, this, null, [ cur ] ).length;
+								Cobalt( sel, this ).index( cur ) > -1 :
+								Cobalt.find( sel, this, null, [ cur ] ).length;
 						}
 						if ( matchedSelectors[ sel ] ) {
 							matchedHandlers.push( handleObj );
@@ -5218,7 +5218,7 @@ cobaltApi.event = {
 	},
 
 	addProp: function( name, hook ) {
-		Object.defineProperty( cobaltApi.Event.prototype, name, {
+		Object.defineProperty( Cobalt.Event.prototype, name, {
 			enumerable: true,
 			configurable: true,
 
@@ -5246,9 +5246,9 @@ cobaltApi.event = {
 	},
 
 	fix: function( originalEvent ) {
-		return originalEvent[ cobaltApi.expando ] ?
+		return originalEvent[ Cobalt.expando ] ?
 			originalEvent :
-			new cobaltApi.Event( originalEvent );
+			new Cobalt.Event( originalEvent );
 	},
 
 	special: {
@@ -5324,17 +5324,17 @@ cobaltApi.event = {
 // already occurred before other listeners are invoked.
 function leverageNative( el, type, isSetup ) {
 
-	// Missing `isSetup` indicates a trigger call, which must force setup through cobaltApi.event.add
+	// Missing `isSetup` indicates a trigger call, which must force setup through Cobalt.event.add
 	if ( !isSetup ) {
 		if ( dataPriv.get( el, type ) === undefined ) {
-			cobaltApi.event.add( el, type, returnTrue );
+			Cobalt.event.add( el, type, returnTrue );
 		}
 		return;
 	}
 
 	// Register the controller as a special universal handler for all event namespaces
 	dataPriv.set( el, type, false );
-	cobaltApi.event.add( el, type, {
+	Cobalt.event.add( el, type, {
 		namespace: false,
 		handler: function( event ) {
 			var result,
@@ -5371,7 +5371,7 @@ function leverageNative( el, type, isSetup ) {
 				// This technically gets the ordering wrong w.r.t. to `.trigger()` (in which the
 				// bubbling surrogate propagates *after* the non-bubbling base), but that seems
 				// less bad than duplication.
-				} else if ( ( cobaltApi.event.special[ type ] || {} ).delegateType ) {
+				} else if ( ( Cobalt.event.special[ type ] || {} ).delegateType ) {
 					event.stopPropagation();
 				}
 
@@ -5380,17 +5380,17 @@ function leverageNative( el, type, isSetup ) {
 			} else if ( saved ) {
 
 				// ...and capture the result
-				dataPriv.set( this, type, cobaltApi.event.trigger(
+				dataPriv.set( this, type, Cobalt.event.trigger(
 					saved[ 0 ],
 					saved.slice( 1 ),
 					this
 				) );
 
-				// Abort handling of the native event by all cobaltApi handlers while allowing
+				// Abort handling of the native event by all Cobalt handlers while allowing
 				// native handlers on the same element to run. On target, this is achieved
-				// by stopping immediate propagation just on the cobaltApi event. However,
-				// the native event is re-wrapped by a cobaltApi one on each level of the
-				// propagation so the only way to stop it for cobaltApi is to stop it for
+				// by stopping immediate propagation just on the Cobalt event. However,
+				// the native event is re-wrapped by a Cobalt one on each level of the
+				// propagation so the only way to stop it for Cobalt is to stop it for
 				// everyone via native `stopPropagation()`. This is not a problem for
 				// focus/blur which don't bubble, but it does also stop click on checkboxes
 				// and radios. We accept this limitation.
@@ -5401,7 +5401,7 @@ function leverageNative( el, type, isSetup ) {
 	} );
 }
 
-cobaltApi.removeEvent = function( elem, type, handle ) {
+Cobalt.removeEvent = function( elem, type, handle ) {
 
 	// This "if" is needed for plain objects
 	if ( elem.removeEventListener ) {
@@ -5409,11 +5409,11 @@ cobaltApi.removeEvent = function( elem, type, handle ) {
 	}
 };
 
-cobaltApi.Event = function( src, props ) {
+Cobalt.Event = function( src, props ) {
 
 	// Allow instantiation without the 'new' keyword
-	if ( !( this instanceof cobaltApi.Event ) ) {
-		return new cobaltApi.Event( src, props );
+	if ( !( this instanceof Cobalt.Event ) ) {
+		return new Cobalt.Event( src, props );
 	}
 
 	// Event object
@@ -5448,20 +5448,20 @@ cobaltApi.Event = function( src, props ) {
 
 	// Put explicitly provided properties onto the event object
 	if ( props ) {
-		cobaltApi.extend( this, props );
+		Cobalt.extend( this, props );
 	}
 
 	// Create a timestamp if incoming event doesn't have one
 	this.timeStamp = src && src.timeStamp || Date.now();
 
 	// Mark it as fixed
-	this[ cobaltApi.expando ] = true;
+	this[ Cobalt.expando ] = true;
 };
 
-// cobaltApi.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
+// Cobalt.Event is based on DOM3 Events as specified by the ECMAScript Language Binding
 // https://www.w3.org/TR/2003/WD-DOM-Level-3-Events-20030331/ecma-script-binding.html
-cobaltApi.Event.prototype = {
-	constructor: cobaltApi.Event,
+Cobalt.Event.prototype = {
+	constructor: Cobalt.Event,
 	isDefaultPrevented: returnFalse,
 	isPropagationStopped: returnFalse,
 	isImmediatePropagationStopped: returnFalse,
@@ -5499,7 +5499,7 @@ cobaltApi.Event.prototype = {
 };
 
 // Includes all common event props including KeyEvent and MouseEvent specific props
-cobaltApi.each( {
+Cobalt.each( {
 	altKey: true,
 	bubbles: true,
 	cancelable: true,
@@ -5531,9 +5531,9 @@ cobaltApi.each( {
 	toElement: true,
 	touches: true,
 	which: true
-}, cobaltApi.event.addProp );
+}, Cobalt.event.addProp );
 
-cobaltApi.each( { focus: "focusin", blur: "focusout" }, function( type, delegateType ) {
+Cobalt.each( { focus: "focusin", blur: "focusout" }, function( type, delegateType ) {
 
 	function focusMappedHandler( nativeEvent ) {
 		if ( document.documentMode ) {
@@ -5546,7 +5546,7 @@ cobaltApi.each( { focus: "focusin", blur: "focusout" }, function( type, delegate
 			// `handle` from private data would already wrap the event, but we need
 			// to change the `type` here.
 			var handle = dataPriv.get( this, "handle" ),
-				event = cobaltApi.event.fix( nativeEvent );
+				event = Cobalt.event.fix( nativeEvent );
 			event.type = nativeEvent.type === "focusin" ? "focus" : "blur";
 			event.isSimulated = true;
 
@@ -5560,7 +5560,7 @@ cobaltApi.each( { focus: "focusin", blur: "focusout" }, function( type, delegate
 			if ( event.target === event.currentTarget ) {
 
 				// The setup part calls `leverageNative`, which, in turn, calls
-				// `cobaltApi.event.add`, so event handle will already have been set
+				// `Cobalt.event.add`, so event handle will already have been set
 				// by this point.
 				handle( event );
 			}
@@ -5568,12 +5568,12 @@ cobaltApi.each( { focus: "focusin", blur: "focusout" }, function( type, delegate
 
 			// For non-IE browsers, attach a single capturing handler on the document
 			// while someone wants focusin/focusout.
-			cobaltApi.event.simulate( delegateType, nativeEvent.target,
-				cobaltApi.event.fix( nativeEvent ) );
+			Cobalt.event.simulate( delegateType, nativeEvent.target,
+				Cobalt.event.fix( nativeEvent ) );
 		}
 	}
 
-	cobaltApi.event.special[ type ] = {
+	Cobalt.event.special[ type ] = {
 
 		// Utilize native event if possible so blur/focus sequence is correct
 		setup: function() {
@@ -5650,7 +5650,7 @@ cobaltApi.each( { focus: "focusin", blur: "focusout" }, function( type, delegate
 	// Support: IE 9 - 11+
 	// To preserve relative focusin/focus & focusout/blur event order guaranteed on the 3.x branch,
 	// attach a single handler for both events in IE.
-	cobaltApi.event.special[ delegateType ] = {
+	Cobalt.event.special[ delegateType ] = {
 		setup: function() {
 
 			// Handle: regular nodes (via `this.ownerDocument`), window
@@ -5692,20 +5692,20 @@ cobaltApi.each( { focus: "focusin", blur: "focusout" }, function( type, delegate
 } );
 
 // Create mouseenter/leave events using mouseover/out and event-time checks
-// so that event delegation works in cobaltApi.
+// so that event delegation works in Cobalt.
 // Do the same for pointerenter/pointerleave and pointerover/pointerout
 //
 // Support: Safari 7 only
 // Safari sends mouseenter too often; see:
 // https://bugs.chromium.org/p/chromium/issues/detail?id=470258
 // for the description of the bug (it existed in older Chrome versions as well).
-cobaltApi.each( {
+Cobalt.each( {
 	mouseenter: "mouseover",
 	mouseleave: "mouseout",
 	pointerenter: "pointerover",
 	pointerleave: "pointerout"
 }, function( orig, fix ) {
-	cobaltApi.event.special[ orig ] = {
+	Cobalt.event.special[ orig ] = {
 		delegateType: fix,
 		bindType: fix,
 
@@ -5717,7 +5717,7 @@ cobaltApi.each( {
 
 			// For mouseenter/leave call the handler if related is outside the target.
 			// NB: No relatedTarget if the mouse left/entered the browser window
-			if ( !related || ( related !== target && !cobaltApi.contains( target, related ) ) ) {
+			if ( !related || ( related !== target && !Cobalt.contains( target, related ) ) ) {
 				event.type = handleObj.origType;
 				ret = handleObj.handler.apply( this, arguments );
 				event.type = fix;
@@ -5727,7 +5727,7 @@ cobaltApi.each( {
 	};
 } );
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 
 	on: function( types, selector, data, fn ) {
 		return on( this, types, selector, data, fn );
@@ -5739,9 +5739,9 @@ cobaltApi.fn.extend( {
 		var handleObj, type;
 		if ( types && types.preventDefault && types.handleObj ) {
 
-			// ( event )  dispatched cobaltApi.Event
+			// ( event )  dispatched Cobalt.Event
 			handleObj = types.handleObj;
-			cobaltApi( types.delegateTarget ).off(
+			Cobalt( types.delegateTarget ).off(
 				handleObj.namespace ?
 					handleObj.origType + "." + handleObj.namespace :
 					handleObj.origType,
@@ -5768,7 +5768,7 @@ cobaltApi.fn.extend( {
 			fn = returnFalse;
 		}
 		return this.each( function() {
-			cobaltApi.event.remove( this, types, fn, selector );
+			Cobalt.event.remove( this, types, fn, selector );
 		} );
 	}
 } );
@@ -5791,7 +5791,7 @@ function manipulationTarget( elem, content ) {
 	if ( nodeName( elem, "table" ) &&
 		nodeName( content.nodeType !== 11 ? content : content.firstChild, "tr" ) ) {
 
-		return cobaltApi( elem ).children( "tbody" )[ 0 ] || elem;
+		return Cobalt( elem ).children( "tbody" )[ 0 ] || elem;
 	}
 
 	return elem;
@@ -5829,7 +5829,7 @@ function cloneCopyEvent( src, dest ) {
 
 			for ( type in events ) {
 				for ( i = 0, l = events[ type ].length; i < l; i++ ) {
-					cobaltApi.event.add( dest, type, events[ type ][ i ] );
+					Cobalt.event.add( dest, type, events[ type ][ i ] );
 				}
 			}
 		}
@@ -5838,7 +5838,7 @@ function cloneCopyEvent( src, dest ) {
 	// 2. Copy user data
 	if ( dataUser.hasData( src ) ) {
 		udataOld = dataUser.access( src );
-		udataCur = cobaltApi.extend( {}, udataOld );
+		udataCur = Cobalt.extend( {}, udataOld );
 
 		dataUser.set( dest, udataCur );
 	}
@@ -5893,7 +5893,7 @@ function domManip( collection, args, callback, ignored ) {
 
 		// Require either new content or an interest in ignored elements to invoke the callback
 		if ( first || ignored ) {
-			scripts = cobaltApi.map( getAll( fragment, "script" ), disableScript );
+			scripts = Cobalt.map( getAll( fragment, "script" ), disableScript );
 			hasScripts = scripts.length;
 
 			// Use the original fragment for the last item
@@ -5903,14 +5903,14 @@ function domManip( collection, args, callback, ignored ) {
 				node = fragment;
 
 				if ( i !== iNoClone ) {
-					node = cobaltApi.clone( node, true, true );
+					node = Cobalt.clone( node, true, true );
 
 					// Keep references to cloned scripts for later restoration
 					if ( hasScripts ) {
 
 						// Support: Android <=4.0 only, PhantomJS 1 only
 						// push.apply(_, arraylike) throws on ancient WebKit
-						cobaltApi.merge( scripts, getAll( node, "script" ) );
+						Cobalt.merge( scripts, getAll( node, "script" ) );
 					}
 				}
 
@@ -5921,20 +5921,20 @@ function domManip( collection, args, callback, ignored ) {
 				doc = scripts[ scripts.length - 1 ].ownerDocument;
 
 				// Re-enable scripts
-				cobaltApi.map( scripts, restoreScript );
+				Cobalt.map( scripts, restoreScript );
 
 				// Evaluate executable scripts on first document insertion
 				for ( i = 0; i < hasScripts; i++ ) {
 					node = scripts[ i ];
 					if ( rscriptType.test( node.type || "" ) &&
 						!dataPriv.access( node, "globalEval" ) &&
-						cobaltApi.contains( doc, node ) ) {
+						Cobalt.contains( doc, node ) ) {
 
 						if ( node.src && ( node.type || "" ).toLowerCase()  !== "module" ) {
 
 							// Optional AJAX dependency, but won't run scripts if not present
-							if ( cobaltApi._evalUrl && !node.noModule ) {
-								cobaltApi._evalUrl( node.src, {
+							if ( Cobalt._evalUrl && !node.noModule ) {
+								Cobalt._evalUrl( node.src, {
 									nonce: node.nonce || node.getAttribute( "nonce" )
 								}, doc );
 							}
@@ -5958,12 +5958,12 @@ function domManip( collection, args, callback, ignored ) {
 
 function remove( elem, selector, keepData ) {
 	var node,
-		nodes = selector ? cobaltApi.filter( selector, elem ) : elem,
+		nodes = selector ? Cobalt.filter( selector, elem ) : elem,
 		i = 0;
 
 	for ( ; ( node = nodes[ i ] ) != null; i++ ) {
 		if ( !keepData && node.nodeType === 1 ) {
-			cobaltApi.cleanData( getAll( node ) );
+			Cobalt.cleanData( getAll( node ) );
 		}
 
 		if ( node.parentNode ) {
@@ -5977,7 +5977,7 @@ function remove( elem, selector, keepData ) {
 	return elem;
 }
 
-cobaltApi.extend( {
+Cobalt.extend( {
 	htmlPrefilter: function( html ) {
 		return html;
 	},
@@ -5989,9 +5989,9 @@ cobaltApi.extend( {
 
 		// Fix IE cloning issues
 		if ( !support.noCloneChecked && ( elem.nodeType === 1 || elem.nodeType === 11 ) &&
-				!cobaltApi.isXMLDoc( elem ) ) {
+				!Cobalt.isXMLDoc( elem ) ) {
 
-			// We eschew cobaltApi#find here for performance reasons:
+			// We eschew Cobalt#find here for performance reasons:
 			// https://jsperf.com/getall-vs-sizzle/2
 			destElements = getAll( clone );
 			srcElements = getAll( elem );
@@ -6027,7 +6027,7 @@ cobaltApi.extend( {
 
 	cleanData: function( elems ) {
 		var data, elem, type,
-			special = cobaltApi.event.special,
+			special = Cobalt.event.special,
 			i = 0;
 
 		for ( ; ( elem = elems[ i ] ) !== undefined; i++ ) {
@@ -6036,11 +6036,11 @@ cobaltApi.extend( {
 					if ( data.events ) {
 						for ( type in data.events ) {
 							if ( special[ type ] ) {
-								cobaltApi.event.remove( elem, type );
+								Cobalt.event.remove( elem, type );
 
-							// This is a shortcut to avoid cobaltApi.event.remove's overhead
+							// This is a shortcut to avoid Cobalt.event.remove's overhead
 							} else {
-								cobaltApi.removeEvent( elem, type, data.handle );
+								Cobalt.removeEvent( elem, type, data.handle );
 							}
 						}
 					}
@@ -6060,7 +6060,7 @@ cobaltApi.extend( {
 	}
 } );
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	detach: function( selector ) {
 		return remove( this, selector, true );
 	},
@@ -6072,7 +6072,7 @@ cobaltApi.fn.extend( {
 	text: function( value ) {
 		return access( this, function( value ) {
 			return value === undefined ?
-				cobaltApi.text( this ) :
+				Cobalt.text( this ) :
 				this.empty().each( function() {
 					if ( this.nodeType === 1 || this.nodeType === 11 || this.nodeType === 9 ) {
 						this.textContent = value;
@@ -6123,7 +6123,7 @@ cobaltApi.fn.extend( {
 			if ( elem.nodeType === 1 ) {
 
 				// Prevent memory leaks
-				cobaltApi.cleanData( getAll( elem, false ) );
+				Cobalt.cleanData( getAll( elem, false ) );
 
 				// Remove any remaining nodes
 				elem.textContent = "";
@@ -6138,7 +6138,7 @@ cobaltApi.fn.extend( {
 		deepDataAndEvents = deepDataAndEvents == null ? dataAndEvents : deepDataAndEvents;
 
 		return this.map( function() {
-			return cobaltApi.clone( this, dataAndEvents, deepDataAndEvents );
+			return Cobalt.clone( this, dataAndEvents, deepDataAndEvents );
 		} );
 	},
 
@@ -6156,7 +6156,7 @@ cobaltApi.fn.extend( {
 			if ( typeof value === "string" && !rnoInnerhtml.test( value ) &&
 				!wrapMap[ ( rtagName.exec( value ) || [ "", "" ] )[ 1 ].toLowerCase() ] ) {
 
-				value = cobaltApi.htmlPrefilter( value );
+				value = Cobalt.htmlPrefilter( value );
 
 				try {
 					for ( ; i < l; i++ ) {
@@ -6164,7 +6164,7 @@ cobaltApi.fn.extend( {
 
 						// Remove element nodes and prevent memory leaks
 						if ( elem.nodeType === 1 ) {
-							cobaltApi.cleanData( getAll( elem, false ) );
+							Cobalt.cleanData( getAll( elem, false ) );
 							elem.innerHTML = value;
 						}
 					}
@@ -6188,8 +6188,8 @@ cobaltApi.fn.extend( {
 		return domManip( this, arguments, function( elem ) {
 			var parent = this.parentNode;
 
-			if ( cobaltApi.inArray( this, ignored ) < 0 ) {
-				cobaltApi.cleanData( getAll( this ) );
+			if ( Cobalt.inArray( this, ignored ) < 0 ) {
+				Cobalt.cleanData( getAll( this ) );
 				if ( parent ) {
 					parent.replaceChild( elem, this );
 				}
@@ -6200,23 +6200,23 @@ cobaltApi.fn.extend( {
 	}
 } );
 
-cobaltApi.each( {
+Cobalt.each( {
 	appendTo: "append",
 	prependTo: "prepend",
 	insertBefore: "before",
 	insertAfter: "after",
 	replaceAll: "replaceWith"
 }, function( name, original ) {
-	cobaltApi.fn[ name ] = function( selector ) {
+	Cobalt.fn[ name ] = function( selector ) {
 		var elems,
 			ret = [],
-			insert = cobaltApi( selector ),
+			insert = Cobalt( selector ),
 			last = insert.length - 1,
 			i = 0;
 
 		for ( ; i <= last; i++ ) {
 			elems = i === last ? this : this.clone( true );
-			cobaltApi( insert[ i ] )[ original ]( elems );
+			Cobalt( insert[ i ] )[ original ]( elems );
 
 			// Support: Android <=4.0 only, PhantomJS 1 only
 			// .get() because push.apply(_, arraylike) throws on ancient WebKit
@@ -6338,7 +6338,7 @@ var rboxStyle = new RegExp( cssExpand.join( "|" ), "i" );
 	div.cloneNode( true ).style.backgroundClip = "";
 	support.clearCloneStyle = div.style.backgroundClip === "content-box";
 
-	cobaltApi.extend( support, {
+	Cobalt.extend( support, {
 		boxSizingReliable: function() {
 			computeStyleTests();
 			return boxSizingReliableVal;
@@ -6450,7 +6450,7 @@ function curCSS( elem, name, computed ) {
 			// This collapses a missing definition with property defined
 			// and set to an empty string but there's no standard API
 			// allowing us to differentiate them without a performance penalty
-			// and returning `undefined` aligns with older cobaltApi.
+			// and returning `undefined` aligns with older Cobalt.
 			//
 			// rtrimCSS treats U+000D CARRIAGE RETURN and U+000C FORM FEED
 			// as whitespace while CSS does not, but this is not a problem
@@ -6461,7 +6461,7 @@ function curCSS( elem, name, computed ) {
 		}
 
 		if ( ret === "" && !isAttached( elem ) ) {
-			ret = cobaltApi.style( elem, name );
+			ret = Cobalt.style( elem, name );
 		}
 
 		// A tribute to the "awesome hack by Dean Edwards"
@@ -6535,9 +6535,9 @@ function vendorPropName( name ) {
 	}
 }
 
-// Return a potentially-mapped cobaltApi.cssProps or vendor prefixed property
+// Return a potentially-mapped Cobalt.cssProps or vendor prefixed property
 function finalPropName( name ) {
-	var final = cobaltApi.cssProps[ name ] || vendorProps[ name ];
+	var final = Cobalt.cssProps[ name ] || vendorProps[ name ];
 
 	if ( final ) {
 		return final;
@@ -6590,22 +6590,22 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 		// Count margin delta separately to only add it after scroll gutter adjustment.
 		// This is needed to make negative margins work with `outerHeight( true )` (gh-3982).
 		if ( box === "margin" ) {
-			marginDelta += cobaltApi.css( elem, box + cssExpand[ i ], true, styles );
+			marginDelta += Cobalt.css( elem, box + cssExpand[ i ], true, styles );
 		}
 
 		// If we get here with a content-box, we're seeking "padding" or "border" or "margin"
 		if ( !isBorderBox ) {
 
 			// Add padding
-			delta += cobaltApi.css( elem, "padding" + cssExpand[ i ], true, styles );
+			delta += Cobalt.css( elem, "padding" + cssExpand[ i ], true, styles );
 
 			// For "border" or "margin", add border
 			if ( box !== "padding" ) {
-				delta += cobaltApi.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+				delta += Cobalt.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
 
 			// But still keep track of it otherwise
 			} else {
-				extra += cobaltApi.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+				extra += Cobalt.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
 			}
 
 		// If we get here with a border-box (content + padding + border), we're seeking "content" or
@@ -6614,12 +6614,12 @@ function boxModelAdjustment( elem, dimension, box, isBorderBox, styles, computed
 
 			// For "content", subtract padding
 			if ( box === "content" ) {
-				delta -= cobaltApi.css( elem, "padding" + cssExpand[ i ], true, styles );
+				delta -= Cobalt.css( elem, "padding" + cssExpand[ i ], true, styles );
 			}
 
 			// For "content" or "padding", subtract border
 			if ( box !== "margin" ) {
-				delta -= cobaltApi.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
+				delta -= Cobalt.css( elem, "border" + cssExpand[ i ] + "Width", true, styles );
 			}
 		}
 	}
@@ -6653,7 +6653,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 		// Fake content-box until we know it's needed to know the true value.
 		boxSizingNeeded = !support.boxSizingReliable() || extra,
 		isBorderBox = boxSizingNeeded &&
-			cobaltApi.css( elem, "boxSizing", false, styles ) === "border-box",
+			Cobalt.css( elem, "boxSizing", false, styles ) === "border-box",
 		valueIsBorderBox = isBorderBox,
 
 		val = curCSS( elem, dimension, styles ),
@@ -6686,12 +6686,12 @@ function getWidthOrHeight( elem, dimension, extra ) {
 
 		// Support: Android <=4.1 - 4.3 only
 		// Also use offsetWidth/offsetHeight for misreported inline dimensions (gh-3602)
-		!parseFloat( val ) && cobaltApi.css( elem, "display", false, styles ) === "inline" ) &&
+		!parseFloat( val ) && Cobalt.css( elem, "display", false, styles ) === "inline" ) &&
 
 		// Make sure the element is visible & connected
 		elem.getClientRects().length ) {
 
-		isBorderBox = cobaltApi.css( elem, "boxSizing", false, styles ) === "border-box";
+		isBorderBox = Cobalt.css( elem, "boxSizing", false, styles ) === "border-box";
 
 		// Where available, offsetWidth/offsetHeight approximate border box dimensions.
 		// Where not available (e.g., SVG), assume unreliable box-sizing and interpret the
@@ -6720,7 +6720,7 @@ function getWidthOrHeight( elem, dimension, extra ) {
 	) + "px";
 }
 
-cobaltApi.extend( {
+Cobalt.extend( {
 
 	// Add in style property hooks for overriding the default
 	// behavior of getting and setting a style property
@@ -6796,7 +6796,7 @@ cobaltApi.extend( {
 		}
 
 		// Gets hook for the prefixed version, then unprefixed version
-		hooks = cobaltApi.cssHooks[ name ] || cobaltApi.cssHooks[ origName ];
+		hooks = Cobalt.cssHooks[ name ] || Cobalt.cssHooks[ origName ];
 
 		// Check if we're setting a value
 		if ( value !== undefined ) {
@@ -6816,10 +6816,10 @@ cobaltApi.extend( {
 			}
 
 			// If a number was passed in, add the unit (except for certain CSS properties)
-			// The isCustomProp check can be removed in cobaltApi 4.0 when we only auto-append
+			// The isCustomProp check can be removed in Cobalt 4.0 when we only auto-append
 			// "px" to a few hardcoded values.
 			if ( type === "number" && !isCustomProp ) {
-				value += ret && ret[ 3 ] || ( cobaltApi.cssNumber[ origName ] ? "" : "px" );
+				value += ret && ret[ 3 ] || ( Cobalt.cssNumber[ origName ] ? "" : "px" );
 			}
 
 			// background-* props affect original clone's values
@@ -6865,7 +6865,7 @@ cobaltApi.extend( {
 		}
 
 		// Try prefixed name followed by the unprefixed name
-		hooks = cobaltApi.cssHooks[ name ] || cobaltApi.cssHooks[ origName ];
+		hooks = Cobalt.cssHooks[ name ] || Cobalt.cssHooks[ origName ];
 
 		// If a hook was provided get the computed value from there
 		if ( hooks && "get" in hooks ) {
@@ -6892,14 +6892,14 @@ cobaltApi.extend( {
 	}
 } );
 
-cobaltApi.each( [ "height", "width" ], function( _i, dimension ) {
-	cobaltApi.cssHooks[ dimension ] = {
+Cobalt.each( [ "height", "width" ], function( _i, dimension ) {
+	Cobalt.cssHooks[ dimension ] = {
 		get: function( elem, computed, extra ) {
 			if ( computed ) {
 
 				// Certain elements can have dimension info if we invisibly show them
 				// but it must have a current display style that would benefit
-				return rdisplayswap.test( cobaltApi.css( elem, "display" ) ) &&
+				return rdisplayswap.test( Cobalt.css( elem, "display" ) ) &&
 
 					// Support: Safari 8+
 					// Table columns in Safari have non-zero offsetWidth & zero
@@ -6927,7 +6927,7 @@ cobaltApi.each( [ "height", "width" ], function( _i, dimension ) {
 				// To avoid forcing a reflow, only fetch boxSizing if we need it (gh-3991)
 				boxSizingNeeded = scrollboxSizeBuggy || extra,
 				isBorderBox = boxSizingNeeded &&
-					cobaltApi.css( elem, "boxSizing", false, styles ) === "border-box",
+					Cobalt.css( elem, "boxSizing", false, styles ) === "border-box",
 				subtract = extra ?
 					boxModelAdjustment(
 						elem,
@@ -6954,7 +6954,7 @@ cobaltApi.each( [ "height", "width" ], function( _i, dimension ) {
 				( matches[ 3 ] || "px" ) !== "px" ) {
 
 				elem.style[ dimension ] = value;
-				value = cobaltApi.css( elem, dimension );
+				value = Cobalt.css( elem, dimension );
 			}
 
 			return setPositiveNumber( elem, value, subtract );
@@ -6962,7 +6962,7 @@ cobaltApi.each( [ "height", "width" ], function( _i, dimension ) {
 	};
 } );
 
-cobaltApi.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
+Cobalt.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
 	function( elem, computed ) {
 		if ( computed ) {
 			return ( parseFloat( curCSS( elem, "marginLeft" ) ) ||
@@ -6976,12 +6976,12 @@ cobaltApi.cssHooks.marginLeft = addGetHookIf( support.reliableMarginLeft,
 );
 
 // These hooks are used by animate to expand properties
-cobaltApi.each( {
+Cobalt.each( {
 	margin: "",
 	padding: "",
 	border: "Width"
 }, function( prefix, suffix ) {
-	cobaltApi.cssHooks[ prefix + suffix ] = {
+	Cobalt.cssHooks[ prefix + suffix ] = {
 		expand: function( value ) {
 			var i = 0,
 				expanded = {},
@@ -6999,11 +6999,11 @@ cobaltApi.each( {
 	};
 
 	if ( prefix !== "margin" ) {
-		cobaltApi.cssHooks[ prefix + suffix ].set = setPositiveNumber;
+		Cobalt.cssHooks[ prefix + suffix ].set = setPositiveNumber;
 	}
 } );
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	css: function( name, value ) {
 		return access( this, function( elem, name, value ) {
 			var styles, len,
@@ -7015,15 +7015,15 @@ cobaltApi.fn.extend( {
 				len = name.length;
 
 				for ( ; i < len; i++ ) {
-					map[ name[ i ] ] = cobaltApi.css( elem, name[ i ], false, styles );
+					map[ name[ i ] ] = Cobalt.css( elem, name[ i ], false, styles );
 				}
 
 				return map;
 			}
 
 			return value !== undefined ?
-				cobaltApi.style( elem, name, value ) :
-				cobaltApi.css( elem, name );
+				Cobalt.style( elem, name, value ) :
+				Cobalt.css( elem, name );
 		}, name, value, arguments.length > 1 );
 	}
 } );
@@ -7032,18 +7032,18 @@ cobaltApi.fn.extend( {
 function Tween( elem, options, prop, end, easing ) {
 	return new Tween.prototype.init( elem, options, prop, end, easing );
 }
-cobaltApi.Tween = Tween;
+Cobalt.Tween = Tween;
 
 Tween.prototype = {
 	constructor: Tween,
 	init: function( elem, options, prop, end, easing, unit ) {
 		this.elem = elem;
 		this.prop = prop;
-		this.easing = easing || cobaltApi.easing._default;
+		this.easing = easing || Cobalt.easing._default;
 		this.options = options;
 		this.start = this.now = this.cur();
 		this.end = end;
-		this.unit = unit || ( cobaltApi.cssNumber[ prop ] ? "" : "px" );
+		this.unit = unit || ( Cobalt.cssNumber[ prop ] ? "" : "px" );
 	},
 	cur: function() {
 		var hooks = Tween.propHooks[ this.prop ];
@@ -7057,7 +7057,7 @@ Tween.prototype = {
 			hooks = Tween.propHooks[ this.prop ];
 
 		if ( this.options.duration ) {
-			this.pos = eased = cobaltApi.easing[ this.easing ](
+			this.pos = eased = Cobalt.easing[ this.easing ](
 				percent, this.options.duration * percent, 0, 1, this.options.duration
 			);
 		} else {
@@ -7096,7 +7096,7 @@ Tween.propHooks = {
 			// attempt a parseFloat and fallback to a string if the parse fails.
 			// Simple values such as "10px" are parsed to Float;
 			// complex values such as "rotate(1rad)" are returned as-is.
-			result = cobaltApi.css( tween.elem, tween.prop, "" );
+			result = Cobalt.css( tween.elem, tween.prop, "" );
 
 			// Empty strings, null, undefined and "auto" are converted to 0.
 			return !result || result === "auto" ? 0 : result;
@@ -7106,12 +7106,12 @@ Tween.propHooks = {
 			// Use step hook for back compat.
 			// Use cssHook if its there.
 			// Use .style if available and use plain properties where available.
-			if ( cobaltApi.fx.step[ tween.prop ] ) {
-				cobaltApi.fx.step[ tween.prop ]( tween );
+			if ( Cobalt.fx.step[ tween.prop ] ) {
+				Cobalt.fx.step[ tween.prop ]( tween );
 			} else if ( tween.elem.nodeType === 1 && (
-				cobaltApi.cssHooks[ tween.prop ] ||
+				Cobalt.cssHooks[ tween.prop ] ||
 					tween.elem.style[ finalPropName( tween.prop ) ] != null ) ) {
-				cobaltApi.style( tween.elem, tween.prop, tween.now + tween.unit );
+				Cobalt.style( tween.elem, tween.prop, tween.now + tween.unit );
 			} else {
 				tween.elem[ tween.prop ] = tween.now;
 			}
@@ -7129,7 +7129,7 @@ Tween.propHooks.scrollTop = Tween.propHooks.scrollLeft = {
 	}
 };
 
-cobaltApi.easing = {
+Cobalt.easing = {
 	linear: function( p ) {
 		return p;
 	},
@@ -7139,10 +7139,10 @@ cobaltApi.easing = {
 	_default: "swing"
 };
 
-cobaltApi.fx = Tween.prototype.init;
+Cobalt.fx = Tween.prototype.init;
 
 // Back compat <1.8 extension point
-cobaltApi.fx.step = {};
+Cobalt.fx.step = {};
 
 
 
@@ -7157,10 +7157,10 @@ function schedule() {
 		if ( document.hidden === false && window.requestAnimationFrame ) {
 			window.requestAnimationFrame( schedule );
 		} else {
-			window.setTimeout( schedule, cobaltApi.fx.interval );
+			window.setTimeout( schedule, Cobalt.fx.interval );
 		}
 
-		cobaltApi.fx.tick();
+		Cobalt.fx.tick();
 	}
 }
 
@@ -7218,7 +7218,7 @@ function defaultPrefilter( elem, props, opts ) {
 
 	// Queue-skipping animations hijack the fx hooks
 	if ( !opts.queue ) {
-		hooks = cobaltApi._queueHooks( elem, "fx" );
+		hooks = Cobalt._queueHooks( elem, "fx" );
 		if ( hooks.unqueued == null ) {
 			hooks.unqueued = 0;
 			oldfire = hooks.empty.fire;
@@ -7235,7 +7235,7 @@ function defaultPrefilter( elem, props, opts ) {
 			// Ensure the complete handler is called before this completes
 			anim.always( function() {
 				hooks.unqueued--;
-				if ( !cobaltApi.queue( elem, "fx" ).length ) {
+				if ( !Cobalt.queue( elem, "fx" ).length ) {
 					hooks.empty.fire();
 				}
 			} );
@@ -7260,13 +7260,13 @@ function defaultPrefilter( elem, props, opts ) {
 					continue;
 				}
 			}
-			orig[ prop ] = dataShow && dataShow[ prop ] || cobaltApi.style( elem, prop );
+			orig[ prop ] = dataShow && dataShow[ prop ] || Cobalt.style( elem, prop );
 		}
 	}
 
 	// Bail out if this is a no-op like .hide().hide()
-	propTween = !cobaltApi.isEmptyObject( props );
-	if ( !propTween && cobaltApi.isEmptyObject( orig ) ) {
+	propTween = !Cobalt.isEmptyObject( props );
+	if ( !propTween && Cobalt.isEmptyObject( orig ) ) {
 		return;
 	}
 
@@ -7284,7 +7284,7 @@ function defaultPrefilter( elem, props, opts ) {
 		if ( restoreDisplay == null ) {
 			restoreDisplay = dataPriv.get( elem, "display" );
 		}
-		display = cobaltApi.css( elem, "display" );
+		display = Cobalt.css( elem, "display" );
 		if ( display === "none" ) {
 			if ( restoreDisplay ) {
 				display = restoreDisplay;
@@ -7293,14 +7293,14 @@ function defaultPrefilter( elem, props, opts ) {
 				// Get nonempty value(s) by temporarily forcing visibility
 				showHide( [ elem ], true );
 				restoreDisplay = elem.style.display || restoreDisplay;
-				display = cobaltApi.css( elem, "display" );
+				display = Cobalt.css( elem, "display" );
 				showHide( [ elem ] );
 			}
 		}
 
 		// Animate inline elements as inline-block
 		if ( display === "inline" || display === "inline-block" && restoreDisplay != null ) {
-			if ( cobaltApi.css( elem, "float" ) === "none" ) {
+			if ( Cobalt.css( elem, "float" ) === "none" ) {
 
 				// Restore the original display value at the end of pure show/hide animations
 				if ( !propTween ) {
@@ -7362,7 +7362,7 @@ function defaultPrefilter( elem, props, opts ) {
 				}
 				dataPriv.remove( elem, "fxshow" );
 				for ( prop in orig ) {
-					cobaltApi.style( elem, prop, orig[ prop ] );
+					Cobalt.style( elem, prop, orig[ prop ] );
 				}
 			} );
 		}
@@ -7397,7 +7397,7 @@ function propFilter( props, specialEasing ) {
 			delete props[ index ];
 		}
 
-		hooks = cobaltApi.cssHooks[ name ];
+		hooks = Cobalt.cssHooks[ name ];
 		if ( hooks && "expand" in hooks ) {
 			value = hooks.expand( value );
 			delete props[ name ];
@@ -7421,7 +7421,7 @@ function Animation( elem, properties, options ) {
 		stopped,
 		index = 0,
 		length = Animation.prefilters.length,
-		deferred = cobaltApi.Deferred().always( function() {
+		deferred = Cobalt.Deferred().always( function() {
 
 			// Don't match elem in the :animated selector
 			delete tick.elem;
@@ -7462,10 +7462,10 @@ function Animation( elem, properties, options ) {
 		},
 		animation = deferred.promise( {
 			elem: elem,
-			props: cobaltApi.extend( {}, properties ),
-			opts: cobaltApi.extend( true, {
+			props: Cobalt.extend( {}, properties ),
+			opts: Cobalt.extend( true, {
 				specialEasing: {},
-				easing: cobaltApi.easing._default
+				easing: Cobalt.easing._default
 			}, options ),
 			originalProperties: properties,
 			originalOptions: options,
@@ -7473,7 +7473,7 @@ function Animation( elem, properties, options ) {
 			duration: options.duration,
 			tweens: [],
 			createTween: function( prop, end ) {
-				var tween = cobaltApi.Tween( elem, animation.opts, prop, end,
+				var tween = Cobalt.Tween( elem, animation.opts, prop, end,
 					animation.opts.specialEasing[ prop ] || animation.opts.easing );
 				animation.tweens.push( tween );
 				return tween;
@@ -7510,14 +7510,14 @@ function Animation( elem, properties, options ) {
 		result = Animation.prefilters[ index ].call( animation, elem, props, animation.opts );
 		if ( result ) {
 			if ( isFunction( result.stop ) ) {
-				cobaltApi._queueHooks( animation.elem, animation.opts.queue ).stop =
+				Cobalt._queueHooks( animation.elem, animation.opts.queue ).stop =
 					result.stop.bind( result );
 			}
 			return result;
 		}
 	}
 
-	cobaltApi.map( props, createTween, animation );
+	Cobalt.map( props, createTween, animation );
 
 	if ( isFunction( animation.opts.start ) ) {
 		animation.opts.start.call( elem, animation );
@@ -7530,8 +7530,8 @@ function Animation( elem, properties, options ) {
 		.fail( animation.opts.fail )
 		.always( animation.opts.always );
 
-	cobaltApi.fx.timer(
-		cobaltApi.extend( tick, {
+	Cobalt.fx.timer(
+		Cobalt.extend( tick, {
 			elem: elem,
 			anim: animation,
 			queue: animation.opts.queue
@@ -7541,7 +7541,7 @@ function Animation( elem, properties, options ) {
 	return animation;
 }
 
-cobaltApi.Animation = cobaltApi.extend( Animation, {
+Cobalt.Animation = Cobalt.extend( Animation, {
 
 	tweeners: {
 		"*": [ function( prop, value ) {
@@ -7581,8 +7581,8 @@ cobaltApi.Animation = cobaltApi.extend( Animation, {
 	}
 } );
 
-cobaltApi.speed = function( speed, easing, fn ) {
-	var opt = speed && typeof speed === "object" ? cobaltApi.extend( {}, speed ) : {
+Cobalt.speed = function( speed, easing, fn ) {
+	var opt = speed && typeof speed === "object" ? Cobalt.extend( {}, speed ) : {
 		complete: fn || !fn && easing ||
 			isFunction( speed ) && speed,
 		duration: speed,
@@ -7590,16 +7590,16 @@ cobaltApi.speed = function( speed, easing, fn ) {
 	};
 
 	// Go to the end state if fx are off
-	if ( cobaltApi.fx.off ) {
+	if ( Cobalt.fx.off ) {
 		opt.duration = 0;
 
 	} else {
 		if ( typeof opt.duration !== "number" ) {
-			if ( opt.duration in cobaltApi.fx.speeds ) {
-				opt.duration = cobaltApi.fx.speeds[ opt.duration ];
+			if ( opt.duration in Cobalt.fx.speeds ) {
+				opt.duration = Cobalt.fx.speeds[ opt.duration ];
 
 			} else {
-				opt.duration = cobaltApi.fx.speeds._default;
+				opt.duration = Cobalt.fx.speeds._default;
 			}
 		}
 	}
@@ -7618,14 +7618,14 @@ cobaltApi.speed = function( speed, easing, fn ) {
 		}
 
 		if ( opt.queue ) {
-			cobaltApi.dequeue( this, opt.queue );
+			Cobalt.dequeue( this, opt.queue );
 		}
 	};
 
 	return opt;
 };
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	fadeTo: function( speed, to, easing, callback ) {
 
 		// Show any hidden elements after setting opacity to 0
@@ -7635,12 +7635,12 @@ cobaltApi.fn.extend( {
 			.end().animate( { opacity: to }, speed, easing, callback );
 	},
 	animate: function( prop, speed, easing, callback ) {
-		var empty = cobaltApi.isEmptyObject( prop ),
-			optall = cobaltApi.speed( speed, easing, callback ),
+		var empty = Cobalt.isEmptyObject( prop ),
+			optall = Cobalt.speed( speed, easing, callback ),
 			doAnimation = function() {
 
 				// Operate on a copy of prop so per-property easing won't be lost
-				var anim = Animation( this, cobaltApi.extend( {}, prop ), optall );
+				var anim = Animation( this, Cobalt.extend( {}, prop ), optall );
 
 				// Empty animations, or finishing resolves immediately
 				if ( empty || dataPriv.get( this, "finish" ) ) {
@@ -7673,7 +7673,7 @@ cobaltApi.fn.extend( {
 		return this.each( function() {
 			var dequeue = true,
 				index = type != null && type + "queueHooks",
-				timers = cobaltApi.timers,
+				timers = Cobalt.timers,
 				data = dataPriv.get( this );
 
 			if ( index ) {
@@ -7702,7 +7702,7 @@ cobaltApi.fn.extend( {
 			// Timers currently will call their complete callbacks, which
 			// will dequeue but only if they were gotoEnd.
 			if ( dequeue || !gotoEnd ) {
-				cobaltApi.dequeue( this, type );
+				Cobalt.dequeue( this, type );
 			}
 		} );
 	},
@@ -7715,14 +7715,14 @@ cobaltApi.fn.extend( {
 				data = dataPriv.get( this ),
 				queue = data[ type + "queue" ],
 				hooks = data[ type + "queueHooks" ],
-				timers = cobaltApi.timers,
+				timers = Cobalt.timers,
 				length = queue ? queue.length : 0;
 
 			// Enable finishing flag on private data
 			data.finish = true;
 
 			// Empty the queue first
-			cobaltApi.queue( this, type, [] );
+			Cobalt.queue( this, type, [] );
 
 			if ( hooks && hooks.stop ) {
 				hooks.stop.call( this, true );
@@ -7749,9 +7749,9 @@ cobaltApi.fn.extend( {
 	}
 } );
 
-cobaltApi.each( [ "toggle", "show", "hide" ], function( _i, name ) {
-	var cssFn = cobaltApi.fn[ name ];
-	cobaltApi.fn[ name ] = function( speed, easing, callback ) {
+Cobalt.each( [ "toggle", "show", "hide" ], function( _i, name ) {
+	var cssFn = Cobalt.fn[ name ];
+	Cobalt.fn[ name ] = function( speed, easing, callback ) {
 		return speed == null || typeof speed === "boolean" ?
 			cssFn.apply( this, arguments ) :
 			this.animate( genFx( name, true ), speed, easing, callback );
@@ -7759,7 +7759,7 @@ cobaltApi.each( [ "toggle", "show", "hide" ], function( _i, name ) {
 } );
 
 // Generate shortcuts for custom animations
-cobaltApi.each( {
+Cobalt.each( {
 	slideDown: genFx( "show" ),
 	slideUp: genFx( "hide" ),
 	slideToggle: genFx( "toggle" ),
@@ -7767,16 +7767,16 @@ cobaltApi.each( {
 	fadeOut: { opacity: "hide" },
 	fadeToggle: { opacity: "toggle" }
 }, function( name, props ) {
-	cobaltApi.fn[ name ] = function( speed, easing, callback ) {
+	Cobalt.fn[ name ] = function( speed, easing, callback ) {
 		return this.animate( props, speed, easing, callback );
 	};
 } );
 
-cobaltApi.timers = [];
-cobaltApi.fx.tick = function() {
+Cobalt.timers = [];
+Cobalt.fx.tick = function() {
 	var timer,
 		i = 0,
-		timers = cobaltApi.timers;
+		timers = Cobalt.timers;
 
 	fxNow = Date.now();
 
@@ -7790,18 +7790,18 @@ cobaltApi.fx.tick = function() {
 	}
 
 	if ( !timers.length ) {
-		cobaltApi.fx.stop();
+		Cobalt.fx.stop();
 	}
 	fxNow = undefined;
 };
 
-cobaltApi.fx.timer = function( timer ) {
-	cobaltApi.timers.push( timer );
-	cobaltApi.fx.start();
+Cobalt.fx.timer = function( timer ) {
+	Cobalt.timers.push( timer );
+	Cobalt.fx.start();
 };
 
-cobaltApi.fx.interval = 13;
-cobaltApi.fx.start = function() {
+Cobalt.fx.interval = 13;
+Cobalt.fx.start = function() {
 	if ( inProgress ) {
 		return;
 	}
@@ -7810,11 +7810,11 @@ cobaltApi.fx.start = function() {
 	schedule();
 };
 
-cobaltApi.fx.stop = function() {
+Cobalt.fx.stop = function() {
 	inProgress = null;
 };
 
-cobaltApi.fx.speeds = {
+Cobalt.fx.speeds = {
 	slow: 600,
 	fast: 200,
 
@@ -7824,8 +7824,8 @@ cobaltApi.fx.speeds = {
 
 
 // Based off of the plugin by Clint Helfers, with permission.
-cobaltApi.fn.delay = function( time, type ) {
-	time = cobaltApi.fx ? cobaltApi.fx.speeds[ time ] || time : time;
+Cobalt.fn.delay = function( time, type ) {
+	time = Cobalt.fx ? Cobalt.fx.speeds[ time ] || time : time;
 	type = type || "fx";
 
 	return this.queue( type, function( next, hooks ) {
@@ -7862,21 +7862,21 @@ cobaltApi.fn.delay = function( time, type ) {
 
 
 var boolHook,
-	attrHandle = cobaltApi.expr.attrHandle;
+	attrHandle = Cobalt.expr.attrHandle;
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	attr: function( name, value ) {
-		return access( this, cobaltApi.attr, name, value, arguments.length > 1 );
+		return access( this, Cobalt.attr, name, value, arguments.length > 1 );
 	},
 
 	removeAttr: function( name ) {
 		return this.each( function() {
-			cobaltApi.removeAttr( this, name );
+			Cobalt.removeAttr( this, name );
 		} );
 	}
 } );
 
-cobaltApi.extend( {
+Cobalt.extend( {
 	attr: function( elem, name, value ) {
 		var ret, hooks,
 			nType = elem.nodeType;
@@ -7888,19 +7888,19 @@ cobaltApi.extend( {
 
 		// Fallback to prop when attributes are not supported
 		if ( typeof elem.getAttribute === "undefined" ) {
-			return cobaltApi.prop( elem, name, value );
+			return Cobalt.prop( elem, name, value );
 		}
 
 		// Attribute hooks are determined by the lowercase version
 		// Grab necessary hook if one is defined
-		if ( nType !== 1 || !cobaltApi.isXMLDoc( elem ) ) {
-			hooks = cobaltApi.attrHooks[ name.toLowerCase() ] ||
-				( cobaltApi.expr.match.bool.test( name ) ? boolHook : undefined );
+		if ( nType !== 1 || !Cobalt.isXMLDoc( elem ) ) {
+			hooks = Cobalt.attrHooks[ name.toLowerCase() ] ||
+				( Cobalt.expr.match.bool.test( name ) ? boolHook : undefined );
 		}
 
 		if ( value !== undefined ) {
 			if ( value === null ) {
-				cobaltApi.removeAttr( elem, name );
+				Cobalt.removeAttr( elem, name );
 				return;
 			}
 
@@ -7917,7 +7917,7 @@ cobaltApi.extend( {
 			return ret;
 		}
 
-		ret = cobaltApi.find.attr( elem, name );
+		ret = Cobalt.find.attr( elem, name );
 
 		// Non-existent attributes return null, we normalize to undefined
 		return ret == null ? undefined : ret;
@@ -7961,7 +7961,7 @@ boolHook = {
 		if ( value === false ) {
 
 			// Remove boolean attributes when set to false
-			cobaltApi.removeAttr( elem, name );
+			Cobalt.removeAttr( elem, name );
 		} else {
 			elem.setAttribute( name, name );
 		}
@@ -7969,8 +7969,8 @@ boolHook = {
 	}
 };
 
-cobaltApi.each( cobaltApi.expr.match.bool.source.match( /\w+/g ), function( _i, name ) {
-	var getter = attrHandle[ name ] || cobaltApi.find.attr;
+Cobalt.each( Cobalt.expr.match.bool.source.match( /\w+/g ), function( _i, name ) {
+	var getter = attrHandle[ name ] || Cobalt.find.attr;
 
 	attrHandle[ name ] = function( elem, name, isXML ) {
 		var ret, handle,
@@ -7996,19 +7996,19 @@ cobaltApi.each( cobaltApi.expr.match.bool.source.match( /\w+/g ), function( _i, 
 var rfocusable = /^(?:input|select|textarea|button)$/i,
 	rclickable = /^(?:a|area)$/i;
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	prop: function( name, value ) {
-		return access( this, cobaltApi.prop, name, value, arguments.length > 1 );
+		return access( this, Cobalt.prop, name, value, arguments.length > 1 );
 	},
 
 	removeProp: function( name ) {
 		return this.each( function() {
-			delete this[ cobaltApi.propFix[ name ] || name ];
+			delete this[ Cobalt.propFix[ name ] || name ];
 		} );
 	}
 } );
 
-cobaltApi.extend( {
+Cobalt.extend( {
 	prop: function( elem, name, value ) {
 		var ret, hooks,
 			nType = elem.nodeType;
@@ -8018,11 +8018,11 @@ cobaltApi.extend( {
 			return;
 		}
 
-		if ( nType !== 1 || !cobaltApi.isXMLDoc( elem ) ) {
+		if ( nType !== 1 || !Cobalt.isXMLDoc( elem ) ) {
 
 			// Fix name and attach hooks
-			name = cobaltApi.propFix[ name ] || name;
-			hooks = cobaltApi.propHooks[ name ];
+			name = Cobalt.propFix[ name ] || name;
+			hooks = Cobalt.propHooks[ name ];
 		}
 
 		if ( value !== undefined ) {
@@ -8049,7 +8049,7 @@ cobaltApi.extend( {
 				// elem.tabIndex doesn't always return the
 				// correct value when it hasn't been explicitly set
 				// Use proper attribute retrieval (trac-12072)
-				var tabindex = cobaltApi.find.attr( elem, "tabindex" );
+				var tabindex = Cobalt.find.attr( elem, "tabindex" );
 
 				if ( tabindex ) {
 					return parseInt( tabindex, 10 );
@@ -8083,7 +8083,7 @@ cobaltApi.extend( {
 // eslint rule "no-unused-expressions" is disabled for this code
 // since it considers such accessions noop
 if ( !support.optSelected ) {
-	cobaltApi.propHooks.selected = {
+	Cobalt.propHooks.selected = {
 		get: function( elem ) {
 
 			/* eslint no-unused-expressions: "off" */
@@ -8110,7 +8110,7 @@ if ( !support.optSelected ) {
 	};
 }
 
-cobaltApi.each( [
+Cobalt.each( [
 	"tabIndex",
 	"readOnly",
 	"maxLength",
@@ -8122,7 +8122,7 @@ cobaltApi.each( [
 	"frameBorder",
 	"contentEditable"
 ], function() {
-	cobaltApi.propFix[ this.toLowerCase() ] = this;
+	Cobalt.propFix[ this.toLowerCase() ] = this;
 } );
 
 
@@ -8150,13 +8150,13 @@ function classesToArray( value ) {
 	return [];
 }
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	addClass: function( value ) {
 		var classNames, cur, curValue, className, i, finalValue;
 
 		if ( isFunction( value ) ) {
 			return this.each( function( j ) {
-				cobaltApi( this ).addClass( value.call( this, j, getClass( this ) ) );
+				Cobalt( this ).addClass( value.call( this, j, getClass( this ) ) );
 			} );
 		}
 
@@ -8192,7 +8192,7 @@ cobaltApi.fn.extend( {
 
 		if ( isFunction( value ) ) {
 			return this.each( function( j ) {
-				cobaltApi( this ).removeClass( value.call( this, j, getClass( this ) ) );
+				Cobalt( this ).removeClass( value.call( this, j, getClass( this ) ) );
 			} );
 		}
 
@@ -8238,7 +8238,7 @@ cobaltApi.fn.extend( {
 
 		if ( isFunction( value ) ) {
 			return this.each( function( i ) {
-				cobaltApi( this ).toggleClass(
+				Cobalt( this ).toggleClass(
 					value.call( this, i, getClass( this ), stateVal ),
 					stateVal
 				);
@@ -8255,7 +8255,7 @@ cobaltApi.fn.extend( {
 			if ( isValidValue ) {
 
 				// Toggle individual class names
-				self = cobaltApi( this );
+				self = Cobalt( this );
 
 				for ( i = 0; i < classNames.length; i++ ) {
 					className = classNames[ i ];
@@ -8313,15 +8313,15 @@ cobaltApi.fn.extend( {
 
 var rreturn = /\r/g;
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	val: function( value ) {
 		var hooks, ret, valueIsFunction,
 			elem = this[ 0 ];
 
 		if ( !arguments.length ) {
 			if ( elem ) {
-				hooks = cobaltApi.valHooks[ elem.type ] ||
-					cobaltApi.valHooks[ elem.nodeName.toLowerCase() ];
+				hooks = Cobalt.valHooks[ elem.type ] ||
+					Cobalt.valHooks[ elem.nodeName.toLowerCase() ];
 
 				if ( hooks &&
 					"get" in hooks &&
@@ -8354,7 +8354,7 @@ cobaltApi.fn.extend( {
 			}
 
 			if ( valueIsFunction ) {
-				val = value.call( this, i, cobaltApi( this ).val() );
+				val = value.call( this, i, Cobalt( this ).val() );
 			} else {
 				val = value;
 			}
@@ -8367,12 +8367,12 @@ cobaltApi.fn.extend( {
 				val += "";
 
 			} else if ( Array.isArray( val ) ) {
-				val = cobaltApi.map( val, function( value ) {
+				val = Cobalt.map( val, function( value ) {
 					return value == null ? "" : value + "";
 				} );
 			}
 
-			hooks = cobaltApi.valHooks[ this.type ] || cobaltApi.valHooks[ this.nodeName.toLowerCase() ];
+			hooks = Cobalt.valHooks[ this.type ] || Cobalt.valHooks[ this.nodeName.toLowerCase() ];
 
 			// If set returns undefined, fall back to normal setting
 			if ( !hooks || !( "set" in hooks ) || hooks.set( this, val, "value" ) === undefined ) {
@@ -8382,12 +8382,12 @@ cobaltApi.fn.extend( {
 	}
 } );
 
-cobaltApi.extend( {
+Cobalt.extend( {
 	valHooks: {
 		option: {
 			get: function( elem ) {
 
-				var val = cobaltApi.find.attr( elem, "value" );
+				var val = Cobalt.find.attr( elem, "value" );
 				return val != null ?
 					val :
 
@@ -8395,7 +8395,7 @@ cobaltApi.extend( {
 					// option.text throws exceptions (trac-14686, trac-14858)
 					// Strip and collapse whitespace
 					// https://html.spec.whatwg.org/#strip-and-collapse-whitespace
-					stripAndCollapse( cobaltApi.text( elem ) );
+					stripAndCollapse( Cobalt.text( elem ) );
 			}
 		},
 		select: {
@@ -8428,7 +8428,7 @@ cobaltApi.extend( {
 								!nodeName( option.parentNode, "optgroup" ) ) ) {
 
 						// Get the specific value for the option
-						value = cobaltApi( option ).val();
+						value = Cobalt( option ).val();
 
 						// We don't need an array for one selects
 						if ( one ) {
@@ -8446,7 +8446,7 @@ cobaltApi.extend( {
 			set: function( elem, value ) {
 				var optionSet, option,
 					options = elem.options,
-					values = cobaltApi.makeArray( value ),
+					values = Cobalt.makeArray( value ),
 					i = options.length;
 
 				while ( i-- ) {
@@ -8455,7 +8455,7 @@ cobaltApi.extend( {
 					/* eslint-disable no-cond-assign */
 
 					if ( option.selected =
-						cobaltApi.inArray( cobaltApi.valHooks.option.get( option ), values ) > -1
+						Cobalt.inArray( Cobalt.valHooks.option.get( option ), values ) > -1
 					) {
 						optionSet = true;
 					}
@@ -8474,16 +8474,16 @@ cobaltApi.extend( {
 } );
 
 // Radios and checkboxes getter/setter
-cobaltApi.each( [ "radio", "checkbox" ], function() {
-	cobaltApi.valHooks[ this ] = {
+Cobalt.each( [ "radio", "checkbox" ], function() {
+	Cobalt.valHooks[ this ] = {
 		set: function( elem, value ) {
 			if ( Array.isArray( value ) ) {
-				return ( elem.checked = cobaltApi.inArray( cobaltApi( elem ).val(), value ) > -1 );
+				return ( elem.checked = Cobalt.inArray( Cobalt( elem ).val(), value ) > -1 );
 			}
 		}
 	};
 	if ( !support.checkOn ) {
-		cobaltApi.valHooks[ this ].get = function( elem ) {
+		Cobalt.valHooks[ this ].get = function( elem ) {
 			return elem.getAttribute( "value" ) === null ? "on" : elem.value;
 		};
 	}
@@ -8492,7 +8492,7 @@ cobaltApi.each( [ "radio", "checkbox" ], function() {
 
 
 
-// Return cobaltApi for attributes-only inclusion
+// Return Cobalt for attributes-only inclusion
 var location = window.location;
 
 var nonce = { guid: Date.now() };
@@ -8502,7 +8502,7 @@ var rquery = ( /\?/ );
 
 
 // Cross-browser xml parsing
-cobaltApi.parseXML = function( data ) {
+Cobalt.parseXML = function( data ) {
 	var xml, parserErrorElem;
 	if ( !data || typeof data !== "string" ) {
 		return null;
@@ -8516,9 +8516,9 @@ cobaltApi.parseXML = function( data ) {
 
 	parserErrorElem = xml && xml.getElementsByTagName( "parsererror" )[ 0 ];
 	if ( !xml || parserErrorElem ) {
-		cobaltApi.error( "Invalid XML: " + (
+		Cobalt.error( "Invalid XML: " + (
 			parserErrorElem ?
-				cobaltApi.map( parserErrorElem.childNodes, function( el ) {
+				Cobalt.map( parserErrorElem.childNodes, function( el ) {
 					return el.textContent;
 				} ).join( "\n" ) :
 				data
@@ -8533,7 +8533,7 @@ var rfocusMorph = /^(?:focusinfocus|focusoutblur)$/,
 		e.stopPropagation();
 	};
 
-cobaltApi.extend( cobaltApi.event, {
+Cobalt.extend( Cobalt.event, {
 
 	trigger: function( event, data, elem, onlyHandlers ) {
 
@@ -8550,7 +8550,7 @@ cobaltApi.extend( cobaltApi.event, {
 		}
 
 		// focus/blur morphs to focusin/out; ensure we're not firing them right now
-		if ( rfocusMorph.test( type + cobaltApi.event.triggered ) ) {
+		if ( rfocusMorph.test( type + Cobalt.event.triggered ) ) {
 			return;
 		}
 
@@ -8563,12 +8563,12 @@ cobaltApi.extend( cobaltApi.event, {
 		}
 		ontype = type.indexOf( ":" ) < 0 && "on" + type;
 
-		// Caller can pass in a cobaltApi.Event object, Object, or just an event type string
-		event = event[ cobaltApi.expando ] ?
+		// Caller can pass in a Cobalt.Event object, Object, or just an event type string
+		event = event[ Cobalt.expando ] ?
 			event :
-			new cobaltApi.Event( type, typeof event === "object" && event );
+			new Cobalt.Event( type, typeof event === "object" && event );
 
-		// Trigger bitmask: & 1 for native handlers; & 2 for cobaltApi (always true)
+		// Trigger bitmask: & 1 for native handlers; & 2 for Cobalt (always true)
 		event.isTrigger = onlyHandlers ? 2 : 3;
 		event.namespace = namespaces.join( "." );
 		event.rnamespace = event.namespace ?
@@ -8584,10 +8584,10 @@ cobaltApi.extend( cobaltApi.event, {
 		// Clone any incoming data and prepend the event, creating the handler arg list
 		data = data == null ?
 			[ event ] :
-			cobaltApi.makeArray( data, [ event ] );
+			Cobalt.makeArray( data, [ event ] );
 
 		// Allow special events to draw outside the lines
-		special = cobaltApi.event.special[ type ] || {};
+		special = Cobalt.event.special[ type ] || {};
 		if ( !onlyHandlers && special.trigger && special.trigger.apply( elem, data ) === false ) {
 			return;
 		}
@@ -8619,7 +8619,7 @@ cobaltApi.extend( cobaltApi.event, {
 				bubbleType :
 				special.bindType || type;
 
-			// cobaltApi handler
+			// Cobalt handler
 			handle = ( dataPriv.get( cur, "events" ) || Object.create( null ) )[ event.type ] &&
 				dataPriv.get( cur, "handle" );
 			if ( handle ) {
@@ -8656,7 +8656,7 @@ cobaltApi.extend( cobaltApi.event, {
 					}
 
 					// Prevent re-triggering of the same event, since we already bubbled it above
-					cobaltApi.event.triggered = type;
+					Cobalt.event.triggered = type;
 
 					if ( event.isPropagationStopped() ) {
 						lastElement.addEventListener( type, stopPropagationCallback );
@@ -8668,7 +8668,7 @@ cobaltApi.extend( cobaltApi.event, {
 						lastElement.removeEventListener( type, stopPropagationCallback );
 					}
 
-					cobaltApi.event.triggered = undefined;
+					Cobalt.event.triggered = undefined;
 
 					if ( tmp ) {
 						elem[ ontype ] = tmp;
@@ -8683,8 +8683,8 @@ cobaltApi.extend( cobaltApi.event, {
 	// Piggyback on a donor event to simulate a different one
 	// Used only for `focus(in | out)` events
 	simulate: function( type, elem, event ) {
-		var e = cobaltApi.extend(
-			new cobaltApi.Event(),
+		var e = Cobalt.extend(
+			new Cobalt.Event(),
 			event,
 			{
 				type: type,
@@ -8692,22 +8692,22 @@ cobaltApi.extend( cobaltApi.event, {
 			}
 		);
 
-		cobaltApi.event.trigger( e, null, elem );
+		Cobalt.event.trigger( e, null, elem );
 	}
 
 } );
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 
 	trigger: function( type, data ) {
 		return this.each( function() {
-			cobaltApi.event.trigger( type, data, this );
+			Cobalt.event.trigger( type, data, this );
 		} );
 	},
 	triggerHandler: function( type, data ) {
 		var elem = this[ 0 ];
 		if ( elem ) {
-			return cobaltApi.event.trigger( type, data, elem, true );
+			return Cobalt.event.trigger( type, data, elem, true );
 		}
 	}
 } );
@@ -8725,7 +8725,7 @@ function buildParams( prefix, obj, traditional, add ) {
 	if ( Array.isArray( obj ) ) {
 
 		// Serialize array item.
-		cobaltApi.each( obj, function( i, v ) {
+		Cobalt.each( obj, function( i, v ) {
 			if ( traditional || rbracket.test( prefix ) ) {
 
 				// Treat each array item as a scalar.
@@ -8759,7 +8759,7 @@ function buildParams( prefix, obj, traditional, add ) {
 
 // Serialize an array of form elements or a set of
 // key/values into a query string
-cobaltApi.param = function( a, traditional ) {
+Cobalt.param = function( a, traditional ) {
 	var prefix,
 		s = [],
 		add = function( key, valueOrFunction ) {
@@ -8778,10 +8778,10 @@ cobaltApi.param = function( a, traditional ) {
 	}
 
 	// If an array was passed in, assume that it is an array of form elements.
-	if ( Array.isArray( a ) || ( a.cobaltapi && !cobaltApi.isPlainObject( a ) ) ) {
+	if ( Array.isArray( a ) || ( a.cobalt && !Cobalt.isPlainObject( a ) ) ) {
 
 		// Serialize the form elements
-		cobaltApi.each( a, function() {
+		Cobalt.each( a, function() {
 			add( this.name, this.value );
 		} );
 
@@ -8798,32 +8798,32 @@ cobaltApi.param = function( a, traditional ) {
 	return s.join( "&" );
 };
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	serialize: function() {
-		return cobaltApi.param( this.serializeArray() );
+		return Cobalt.param( this.serializeArray() );
 	},
 	serializeArray: function() {
 		return this.map( function() {
 
 			// Can add propHook for "elements" to filter or add form elements
-			var elements = cobaltApi.prop( this, "elements" );
-			return elements ? cobaltApi.makeArray( elements ) : this;
+			var elements = Cobalt.prop( this, "elements" );
+			return elements ? Cobalt.makeArray( elements ) : this;
 		} ).filter( function() {
 			var type = this.type;
 
 			// Use .is( ":disabled" ) so that fieldset[disabled] works
-			return this.name && !cobaltApi( this ).is( ":disabled" ) &&
+			return this.name && !Cobalt( this ).is( ":disabled" ) &&
 				rsubmittable.test( this.nodeName ) && !rsubmitterTypes.test( type ) &&
 				( this.checked || !rcheckableType.test( type ) );
 		} ).map( function( _i, elem ) {
-			var val = cobaltApi( this ).val();
+			var val = Cobalt( this ).val();
 
 			if ( val == null ) {
 				return null;
 			}
 
 			if ( Array.isArray( val ) ) {
-				return cobaltApi.map( val, function( val ) {
+				return Cobalt.map( val, function( val ) {
 					return { name: elem.name, value: val.replace( rCRLF, "\r\n" ) };
 				} );
 			}
@@ -8871,7 +8871,7 @@ var
 
 originAnchor.href = location.href;
 
-// Base "constructor" for cobaltApi.ajaxPrefilter and cobaltApi.ajaxTransport
+// Base "constructor" for Cobalt.ajaxPrefilter and Cobalt.ajaxTransport
 function addToPrefiltersOrTransports( structure ) {
 
 	// dataTypeExpression is optional and defaults to "*"
@@ -8914,7 +8914,7 @@ function inspectPrefiltersOrTransports( structure, options, originalOptions, jqX
 	function inspect( dataType ) {
 		var selected;
 		inspected[ dataType ] = true;
-		cobaltApi.each( structure[ dataType ] || [], function( _, prefilterOrFactory ) {
+		Cobalt.each( structure[ dataType ] || [], function( _, prefilterOrFactory ) {
 			var dataTypeOrTransport = prefilterOrFactory( options, originalOptions, jqXHR );
 			if ( typeof dataTypeOrTransport === "string" &&
 				!seekingTransport && !inspected[ dataTypeOrTransport ] ) {
@@ -8937,7 +8937,7 @@ function inspectPrefiltersOrTransports( structure, options, originalOptions, jqX
 // Fixes trac-9887
 function ajaxExtend( target, src ) {
 	var key, deep,
-		flatOptions = cobaltApi.ajaxSettings.flatOptions || {};
+		flatOptions = Cobalt.ajaxSettings.flatOptions || {};
 
 	for ( key in src ) {
 		if ( src[ key ] !== undefined ) {
@@ -8945,7 +8945,7 @@ function ajaxExtend( target, src ) {
 		}
 	}
 	if ( deep ) {
-		cobaltApi.extend( true, target, deep );
+		Cobalt.extend( true, target, deep );
 	}
 
 	return target;
@@ -9109,7 +9109,7 @@ function ajaxConvert( s, response, jqXHR, isSuccess ) {
 	return { state: "success", data: response };
 }
 
-cobaltApi.extend( {
+Cobalt.extend( {
 
 	// Counter for holding the number of active queries
 	active: 0,
@@ -9173,7 +9173,7 @@ cobaltApi.extend( {
 			"text json": JSON.parse,
 
 			// Parse text as xml
-			"text xml": cobaltApi.parseXML
+			"text xml": Cobalt.parseXML
 		},
 
 		// For options that shouldn't be deep extended:
@@ -9193,10 +9193,10 @@ cobaltApi.extend( {
 		return settings ?
 
 			// Building a settings object
-			ajaxExtend( ajaxExtend( target, cobaltApi.ajaxSettings ), settings ) :
+			ajaxExtend( ajaxExtend( target, Cobalt.ajaxSettings ), settings ) :
 
 			// Extending ajaxSettings
-			ajaxExtend( cobaltApi.ajaxSettings, target );
+			ajaxExtend( Cobalt.ajaxSettings, target );
 	},
 
 	ajaxPrefilter: addToPrefiltersOrTransports( prefilters ),
@@ -9242,20 +9242,20 @@ cobaltApi.extend( {
 			uncached,
 
 			// Create the final options object
-			s = cobaltApi.ajaxSetup( {}, options ),
+			s = Cobalt.ajaxSetup( {}, options ),
 
 			// Callbacks context
 			callbackContext = s.context || s,
 
-			// Context for global events is callbackContext if it is a DOM node or cobaltApi collection
+			// Context for global events is callbackContext if it is a DOM node or Cobalt collection
 			globalEventContext = s.context &&
-				( callbackContext.nodeType || callbackContext.cobaltapi ) ?
-				cobaltApi( callbackContext ) :
-				cobaltApi.event,
+				( callbackContext.nodeType || callbackContext.cobalt ) ?
+				Cobalt( callbackContext ) :
+				Cobalt.event,
 
 			// Deferreds
-			deferred = cobaltApi.Deferred(),
-			completeDeferred = cobaltApi.Callbacks( "once memory" ),
+			deferred = Cobalt.Deferred(),
+			completeDeferred = Cobalt.Callbacks( "once memory" ),
 
 			// Status-dependent callbacks
 			statusCode = s.statusCode || {},
@@ -9381,7 +9381,7 @@ cobaltApi.extend( {
 
 		// Convert data if not already a string
 		if ( s.data && s.processData && typeof s.data !== "string" ) {
-			s.data = cobaltApi.param( s.data, s.traditional );
+			s.data = Cobalt.param( s.data, s.traditional );
 		}
 
 		// Apply prefilters
@@ -9393,12 +9393,12 @@ cobaltApi.extend( {
 		}
 
 		// We can fire global events as of now if asked to
-		// Don't fire events if cobaltApi.event is undefined in an AMD-usage scenario (trac-15118)
-		fireGlobals = cobaltApi.event && s.global;
+		// Don't fire events if Cobalt.event is undefined in an AMD-usage scenario (trac-15118)
+		fireGlobals = Cobalt.event && s.global;
 
 		// Watch for a new set of requests
-		if ( fireGlobals && cobaltApi.active++ === 0 ) {
-			cobaltApi.event.trigger( "ajaxStart" );
+		if ( fireGlobals && Cobalt.active++ === 0 ) {
+			Cobalt.event.trigger( "ajaxStart" );
 		}
 
 		// Uppercase the type
@@ -9444,11 +9444,11 @@ cobaltApi.extend( {
 
 		// Set the If-Modified-Since and/or If-None-Match header, if in ifModified mode.
 		if ( s.ifModified ) {
-			if ( cobaltApi.lastModified[ cacheURL ] ) {
-				jqXHR.setRequestHeader( "If-Modified-Since", cobaltApi.lastModified[ cacheURL ] );
+			if ( Cobalt.lastModified[ cacheURL ] ) {
+				jqXHR.setRequestHeader( "If-Modified-Since", Cobalt.lastModified[ cacheURL ] );
 			}
-			if ( cobaltApi.etag[ cacheURL ] ) {
-				jqXHR.setRequestHeader( "If-None-Match", cobaltApi.etag[ cacheURL ] );
+			if ( Cobalt.etag[ cacheURL ] ) {
+				jqXHR.setRequestHeader( "If-None-Match", Cobalt.etag[ cacheURL ] );
 			}
 		}
 
@@ -9565,8 +9565,8 @@ cobaltApi.extend( {
 
 			// Use a noop converter for missing script but not if jsonp
 			if ( !isSuccess &&
-				cobaltApi.inArray( "script", s.dataTypes ) > -1 &&
-				cobaltApi.inArray( "json", s.dataTypes ) < 0 ) {
+				Cobalt.inArray( "script", s.dataTypes ) > -1 &&
+				Cobalt.inArray( "json", s.dataTypes ) < 0 ) {
 				s.converters[ "text script" ] = function() {};
 			}
 
@@ -9580,11 +9580,11 @@ cobaltApi.extend( {
 				if ( s.ifModified ) {
 					modified = jqXHR.getResponseHeader( "Last-Modified" );
 					if ( modified ) {
-						cobaltApi.lastModified[ cacheURL ] = modified;
+						Cobalt.lastModified[ cacheURL ] = modified;
 					}
 					modified = jqXHR.getResponseHeader( "etag" );
 					if ( modified ) {
-						cobaltApi.etag[ cacheURL ] = modified;
+						Cobalt.etag[ cacheURL ] = modified;
 					}
 				}
 
@@ -9642,8 +9642,8 @@ cobaltApi.extend( {
 				globalEventContext.trigger( "ajaxComplete", [ jqXHR, s ] );
 
 				// Handle the global AJAX counter
-				if ( !( --cobaltApi.active ) ) {
-					cobaltApi.event.trigger( "ajaxStop" );
+				if ( !( --Cobalt.active ) ) {
+					Cobalt.event.trigger( "ajaxStop" );
 				}
 			}
 		}
@@ -9652,16 +9652,16 @@ cobaltApi.extend( {
 	},
 
 	getJSON: function( url, data, callback ) {
-		return cobaltApi.get( url, data, callback, "json" );
+		return Cobalt.get( url, data, callback, "json" );
 	},
 
 	getScript: function( url, callback ) {
-		return cobaltApi.get( url, undefined, callback, "script" );
+		return Cobalt.get( url, undefined, callback, "script" );
 	}
 } );
 
-cobaltApi.each( [ "get", "post" ], function( _i, method ) {
-	cobaltApi[ method ] = function( url, data, callback, type ) {
+Cobalt.each( [ "get", "post" ], function( _i, method ) {
+	Cobalt[ method ] = function( url, data, callback, type ) {
 
 		// Shift arguments if data argument was omitted
 		if ( isFunction( data ) ) {
@@ -9671,17 +9671,17 @@ cobaltApi.each( [ "get", "post" ], function( _i, method ) {
 		}
 
 		// The url can be an options object (which then must have .url)
-		return cobaltApi.ajax( cobaltApi.extend( {
+		return Cobalt.ajax( Cobalt.extend( {
 			url: url,
 			type: method,
 			dataType: type,
 			data: data,
 			success: callback
-		}, cobaltApi.isPlainObject( url ) && url ) );
+		}, Cobalt.isPlainObject( url ) && url ) );
 	};
 } );
 
-cobaltApi.ajaxPrefilter( function( s ) {
+Cobalt.ajaxPrefilter( function( s ) {
 	var i;
 	for ( i in s.headers ) {
 		if ( i.toLowerCase() === "content-type" ) {
@@ -9691,8 +9691,8 @@ cobaltApi.ajaxPrefilter( function( s ) {
 } );
 
 
-cobaltApi._evalUrl = function( url, options, doc ) {
-	return cobaltApi.ajax( {
+Cobalt._evalUrl = function( url, options, doc ) {
+	return Cobalt.ajax( {
 		url: url,
 
 		// Make this explicit, since user can override this through ajaxSetup (trac-11264)
@@ -9709,13 +9709,13 @@ cobaltApi._evalUrl = function( url, options, doc ) {
 			"text script": function() {}
 		},
 		dataFilter: function( response ) {
-			cobaltApi.globalEval( response, options, doc );
+			Cobalt.globalEval( response, options, doc );
 		}
 	} );
 };
 
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 	wrapAll: function( html ) {
 		var wrap;
 
@@ -9725,7 +9725,7 @@ cobaltApi.fn.extend( {
 			}
 
 			// The elements to wrap the target around
-			wrap = cobaltApi( html, this[ 0 ].ownerDocument ).eq( 0 ).clone( true );
+			wrap = Cobalt( html, this[ 0 ].ownerDocument ).eq( 0 ).clone( true );
 
 			if ( this[ 0 ].parentNode ) {
 				wrap.insertBefore( this[ 0 ] );
@@ -9748,12 +9748,12 @@ cobaltApi.fn.extend( {
 	wrapInner: function( html ) {
 		if ( isFunction( html ) ) {
 			return this.each( function( i ) {
-				cobaltApi( this ).wrapInner( html.call( this, i ) );
+				Cobalt( this ).wrapInner( html.call( this, i ) );
 			} );
 		}
 
 		return this.each( function() {
-			var self = cobaltApi( this ),
+			var self = Cobalt( this ),
 				contents = self.contents();
 
 			if ( contents.length ) {
@@ -9769,30 +9769,30 @@ cobaltApi.fn.extend( {
 		var htmlIsFunction = isFunction( html );
 
 		return this.each( function( i ) {
-			cobaltApi( this ).wrapAll( htmlIsFunction ? html.call( this, i ) : html );
+			Cobalt( this ).wrapAll( htmlIsFunction ? html.call( this, i ) : html );
 		} );
 	},
 
 	unwrap: function( selector ) {
 		this.parent( selector ).not( "body" ).each( function() {
-			cobaltApi( this ).replaceWith( this.childNodes );
+			Cobalt( this ).replaceWith( this.childNodes );
 		} );
 		return this;
 	}
 } );
 
 
-cobaltApi.expr.pseudos.hidden = function( elem ) {
-	return !cobaltApi.expr.pseudos.visible( elem );
+Cobalt.expr.pseudos.hidden = function( elem ) {
+	return !Cobalt.expr.pseudos.visible( elem );
 };
-cobaltApi.expr.pseudos.visible = function( elem ) {
+Cobalt.expr.pseudos.visible = function( elem ) {
 	return !!( elem.offsetWidth || elem.offsetHeight || elem.getClientRects().length );
 };
 
 
 
 
-cobaltApi.ajaxSettings.xhr = function() {
+Cobalt.ajaxSettings.xhr = function() {
 	try {
 		return new window.XMLHttpRequest();
 	} catch ( e ) {}
@@ -9807,12 +9807,12 @@ var xhrSuccessStatus = {
 		// trac-1450: sometimes IE returns 1223 when it should be 204
 		1223: 204
 	},
-	xhrSupported = cobaltApi.ajaxSettings.xhr();
+	xhrSupported = Cobalt.ajaxSettings.xhr();
 
 support.cors = !!xhrSupported && ( "withCredentials" in xhrSupported );
 support.ajax = xhrSupported = !!xhrSupported;
 
-cobaltApi.ajaxTransport( function( options ) {
+Cobalt.ajaxTransport( function( options ) {
 	var callback, errorCallback;
 
 	// Cross domain only allowed if supported through XMLHttpRequest
@@ -9957,14 +9957,14 @@ cobaltApi.ajaxTransport( function( options ) {
 
 
 // Prevent auto-execution of scripts when no explicit dataType was provided (See gh-2432)
-cobaltApi.ajaxPrefilter( function( s ) {
+Cobalt.ajaxPrefilter( function( s ) {
 	if ( s.crossDomain ) {
 		s.contents.script = false;
 	}
 } );
 
 // Install script dataType
-cobaltApi.ajaxSetup( {
+Cobalt.ajaxSetup( {
 	accepts: {
 		script: "text/javascript, application/javascript, " +
 			"application/ecmascript, application/x-ecmascript"
@@ -9974,14 +9974,14 @@ cobaltApi.ajaxSetup( {
 	},
 	converters: {
 		"text script": function( text ) {
-			cobaltApi.globalEval( text );
+			Cobalt.globalEval( text );
 			return text;
 		}
 	}
 } );
 
 // Handle cache's special case and crossDomain
-cobaltApi.ajaxPrefilter( "script", function( s ) {
+Cobalt.ajaxPrefilter( "script", function( s ) {
 	if ( s.cache === undefined ) {
 		s.cache = false;
 	}
@@ -9991,14 +9991,14 @@ cobaltApi.ajaxPrefilter( "script", function( s ) {
 } );
 
 // Bind script tag hack transport
-cobaltApi.ajaxTransport( "script", function( s ) {
+Cobalt.ajaxTransport( "script", function( s ) {
 
 	// This transport only deals with cross domain or forced-by-attrs requests
 	if ( s.crossDomain || s.scriptAttrs ) {
 		var script, callback;
 		return {
 			send: function( _, complete ) {
-				script = cobaltApi( "<script>" )
+				script = Cobalt( "<script>" )
 					.attr( s.scriptAttrs || {} )
 					.prop( { charset: s.scriptCharset, src: s.url } )
 					.on( "load error", callback = function( evt ) {
@@ -10028,17 +10028,17 @@ var oldCallbacks = [],
 	rjsonp = /(=)\?(?=&|$)|\?\?/;
 
 // Default jsonp settings
-cobaltApi.ajaxSetup( {
+Cobalt.ajaxSetup( {
 	jsonp: "callback",
 	jsonpCallback: function() {
-		var callback = oldCallbacks.pop() || ( cobaltApi.expando + "_" + ( nonce.guid++ ) );
+		var callback = oldCallbacks.pop() || ( Cobalt.expando + "_" + ( nonce.guid++ ) );
 		this[ callback ] = true;
 		return callback;
 	}
 } );
 
 // Detect, normalize options and install callbacks for jsonp requests
-cobaltApi.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
+Cobalt.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 	var callbackName, overwritten, responseContainer,
 		jsonProp = s.jsonp !== false && ( rjsonp.test( s.url ) ?
@@ -10067,7 +10067,7 @@ cobaltApi.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 		// Use data converter to retrieve json after script execution
 		s.converters[ "script json" ] = function() {
 			if ( !responseContainer ) {
-				cobaltApi.error( callbackName + " was not called" );
+				Cobalt.error( callbackName + " was not called" );
 			}
 			return responseContainer[ 0 ];
 		};
@@ -10086,7 +10086,7 @@ cobaltApi.ajaxPrefilter( "json jsonp", function( s, originalSettings, jqXHR ) {
 
 			// If previous value didn't exist - remove it
 			if ( overwritten === undefined ) {
-				cobaltApi( window ).removeProp( callbackName );
+				Cobalt( window ).removeProp( callbackName );
 
 			// Otherwise restore preexisting value
 			} else {
@@ -10135,7 +10135,7 @@ support.createHTMLDocument = ( function() {
 // context (optional): If specified, the fragment will be created in this context,
 // defaults to document
 // keepScripts (optional): If true, will include scripts passed in the html string
-cobaltApi.parseHTML = function( data, context, keepScripts ) {
+Cobalt.parseHTML = function( data, context, keepScripts ) {
 	if ( typeof data !== "string" ) {
 		return [];
 	}
@@ -10175,17 +10175,17 @@ cobaltApi.parseHTML = function( data, context, keepScripts ) {
 	parsed = buildFragment( [ data ], context, scripts );
 
 	if ( scripts && scripts.length ) {
-		cobaltApi( scripts ).remove();
+		Cobalt( scripts ).remove();
 	}
 
-	return cobaltApi.merge( [], parsed.childNodes );
+	return Cobalt.merge( [], parsed.childNodes );
 };
 
 
 /**
  * Load a url into a page
  */
-cobaltApi.fn.load = function( url, params, callback ) {
+Cobalt.fn.load = function( url, params, callback ) {
 	var selector, type, response,
 		self = this,
 		off = url.indexOf( " " );
@@ -10209,7 +10209,7 @@ cobaltApi.fn.load = function( url, params, callback ) {
 
 	// If we have elements to modify, make the request
 	if ( self.length > 0 ) {
-		cobaltApi.ajax( {
+		Cobalt.ajax( {
 			url: url,
 
 			// If "type" variable is undefined, then "GET" method will be used.
@@ -10227,7 +10227,7 @@ cobaltApi.fn.load = function( url, params, callback ) {
 
 				// If a selector was specified, locate the right elements in a dummy div
 				// Exclude scripts to avoid IE 'Permission Denied' errors
-				cobaltApi( "<div>" ).append( cobaltApi.parseHTML( responseText ) ).find( selector ) :
+				Cobalt( "<div>" ).append( Cobalt.parseHTML( responseText ) ).find( selector ) :
 
 				// Otherwise use the full result
 				responseText );
@@ -10248,8 +10248,8 @@ cobaltApi.fn.load = function( url, params, callback ) {
 
 
 
-cobaltApi.expr.pseudos.animated = function( elem ) {
-	return cobaltApi.grep( cobaltApi.timers, function( fn ) {
+Cobalt.expr.pseudos.animated = function( elem ) {
+	return Cobalt.grep( Cobalt.timers, function( fn ) {
 		return elem === fn.elem;
 	} ).length;
 };
@@ -10257,11 +10257,11 @@ cobaltApi.expr.pseudos.animated = function( elem ) {
 
 
 
-cobaltApi.offset = {
+Cobalt.offset = {
 	setOffset: function( elem, options, i ) {
 		var curPosition, curLeft, curCSSTop, curTop, curOffset, curCSSLeft, calculatePosition,
-			position = cobaltApi.css( elem, "position" ),
-			curElem = cobaltApi( elem ),
+			position = Cobalt.css( elem, "position" ),
+			curElem = Cobalt( elem ),
 			props = {};
 
 		// Set position first, in-case top/left are set even on static elem
@@ -10270,8 +10270,8 @@ cobaltApi.offset = {
 		}
 
 		curOffset = curElem.offset();
-		curCSSTop = cobaltApi.css( elem, "top" );
-		curCSSLeft = cobaltApi.css( elem, "left" );
+		curCSSTop = Cobalt.css( elem, "top" );
+		curCSSLeft = Cobalt.css( elem, "left" );
 		calculatePosition = ( position === "absolute" || position === "fixed" ) &&
 			( curCSSTop + curCSSLeft ).indexOf( "auto" ) > -1;
 
@@ -10289,8 +10289,8 @@ cobaltApi.offset = {
 
 		if ( isFunction( options ) ) {
 
-			// Use cobaltApi.extend here to allow modification of coordinates argument (gh-1848)
-			options = options.call( elem, i, cobaltApi.extend( {}, curOffset ) );
+			// Use Cobalt.extend here to allow modification of coordinates argument (gh-1848)
+			options = options.call( elem, i, Cobalt.extend( {}, curOffset ) );
 		}
 
 		if ( options.top != null ) {
@@ -10309,7 +10309,7 @@ cobaltApi.offset = {
 	}
 };
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 
 	// offset() relates an element's border box to the document origin
 	offset: function( options ) {
@@ -10319,7 +10319,7 @@ cobaltApi.fn.extend( {
 			return options === undefined ?
 				this :
 				this.each( function( i ) {
-					cobaltApi.offset.setOffset( this, options, i );
+					Cobalt.offset.setOffset( this, options, i );
 				} );
 		}
 
@@ -10359,7 +10359,7 @@ cobaltApi.fn.extend( {
 			parentOffset = { top: 0, left: 0 };
 
 		// position:fixed elements are offset from the viewport, which itself always has zero offset
-		if ( cobaltApi.css( elem, "position" ) === "fixed" ) {
+		if ( Cobalt.css( elem, "position" ) === "fixed" ) {
 
 			// Assume position:fixed implies availability of getBoundingClientRect
 			offset = elem.getBoundingClientRect();
@@ -10373,23 +10373,23 @@ cobaltApi.fn.extend( {
 			offsetParent = elem.offsetParent || doc.documentElement;
 			while ( offsetParent &&
 				( offsetParent === doc.body || offsetParent === doc.documentElement ) &&
-				cobaltApi.css( offsetParent, "position" ) === "static" ) {
+				Cobalt.css( offsetParent, "position" ) === "static" ) {
 
 				offsetParent = offsetParent.parentNode;
 			}
 			if ( offsetParent && offsetParent !== elem && offsetParent.nodeType === 1 ) {
 
 				// Incorporate borders into its offset, since they are outside its content origin
-				parentOffset = cobaltApi( offsetParent ).offset();
-				parentOffset.top += cobaltApi.css( offsetParent, "borderTopWidth", true );
-				parentOffset.left += cobaltApi.css( offsetParent, "borderLeftWidth", true );
+				parentOffset = Cobalt( offsetParent ).offset();
+				parentOffset.top += Cobalt.css( offsetParent, "borderTopWidth", true );
+				parentOffset.left += Cobalt.css( offsetParent, "borderLeftWidth", true );
 			}
 		}
 
 		// Subtract parent offsets and element margins
 		return {
-			top: offset.top - parentOffset.top - cobaltApi.css( elem, "marginTop", true ),
-			left: offset.left - parentOffset.left - cobaltApi.css( elem, "marginLeft", true )
+			top: offset.top - parentOffset.top - Cobalt.css( elem, "marginTop", true ),
+			left: offset.left - parentOffset.left - Cobalt.css( elem, "marginLeft", true )
 		};
 	},
 
@@ -10407,7 +10407,7 @@ cobaltApi.fn.extend( {
 		return this.map( function() {
 			var offsetParent = this.offsetParent;
 
-			while ( offsetParent && cobaltApi.css( offsetParent, "position" ) === "static" ) {
+			while ( offsetParent && Cobalt.css( offsetParent, "position" ) === "static" ) {
 				offsetParent = offsetParent.offsetParent;
 			}
 
@@ -10417,10 +10417,10 @@ cobaltApi.fn.extend( {
 } );
 
 // Create scrollLeft and scrollTop methods
-cobaltApi.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( method, prop ) {
+Cobalt.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, function( method, prop ) {
 	var top = "pageYOffset" === prop;
 
-	cobaltApi.fn[ method ] = function( val ) {
+	Cobalt.fn[ method ] = function( val ) {
 		return access( this, function( elem, method, val ) {
 
 			// Coalesce documents and windows
@@ -10449,20 +10449,20 @@ cobaltApi.each( { scrollLeft: "pageXOffset", scrollTop: "pageYOffset" }, functio
 } );
 
 // Support: Safari <=7 - 9.1, Chrome <=37 - 49
-// Add the top/left cssHooks using cobaltApi.fn.position
+// Add the top/left cssHooks using Cobalt.fn.position
 // Webkit bug: https://bugs.webkit.org/show_bug.cgi?id=29084
 // Blink bug: https://bugs.chromium.org/p/chromium/issues/detail?id=589347
 // getComputedStyle returns percent when specified for top/left/bottom/right;
 // rather than make the css module depend on the offset module, just check for it here
-cobaltApi.each( [ "top", "left" ], function( _i, prop ) {
-	cobaltApi.cssHooks[ prop ] = addGetHookIf( support.pixelPosition,
+Cobalt.each( [ "top", "left" ], function( _i, prop ) {
+	Cobalt.cssHooks[ prop ] = addGetHookIf( support.pixelPosition,
 		function( elem, computed ) {
 			if ( computed ) {
 				computed = curCSS( elem, prop );
 
 				// If curCSS returns percentage, fallback to offset
 				return rnumnonpx.test( computed ) ?
-					cobaltApi( elem ).position()[ prop ] + "px" :
+					Cobalt( elem ).position()[ prop ] + "px" :
 					computed;
 			}
 		}
@@ -10471,15 +10471,15 @@ cobaltApi.each( [ "top", "left" ], function( _i, prop ) {
 
 
 // Create innerHeight, innerWidth, height, width, outerHeight and outerWidth methods
-cobaltApi.each( { Height: "height", Width: "width" }, function( name, type ) {
-	cobaltApi.each( {
+Cobalt.each( { Height: "height", Width: "width" }, function( name, type ) {
+	Cobalt.each( {
 		padding: "inner" + name,
 		content: type,
 		"": "outer" + name
 	}, function( defaultExtra, funcName ) {
 
 		// Margin is only for outerHeight, outerWidth
-		cobaltApi.fn[ funcName ] = function( margin, value ) {
+		Cobalt.fn[ funcName ] = function( margin, value ) {
 			var chainable = arguments.length && ( defaultExtra || typeof margin !== "boolean" ),
 				extra = defaultExtra || ( margin === true || value === true ? "margin" : "border" );
 
@@ -10510,17 +10510,17 @@ cobaltApi.each( { Height: "height", Width: "width" }, function( name, type ) {
 				return value === undefined ?
 
 					// Get width or height on the element, requesting but not forcing parseFloat
-					cobaltApi.css( elem, type, extra ) :
+					Cobalt.css( elem, type, extra ) :
 
 					// Set width or height on the element
-					cobaltApi.style( elem, type, value, extra );
+					Cobalt.style( elem, type, value, extra );
 			}, type, chainable ? margin : undefined, chainable );
 		};
 	} );
 } );
 
 
-cobaltApi.each( [
+Cobalt.each( [
 	"ajaxStart",
 	"ajaxStop",
 	"ajaxComplete",
@@ -10528,7 +10528,7 @@ cobaltApi.each( [
 	"ajaxSuccess",
 	"ajaxSend"
 ], function( _i, type ) {
-	cobaltApi.fn[ type ] = function( fn ) {
+	Cobalt.fn[ type ] = function( fn ) {
 		return this.on( type, fn );
 	};
 } );
@@ -10536,7 +10536,7 @@ cobaltApi.each( [
 
 
 
-cobaltApi.fn.extend( {
+Cobalt.fn.extend( {
 
 	bind: function( types, data, fn ) {
 		return this.on( types, null, data, fn );
@@ -10563,14 +10563,14 @@ cobaltApi.fn.extend( {
 	}
 } );
 
-cobaltApi.each(
+Cobalt.each(
 	( "blur focus focusin focusout resize scroll click dblclick " +
 	"mousedown mouseup mousemove mouseover mouseout mouseenter mouseleave " +
 	"change select submit keydown keypress keyup contextmenu" ).split( " " ),
 	function( _i, name ) {
 
 		// Handle event binding
-		cobaltApi.fn[ name ] = function( data, fn ) {
+		Cobalt.fn[ name ] = function( data, fn ) {
 			return arguments.length > 0 ?
 				this.on( name, null, data, fn ) :
 				this.trigger( name );
@@ -10589,9 +10589,9 @@ var rtrim = /^[\s\uFEFF\xA0]+|([^\s\uFEFF\xA0])[\s\uFEFF\xA0]+$/g;
 
 // Bind a function to a context, optionally partially applying any
 // arguments.
-// cobaltApi.proxy is deprecated to promote standards (specifically Function#bind)
+// Cobalt.proxy is deprecated to promote standards (specifically Function#bind)
 // However, it is not slated for removal any time soon
-cobaltApi.proxy = function( fn, context ) {
+Cobalt.proxy = function( fn, context ) {
 	var tmp, args, proxy;
 
 	if ( typeof context === "string" ) {
@@ -10613,34 +10613,34 @@ cobaltApi.proxy = function( fn, context ) {
 	};
 
 	// Set the guid of unique handler to the same of original handler, so it can be removed
-	proxy.guid = fn.guid = fn.guid || cobaltApi.guid++;
+	proxy.guid = fn.guid = fn.guid || Cobalt.guid++;
 
 	return proxy;
 };
 
-cobaltApi.holdReady = function( hold ) {
+Cobalt.holdReady = function( hold ) {
 	if ( hold ) {
-		cobaltApi.readyWait++;
+		Cobalt.readyWait++;
 	} else {
-		cobaltApi.ready( true );
+		Cobalt.ready( true );
 	}
 };
-cobaltApi.isArray = Array.isArray;
-cobaltApi.parseJSON = JSON.parse;
-cobaltApi.nodeName = nodeName;
-cobaltApi.isFunction = isFunction;
-cobaltApi.isWindow = isWindow;
-cobaltApi.camelCase = camelCase;
-cobaltApi.type = toType;
+Cobalt.isArray = Array.isArray;
+Cobalt.parseJSON = JSON.parse;
+Cobalt.nodeName = nodeName;
+Cobalt.isFunction = isFunction;
+Cobalt.isWindow = isWindow;
+Cobalt.camelCase = camelCase;
+Cobalt.type = toType;
 
-cobaltApi.now = Date.now;
+Cobalt.now = Date.now;
 
-cobaltApi.isNumeric = function( obj ) {
+Cobalt.isNumeric = function( obj ) {
 
-	// As of cobaltApi 3.0, isNumeric is limited to
+	// As of Cobalt 3.0, isNumeric is limited to
 	// strings and numbers (primitives or objects)
 	// that can be coerced to finite numbers (gh-2662)
-	var type = cobaltApi.type( obj );
+	var type = Cobalt.type( obj );
 	return ( type === "number" || type === "string" ) &&
 
 		// parseFloat NaNs numeric-cast false positives ("")
@@ -10649,7 +10649,7 @@ cobaltApi.isNumeric = function( obj ) {
 		!isNaN( obj - parseFloat( obj ) );
 };
 
-cobaltApi.trim = function( text ) {
+Cobalt.trim = function( text ) {
 	return text == null ?
 		"" :
 		( text + "" ).replace( rtrim, "$1" );
@@ -10657,22 +10657,22 @@ cobaltApi.trim = function( text ) {
 
 
 
-// Register as a named AMD module, since cobaltApi can be concatenated with other
+// Register as a named AMD module, since Cobalt can be concatenated with other
 // files that may use define, but not via a proper concatenation script that
 // understands anonymous AMD modules. A named AMD is safest and most robust
-// way to register. Lowercase cobaltapi is used because AMD module names are
-// derived from file names, and cobaltApi is normally delivered in a lowercase
+// way to register. Lowercase cobalt is used because AMD module names are
+// derived from file names, and Cobalt is normally delivered in a lowercase
 // file name. Do this after creating the global so that if an AMD module wants
-// to call noConflict to hide this version of cobaltApi, it will work.
+// to call noConflict to hide this version of Cobalt, it will work.
 
-// Note that for maximum portability, libraries that are not cobaltApi should
+// Note that for maximum portability, libraries that are not Cobalt should
 // declare themselves as anonymous modules, and avoid setting a global if an
-// AMD loader is present. cobaltApi is a special case. For more information, see
+// AMD loader is present. Cobalt is a special case. For more information, see
 // https://github.com/jrburke/requirejs/wiki/Updating-existing-libraries#wiki-anon
 
 if ( typeof define === "function" && define.amd ) {
-	define( "cobaltapi", [], function() {
-		return cobaltApi;
+	define( "cobalt", [], function() {
+		return Cobalt;
 	} );
 }
 
@@ -10681,33 +10681,33 @@ if ( typeof define === "function" && define.amd ) {
 
 var
 
-	// Map over cobaltApi in case of overwrite
-	_cobaltApi = window.cobaltApi,
+	// Map over Cobalt in case of overwrite
+	_Cobalt = window.Cobalt,
 
 	// Map over the $ in case of overwrite
 	_$ = window.$;
 
-cobaltApi.noConflict = function( deep ) {
-	if ( window.$ === cobaltApi ) {
+Cobalt.noConflict = function( deep ) {
+	if ( window.$ === Cobalt ) {
 		window.$ = _$;
 	}
 
-	if ( deep && window.cobaltApi === cobaltApi ) {
-		window.cobaltApi = _cobaltApi;
+	if ( deep && window.Cobalt === Cobalt ) {
+		window.Cobalt = _Cobalt;
 	}
 
-	return cobaltApi;
+	return Cobalt;
 };
 
-// Expose cobaltApi and $ identifiers, even in AMD
-// (trac-7102#comment:10, https://github.com/cobaltapi/cobaltapi/pull/557)
+// Expose Cobalt and $ identifiers, even in AMD
+// (trac-7102#comment:10, https://github.com/cobalt/cobalt/pull/557)
 // and CommonJS for browser emulators (trac-13566)
 if ( typeof noGlobal === "undefined" ) {
-	window.cobaltApi = window.$ = cobaltApi;
+	window.Cobalt = window.$ = Cobalt;
 }
 
 
 
 
-return cobaltApi;
+return Cobalt;
 } );
