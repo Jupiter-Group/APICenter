@@ -974,12 +974,14 @@
 .andorra-action-bar .action-item.disabled .action-label:not(.icon),
 .andorra-action-bar .action-item.disabled .action-label:not(.icon):before,
 .andorra-action-bar .action-item.disabled .action-label:not(.icon):hover {
+    font-family: var(--andorra-sans-font);
     color: var(--vscode-disabledForeground)
 }
 
 .andorra-action-bar .action-item.disabled .action-label.icon,
 .andorra-action-bar .action-item.disabled .action-label.icon:before,
 .andorra-action-bar .action-item.disabled .action-label.icon:hover {
+    font-family: var(--andorra-sans-font);
     opacity: .6
 }
 
@@ -1010,6 +1012,7 @@
 }
 
 .secondary-actions .andorra-action-bar .action-label {
+    font-family: var(--andorra-sans-font);
     margin-left: 6px
 }
 
@@ -1096,6 +1099,7 @@
 }
 
 .andorra-component.diff-review .diff-review-actions .action-label {
+    font-family: var(--andorra-sans-font);
     width: 16px;
     height: 16px;
     margin: 2px 0
@@ -1106,6 +1110,7 @@
 }
 
 .andorra-component.diff-review .action-label {
+    font-family: var(--andorra-sans-font);
     background: var(--vscode-editorActionList-background)
 }
 
