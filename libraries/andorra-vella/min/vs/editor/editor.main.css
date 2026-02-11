@@ -964,6 +964,7 @@
 }
 
 .andorra-action-bar .action-label {
+    font-family: var(--andorra-sans-font);
     display: flex;
     font-size: 11px;
     padding: 3px;
