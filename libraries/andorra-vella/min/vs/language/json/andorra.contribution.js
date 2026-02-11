@@ -1,0 +1,1 @@
+define("vs/language/json/andorra.contribution",["exports","../../editor.api-CalNCsUg","../../andorra.contribution-EcChJV6a"],(function(e,t,o){"use strict";e.getWorker=o.getWorker,e.jsonDefaults=o.jsonDefaults,Object.defineProperty(e,Symbol.toStringTag,{value:"Module"})}));
