@@ -1,0 +1,107 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+//
+// !!! THIS FILE WAS AUTOMATICALLY GENERATED !!!
+// !!! DO NOT MODIFY IT BY HAND !!!
+//
+
+@forward './wd-comp-assist-chip' as wd-comp-assist-chip-*;
+@forward './wd-comp-badge' as wd-comp-badge-*;
+@forward './wd-comp-banner' as wd-comp-banner-*;
+@forward './wd-comp-bottom-app-bar' as wd-comp-bottom-app-bar-*;
+@forward './wd-comp-carousel-item' as wd-comp-carousel-item-*;
+@forward './wd-comp-checkbox' as wd-comp-checkbox-*;
+@forward './wd-comp-circular-progress-indicator' as
+  wd-comp-circular-progress-indicator-*;
+@forward './wd-comp-data-table' as wd-comp-data-table-*;
+@forward './wd-comp-date-input-modal' as wd-comp-date-input-modal-*;
+@forward './wd-comp-date-picker-docked' as wd-comp-date-picker-docked-*;
+@forward './wd-comp-date-picker-modal' as wd-comp-date-picker-modal-*;
+@forward './wd-comp-dialog' as wd-comp-dialog-*;
+@forward './wd-comp-divider' as wd-comp-divider-*;
+@forward './wd-comp-elevated-button' as wd-comp-elevated-button-*;
+@forward './wd-comp-elevated-card' as wd-comp-elevated-card-*;
+@forward './wd-comp-extended-fab-branded' as wd-comp-extended-fab-branded-*;
+@forward './wd-comp-extended-fab-primary' as wd-comp-extended-fab-primary-*;
+@forward './wd-comp-extended-fab-secondary' as wd-comp-extended-fab-secondary-*;
+@forward './wd-comp-extended-fab-surface' as wd-comp-extended-fab-surface-*;
+@forward './wd-comp-extended-fab-tertiary' as wd-comp-extended-fab-tertiary-*;
+@forward './wd-comp-fab-branded' as wd-comp-fab-branded-*;
+@forward './wd-comp-fab-branded-large' as wd-comp-fab-branded-large-*;
+@forward './wd-comp-fab-primary' as wd-comp-fab-primary-*;
+@forward './wd-comp-fab-primary-large' as wd-comp-fab-primary-large-*;
+@forward './wd-comp-fab-primary-small' as wd-comp-fab-primary-small-*;
+@forward './wd-comp-fab-secondary' as wd-comp-fab-secondary-*;
+@forward './wd-comp-fab-secondary-large' as wd-comp-fab-secondary-large-*;
+@forward './wd-comp-fab-secondary-small' as wd-comp-fab-secondary-small-*;
+@forward './wd-comp-fab-surface' as wd-comp-fab-surface-*;
+@forward './wd-comp-fab-surface-large' as wd-comp-fab-surface-large-*;
+@forward './wd-comp-fab-surface-small' as wd-comp-fab-surface-small-*;
+@forward './wd-comp-fab-tertiary' as wd-comp-fab-tertiary-*;
+@forward './wd-comp-fab-tertiary-large' as wd-comp-fab-tertiary-large-*;
+@forward './wd-comp-fab-tertiary-small' as wd-comp-fab-tertiary-small-*;
+@forward './wd-comp-filled-autocomplete' as wd-comp-filled-autocomplete-*;
+@forward './wd-comp-filled-button' as wd-comp-filled-button-*;
+@forward './wd-comp-filled-card' as wd-comp-filled-card-*;
+@forward './wd-comp-filled-icon-button' as wd-comp-filled-icon-button-*;
+@forward './wd-comp-filled-menu-button' as wd-comp-filled-menu-button-*;
+@forward './wd-comp-filled-select' as wd-comp-filled-select-*;
+@forward './wd-comp-filled-text-field' as wd-comp-filled-text-field-*;
+@forward './wd-comp-filled-tonal-button' as wd-comp-filled-tonal-button-*;
+@forward './wd-comp-filled-tonal-icon-button' as
+  wd-comp-filled-tonal-icon-button-*;
+@forward './wd-comp-filter-chip' as wd-comp-filter-chip-*;
+@forward './wd-comp-full-screen-dialog' as wd-comp-full-screen-dialog-*;
+@forward './wd-comp-icon-button' as wd-comp-icon-button-*;
+@forward './wd-comp-input-chip' as wd-comp-input-chip-*;
+@forward './wd-comp-linear-progress-indicator' as
+  wd-comp-linear-progress-indicator-*;
+@forward './wd-comp-list' as wd-comp-list-*;
+@forward './wd-comp-menu' as wd-comp-menu-*;
+@forward './wd-comp-navigation-bar' as wd-comp-navigation-bar-*;
+@forward './wd-comp-navigation-drawer' as wd-comp-navigation-drawer-*;
+@forward './wd-comp-navigation-rail' as wd-comp-navigation-rail-*;
+@forward './wd-comp-outlined-autocomplete' as wd-comp-outlined-autocomplete-*;
+@forward './wd-comp-outlined-button' as wd-comp-outlined-button-*;
+@forward './wd-comp-outlined-card' as wd-comp-outlined-card-*;
+@forward './wd-comp-outlined-icon-button' as wd-comp-outlined-icon-button-*;
+@forward './wd-comp-outlined-menu-button' as wd-comp-outlined-menu-button-*;
+@forward './wd-comp-outlined-segmented-button' as
+  wd-comp-outlined-segmented-button-*;
+@forward './wd-comp-outlined-select' as wd-comp-outlined-select-*;
+@forward './wd-comp-outlined-text-field' as wd-comp-outlined-text-field-*;
+@forward './wd-comp-plain-tooltip' as wd-comp-plain-tooltip-*;
+@forward './wd-comp-primary-navigation-tab' as wd-comp-primary-navigation-tab-*;
+@forward './wd-comp-radio-button' as wd-comp-radio-button-*;
+@forward './wd-comp-rich-tooltip' as wd-comp-rich-tooltip-*;
+@forward './wd-comp-scrim' as wd-comp-scrim-*;
+@forward './wd-comp-search-bar' as wd-comp-search-bar-*;
+@forward './wd-comp-search-view' as wd-comp-search-view-*;
+@forward './wd-comp-secondary-navigation-tab' as
+  wd-comp-secondary-navigation-tab-*;
+@forward './wd-comp-sheet-bottom' as wd-comp-sheet-bottom-*;
+@forward './wd-comp-sheet-floating' as wd-comp-sheet-floating-*;
+@forward './wd-comp-sheet-side' as wd-comp-sheet-side-*;
+@forward './wd-comp-slider' as wd-comp-slider-*;
+@forward './wd-comp-snackbar' as wd-comp-snackbar-*;
+@forward './wd-comp-standard-menu-button' as wd-comp-standard-menu-button-*;
+@forward './wd-comp-suggestion-chip' as wd-comp-suggestion-chip-*;
+@forward './wd-comp-switch' as wd-comp-switch-*;
+@forward './wd-comp-text-button' as wd-comp-text-button-*;
+@forward './wd-comp-time-input' as wd-comp-time-input-*;
+@forward './wd-comp-time-picker' as wd-comp-time-picker-*;
+@forward './wd-comp-top-app-bar-large' as wd-comp-top-app-bar-large-*;
+@forward './wd-comp-top-app-bar-medium' as wd-comp-top-app-bar-medium-*;
+@forward './wd-comp-top-app-bar-small' as wd-comp-top-app-bar-small-*;
+@forward './wd-comp-top-app-bar-small-centered' as
+  wd-comp-top-app-bar-small-centered-*;
+@forward './wd-ref-palette' as wd-ref-palette-*;
+@forward './wd-ref-typeface' as wd-ref-typeface-*;
+@forward './wd-sys-color' as wd-sys-color-*;
+@forward './wd-sys-elevation' as wd-sys-elevation-*;
+@forward './wd-sys-motion' as wd-sys-motion-*;
+@forward './wd-sys-shape' as wd-sys-shape-*;
+@forward './wd-sys-state' as wd-sys-state-*;
+@forward './wd-sys-typescale' as wd-sys-typescale-*;

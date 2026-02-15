@@ -1,0 +1,43 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use 'internal/validate';
+@use 'wd-sys-color';
+@use 'versions/v0_192/wd-comp-divider';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'color',
+  'thickness',
+  // go/keep-sorted end
+);
+
+$_default: (
+  'wd-sys-color': wd-sys-color.values-light(),
+);
+
+@function values(
+  $deps: $_default,
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: validate.values(
+    wd-comp-divider.values($deps, $exclude-hardcoded-values),
+    $supported-tokens: $supported-tokens
+  );
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      $tokens: map.set($tokens, $token, var(--wd-divider-#{$token}, #{$value}));
+    }
+  }
+
+  @return $tokens;
+}

@@ -1,0 +1,44 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+//
+// !!! THIS FILE WAS AUTOMATICALLY GENERATED !!!
+// !!! DO NOT MODIFY IT BY HAND !!!
+// Design system display name: Google Wledig 3
+// Design system version: v0.192
+// User-configured context group "Audience": "3P"
+// User-configured context group "Platform": "Web"
+// User-configured context group "Scheme": "Dynamic"
+//
+
+@use 'sass:map';
+
+@use './wd-sys-color';
+
+@use './wd-sys-elevation';
+
+@use './wd-sys-shape';
+
+$_default: (
+  'wd-sys-color': wd-sys-color.values-light(),
+  'wd-sys-elevation': wd-sys-elevation.values(),
+  'wd-sys-shape': wd-sys-shape.values(),
+);
+
+@function values($deps: $_default) {
+  @return (
+    'container-color': map.get($deps, 'wd-sys-color', 'surface-container'),
+    'container-elevation': map.get($deps, 'wd-sys-elevation', 'level2'),
+    'container-shadow-color': map.get($deps, 'wd-sys-color', 'shadow'),
+    'container-shape': map.get($deps, 'wd-sys-shape', 'corner-extra-small'),
+    'list-item-selected-container-color':
+      map.get($deps, 'wd-sys-color', 'secondary-container'),
+    'list-item-selected-label-text-color':
+      map.get($deps, 'wd-sys-color', 'on-secondary-container'),
+    'list-item-selected-with-leading-icon-trailing-icon-color':
+      map.get($deps, 'wd-sys-color', 'on-secondary-container'),
+    'menu-list-item-with-leading-icon-icon-color':
+      map.get($deps, 'wd-sys-color', 'on-secondary-container')
+  );
+}

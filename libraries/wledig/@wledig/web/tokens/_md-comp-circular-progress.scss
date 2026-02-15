@@ -1,0 +1,79 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+@use 'sass:math';
+// go/keep-sorted end
+// go/keep-sorted start
+@use 'internal/validate';
+@use 'wd-sys-color';
+@use 'wd-sys-shape';
+@use 'versions/v0_192/wd-comp-circular-progress-indicator';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'active-indicator-color',
+  'active-indicator-width',
+  'four-color-active-indicator-four-color',
+  'four-color-active-indicator-one-color',
+  'four-color-active-indicator-three-color',
+  'four-color-active-indicator-two-color',
+  'size',
+  // go/keep-sorted end
+);
+
+$unsupported-tokens: (
+  // go/keep-sorted start
+  // must be circular
+  'active-indicator-shape',
+  // go/keep-sorted end
+);
+
+$_default: (
+  'wd-sys-color': wd-sys-color.values-light(),
+  'wd-sys-shape': wd-sys-shape.values(),
+);
+
+@function values(
+  $deps: $_default,
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: validate.values(
+    wd-comp-circular-progress-indicator.values(
+      $deps,
+      $exclude-hardcoded-values
+    ),
+    $supported-tokens: $supported-tokens,
+    $unsupported-tokens: $unsupported-tokens
+  );
+
+  @if not $exclude-hardcoded-values {
+    // must be set as a raw % for compatibility between rendering border or svg.
+    $width: map.get($tokens, 'active-indicator-width');
+    $size: map.get($tokens, 'size');
+    $container-padding: 4px;
+    $size-without-padding: $size - $container-padding - $container-padding;
+    $tokens: map.set(
+      $tokens,
+      'active-indicator-width',
+      math.div($width, $size-without-padding) * 100
+    );
+  }
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      $tokens: map.set(
+        $tokens,
+        $token,
+        var(--wd-circular-progress-#{$token}, #{$value})
+      );
+    }
+  }
+
+  @return $tokens;
+}

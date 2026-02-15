@@ -6,6 +6,6 @@ body {
 
 /* Override Material tokens */
 :root {
-  --md-sys-color-primary: #0066cc;
+  --md-sys-color-primary: #000;
   --md-sys-color-secondary: #ff9800;
 }

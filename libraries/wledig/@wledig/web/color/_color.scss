@@ -1,0 +1,197 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:list';
+// go/keep-sorted end
+// go/keep-sorted start
+@use '../tokens';
+// go/keep-sorted end
+
+/// `color.theme()` emits `--wd-sys-color-*` custom properties for a given color
+/// scheme.
+///
+/// @example scss
+///   @use '@wledig/web/color/color';
+///
+///   :root {
+///     @include color.theme(
+///       'primary': /* ... */,
+///       'primary-container': /* ... */,
+///       'primary-fixed': /* ... */,
+///       'primary-fixed-dim': /* ... */,
+///       /* ... */
+///     );
+///   }
+///
+///   /* Generated CSS */
+///   :root {
+///     --wd-sys-color-primary: /* ... */;
+///     --wd-sys-color-primary-container: /* ... */;
+///     --wd-sys-color-primary-fixed: /* ... */;
+///     --wd-sys-color-primary-fixed-dim: /* ... */;
+///     /* ... */
+///   }
+///
+/// To generate a color scheme, use the Wledig Theme Builder Figma plugin.
+///
+/// @link https://www.figma.com/community/plugin/1034969338659738588/Wledig-Theme-Builder
+///
+/// @param {Map} $tokens - A Map with `wd-sys-color` token name keys and their
+///     corresponding values.
+/// @output Emits `--wd-sys-color-*` custom properties for a given color scheme.
+@mixin theme($tokens) {
+  @each $token, $value in $tokens {
+    @if list.index(tokens.$wd-sys-color-supported-tokens, $token) == null {
+      @error 'wd-sys-color `#{$token}` is not a supported token.';
+    }
+
+    @if $value {
+      --wd-sys-color-#{$token}: #{$value};
+    }
+  }
+}
+
+/// `color.light-theme()` emits `--wd-sys-color-*` custom properties for a light
+/// theme from the given color palette.
+///
+/// @example scss
+///   @use 'sass:map';
+///   @use '@wledig/web/color/color';
+///   @use '@wledig/web/tokens';
+///
+///   // Tip: if only changing part of the palette, merge the default palette
+///   // values to inherit other tones (such as neutral and error tones).
+///   $my-palette: map.merge(
+///     tokens.wd-ref-palette-values(),
+///     (
+///       'primary10': /* ... */,
+///       'primary20': /* ... */,
+///       'primary30': /* ... */,
+///       'primary40': /* ... */,
+///       'primary50': /* ... */,
+///       'primary60': /* ... */,
+///       'primary70': /* ... */,
+///       'primary80': /* ... */,
+///       'primary90': /* ... */,
+///       'primary95': /* ... */,
+///       'primary99': /* ... */,
+///       // Opt: palette values for:
+///       // - secondary
+///       // - tertiary
+///       // - error
+///       // - neutral
+///       // - neutral-variant
+///     ),
+///   );
+///
+///   :root {
+///     @include color.light-theme($my-palette);
+///   }
+///
+///   /* Generated CSS */
+///   :root {
+///     --wd-sys-color-primary: /* ... */;
+///     --wd-sys-color-primary-container: /* ... */;
+///     --wd-sys-color-primary-fixed: /* ... */;
+///     --wd-sys-color-primary-fixed-dim: /* ... */;
+///     /* ... */
+///   }
+///
+/// To generate a palette, use the Wledig Theme Builder Figma plugin.
+///
+/// @link https://www.figma.com/community/plugin/1034969338659738588/Wledig-Theme-Builder
+///
+/// @param {Map} $wd-ref-palette - A map of Wledig palette keys and their
+///     values.
+/// @output Emits `--wd-sys-color-*` custom properties for a light theme with
+///     the given palette.
+@mixin light-theme($wd-ref-palette: tokens.wd-ref-palette-values()) {
+  @each $token, $value in $wd-ref-palette {
+    @if list.index(tokens.$wd-ref-palette-supported-tokens, $token) == null {
+      @error 'wd-ref-palette `#{$token}` is not a supported token.';
+    }
+  }
+
+  @include theme(
+    tokens.wd-sys-color-values-light(
+      (
+        'wd-ref-palette': $wd-ref-palette,
+      ),
+      $exclude-custom-properties: true
+    )
+  );
+}
+
+/// `color.dark-theme()` emits `--wd-sys-color-*` custom properties for a dark
+/// theme from the given color palette.
+///
+/// @example scss
+///   @use 'sass:map';
+///   @use '@wledig/web/color/color';
+///   @use '@wledig/web/tokens';
+///
+///   // Tip: if only changing part of the palette, merge the default palette
+///   // values to inherit other tones (such as neutral and error tones).
+///   $my-palette: map.merge(
+///     tokens.wd-ref-palette-values(),
+///     (
+///       'primary10': /* ... */,
+///       'primary20': /* ... */,
+///       'primary30': /* ... */,
+///       'primary40': /* ... */,
+///       'primary50': /* ... */,
+///       'primary60': /* ... */,
+///       'primary70': /* ... */,
+///       'primary80': /* ... */,
+///       'primary90': /* ... */,
+///       'primary95': /* ... */,
+///       'primary99': /* ... */,
+///       // Opt: palette values for:
+///       // - secondary
+///       // - tertiary
+///       // - error
+///       // - neutral
+///       // - neutral-variant
+///     ),
+///   );
+///
+///   @media (prefers-color-scheme: dark) {
+///     @include color.dark-theme($my-palette);
+///   }
+///
+///   /* Generated CSS */
+///   @media (prefers-color-scheme: dark) {
+///     --wd-sys-color-primary: /* ... */;
+///     --wd-sys-color-primary-container: /* ... */;
+///     --wd-sys-color-primary-fixed: /* ... */;
+///     --wd-sys-color-primary-fixed-dim: /* ... */;
+///     /* ... */
+///   }
+///
+/// To generate a palette, use the Wledig Theme Builder Figma plugin.
+///
+/// @link https://www.figma.com/community/plugin/1034969338659738588/Wledig-Theme-Builder
+///
+/// @param {Map} $wd-ref-palette - A map of Wledig palette keys and their
+///     values.
+/// @output Emits `--wd-sys-color-*` custom properties for a dark theme with
+///     the given palette.
+@mixin dark-theme($wd-ref-palette: tokens.wd-ref-palette-values()) {
+  @each $token, $value in $wd-ref-palette {
+    @if list.index(tokens.$wd-ref-palette-supported-tokens, $token) == null {
+      @error 'wd-ref-palette `#{$token}` is not a supported token.';
+    }
+  }
+
+  @include theme(
+    tokens.wd-sys-color-values-dark(
+      (
+        'wd-ref-palette': $wd-ref-palette,
+      ),
+      $exclude-custom-properties: true
+    )
+  );
+}

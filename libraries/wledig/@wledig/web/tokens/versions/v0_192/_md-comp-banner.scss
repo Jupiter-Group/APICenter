@@ -1,0 +1,76 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+//
+// !!! THIS FILE WAS AUTOMATICALLY GENERATED !!!
+// !!! DO NOT MODIFY IT BY HAND !!!
+// Design system display name: Google Wledig 3
+// Design system version: v0.192
+// User-configured context group "Audience": "3P"
+// User-configured context group "Platform": "Web"
+// User-configured context group "Scheme": "Dynamic"
+//
+
+@use 'sass:map';
+
+@use './wd-sys-color';
+
+@use './wd-sys-elevation';
+
+@use './wd-sys-shape';
+
+@use './wd-sys-typescale';
+
+$_default: (
+  'wd-sys-color': wd-sys-color.values-light(),
+  'wd-sys-elevation': wd-sys-elevation.values(),
+  'wd-sys-shape': wd-sys-shape.values(),
+  'wd-sys-typescale': wd-sys-typescale.values(),
+);
+
+@function values($deps: $_default, $exclude-hardcoded-values: false) {
+  @return (
+    'container-color': map.get($deps, 'wd-sys-color', 'surface-container-low'),
+    'container-elevation': map.get($deps, 'wd-sys-elevation', 'level1'),
+    'container-shape': map.get($deps, 'wd-sys-shape', 'corner-none'),
+    'desktop-with-single-line-container-height':
+      if($exclude-hardcoded-values, null, 52px),
+    'desktop-with-three-lines-container-height':
+      if($exclude-hardcoded-values, null, 90px),
+    'desktop-with-two-lines-with-image-container-height':
+      if($exclude-hardcoded-values, null, 72px),
+    'mobile-with-single-line-container-height':
+      if($exclude-hardcoded-values, null, 54px),
+    'mobile-with-two-lines-container-height':
+      if($exclude-hardcoded-values, null, 112px),
+    'mobile-with-two-lines-with-image-container-height':
+      if($exclude-hardcoded-values, null, 120px),
+    'supporting-text-color':
+      map.get($deps, 'wd-sys-color', 'on-surface-variant'),
+    'supporting-text-font':
+      map.get($deps, 'wd-sys-typescale', 'body-medium-font'),
+    'supporting-text-line-height':
+      map.get($deps, 'wd-sys-typescale', 'body-medium-line-height'),
+    'supporting-text-size':
+      map.get($deps, 'wd-sys-typescale', 'body-medium-size'),
+    'supporting-text-tracking':
+      map.get($deps, 'wd-sys-typescale', 'body-medium-tracking'),
+    'supporting-text-type':
+      if(
+        $exclude-hardcoded-values,
+        null,
+        /** Warning: risk of reduced fidelity from using this composite typography token. Tokens wd.comp.banner.supporting-text.tracking cannot be represented in the "font" property shorthand. Consider using the discrete properties instead. */
+          map.get($deps, 'wd-sys-typescale', 'body-medium-weight')
+          map.get($deps, 'wd-sys-typescale', 'body-medium-size') #{'/'} map.get(
+            $deps,
+            'wd-sys-typescale',
+            'body-medium-line-height'
+          ) map.get($deps, 'wd-sys-typescale', 'body-medium-font')
+      ),
+    'supporting-text-weight':
+      map.get($deps, 'wd-sys-typescale', 'body-medium-weight'),
+    'with-image-image-shape': map.get($deps, 'wd-sys-shape', 'corner-full'),
+    'with-image-image-size': if($exclude-hardcoded-values, null, 40px)
+  );
+}

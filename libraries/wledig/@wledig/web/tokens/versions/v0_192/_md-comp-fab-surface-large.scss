@@ -1,0 +1,67 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+//
+// !!! THIS FILE WAS AUTOMATICALLY GENERATED !!!
+// !!! DO NOT MODIFY IT BY HAND !!!
+// Design system display name: Google Wledig 3
+// Design system version: v0.192
+// User-configured context group "Audience": "3P"
+// User-configured context group "Platform": "Web"
+// User-configured context group "Scheme": "Dynamic"
+//
+
+@use 'sass:map';
+
+@use './wd-sys-color';
+
+@use './wd-sys-elevation';
+
+@use './wd-sys-shape';
+
+@use './wd-sys-state';
+
+$_default: (
+  'wd-sys-color': wd-sys-color.values-light(),
+  'wd-sys-elevation': wd-sys-elevation.values(),
+  'wd-sys-shape': wd-sys-shape.values(),
+  'wd-sys-state': wd-sys-state.values(),
+);
+
+@function values($deps: $_default, $exclude-hardcoded-values: false) {
+  @return (
+    'container-color': map.get($deps, 'wd-sys-color', 'surface-container-high'),
+    'container-elevation': map.get($deps, 'wd-sys-elevation', 'level3'),
+    'container-height': if($exclude-hardcoded-values, null, 96px),
+    'container-shadow-color': map.get($deps, 'wd-sys-color', 'shadow'),
+    'container-shape': map.get($deps, 'wd-sys-shape', 'corner-extra-large'),
+    'container-width': if($exclude-hardcoded-values, null, 96px),
+    'focus-container-elevation': map.get($deps, 'wd-sys-elevation', 'level3'),
+    'focus-icon-color': map.get($deps, 'wd-sys-color', 'primary'),
+    'focus-state-layer-color': map.get($deps, 'wd-sys-color', 'primary'),
+    'focus-state-layer-opacity':
+      map.get($deps, 'wd-sys-state', 'focus-state-layer-opacity'),
+    'hover-container-elevation': map.get($deps, 'wd-sys-elevation', 'level4'),
+    'hover-icon-color': map.get($deps, 'wd-sys-color', 'primary'),
+    'hover-state-layer-color': map.get($deps, 'wd-sys-color', 'primary'),
+    'hover-state-layer-opacity':
+      map.get($deps, 'wd-sys-state', 'hover-state-layer-opacity'),
+    'icon-color': map.get($deps, 'wd-sys-color', 'primary'),
+    'icon-size': if($exclude-hardcoded-values, null, 36px),
+    'lowered-container-color':
+      map.get($deps, 'wd-sys-color', 'surface-container-low'),
+    'lowered-container-elevation': map.get($deps, 'wd-sys-elevation', 'level1'),
+    'lowered-focus-container-elevation':
+      map.get($deps, 'wd-sys-elevation', 'level1'),
+    'lowered-hover-container-elevation':
+      map.get($deps, 'wd-sys-elevation', 'level2'),
+    'lowered-pressed-container-elevation':
+      map.get($deps, 'wd-sys-elevation', 'level1'),
+    'pressed-container-elevation': map.get($deps, 'wd-sys-elevation', 'level3'),
+    'pressed-icon-color': map.get($deps, 'wd-sys-color', 'primary'),
+    'pressed-state-layer-color': map.get($deps, 'wd-sys-color', 'primary'),
+    'pressed-state-layer-opacity':
+      map.get($deps, 'wd-sys-state', 'pressed-state-layer-opacity')
+  );
+}

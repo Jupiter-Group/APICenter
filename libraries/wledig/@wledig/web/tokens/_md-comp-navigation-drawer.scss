@@ -1,0 +1,44 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use 'wd-sys-color';
+@use 'wd-sys-elevation';
+@use 'wd-sys-shape';
+@use 'wd-sys-state';
+@use 'wd-sys-typescale';
+@use 'versions/v0_192/wd-comp-navigation-drawer';
+// go/keep-sorted end
+
+$_default: (
+  'wd-sys-color': wd-sys-color.values-light(),
+  'wd-sys-elevation': wd-sys-elevation.values(),
+  'wd-sys-shape': wd-sys-shape.values(),
+  'wd-sys-state': wd-sys-state.values(),
+  'wd-sys-typescale': wd-sys-typescale.values(),
+);
+
+@function values(
+  $deps: $_default,
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: wd-comp-navigation-drawer.values($deps, $exclude-hardcoded-values);
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      $tokens: map.set(
+        $tokens,
+        $token,
+        var(--wd-navigation-drawer-#{$token}, #{$value})
+      );
+    }
+  }
+
+  @return $tokens;
+}

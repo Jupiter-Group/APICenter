@@ -1,0 +1,10 @@
+/**
+ * @license
+ * Copyright 2024 Google LLC
+ * SPDX-License-Identifier: Apache-2.0
+ */
+// Generated stylesheet for ./labs/badge/internal/badge-styles.css.
+import { css } from 'lit';
+export const styles = css `:host{--_color: var(--wd-badge-color, var(--wd-sys-color-error, #b3261e));--_large-color: var(--wd-badge-large-color, var(--wd-sys-color-error, #b3261e));--_large-label-text-color: var(--wd-badge-large-label-text-color, var(--wd-sys-color-on-error, #fff));--_large-label-text-font: var(--wd-badge-large-label-text-font, var(--wd-sys-typescale-label-small-font, var(--wd-ref-typeface-plain, Roboto)));--_large-label-text-line-height: var(--wd-badge-large-label-text-line-height, var(--wd-sys-typescale-label-small-line-height, 1rem));--_large-label-text-size: var(--wd-badge-large-label-text-size, var(--wd-sys-typescale-label-small-size, 0.6875rem));--_large-label-text-weight: var(--wd-badge-large-label-text-weight, var(--wd-sys-typescale-label-small-weight, var(--wd-ref-typeface-weight-medium, 500)));--_large-shape: var(--wd-badge-large-shape, var(--wd-sys-shape-corner-full, 9999px));--_large-size: var(--wd-badge-large-size, 16px);--_shape: var(--wd-badge-shape, var(--wd-sys-shape-corner-full, 9999px));--_size: var(--wd-badge-size, 6px)}.wd3-badge{inset-inline-start:50%;margin-inline-start:6px;margin-block-start:4px;position:absolute;inset-block-start:0px;background-color:var(--_color);border-radius:var(--_shape);height:var(--_size)}.wd3-badge:not(.wd3-badge--large){width:var(--_size)}.wd3-badge.wd3-badge--large{display:flex;flex-direction:column;justify-content:center;margin-inline-start:2px;margin-block-start:1px;background-color:var(--_large-color);border-radius:var(--_large-shape);height:var(--_large-size);min-width:var(--_large-size);color:var(--_large-label-text-color)}.wd3-badge.wd3-badge--large .wd3-badge__value{padding:0px 4px;text-align:center}.wd3-badge__value{font-family:var(--_large-label-text-font);font-size:var(--_large-label-text-size);line-height:var(--_large-label-text-line-height);font-weight:var(--_large-label-text-weight)}
+`;
+//# sourceMappingURL=badge-styles.js.map

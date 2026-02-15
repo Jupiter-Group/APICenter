@@ -1,0 +1,663 @@
+//
+// Copyright 2023 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+//
+// !!! THIS FILE WAS AUTOMATICALLY GENERATED !!!
+// !!! DO NOT MODIFY IT BY HAND !!!
+//
+
+@use 'true' as test;
+
+@use './wd-comp-assist-chip';
+@use './wd-comp-badge';
+@use './wd-comp-banner';
+@use './wd-comp-bottom-app-bar';
+@use './wd-comp-carousel-item';
+@use './wd-comp-checkbox';
+@use './wd-comp-circular-progress-indicator';
+@use './wd-comp-data-table';
+@use './wd-comp-date-input-modal';
+@use './wd-comp-date-picker-docked';
+@use './wd-comp-date-picker-modal';
+@use './wd-comp-dialog';
+@use './wd-comp-divider';
+@use './wd-comp-elevated-button';
+@use './wd-comp-elevated-card';
+@use './wd-comp-extended-fab-branded';
+@use './wd-comp-extended-fab-primary';
+@use './wd-comp-extended-fab-secondary';
+@use './wd-comp-extended-fab-surface';
+@use './wd-comp-extended-fab-tertiary';
+@use './wd-comp-fab-branded';
+@use './wd-comp-fab-branded-large';
+@use './wd-comp-fab-primary';
+@use './wd-comp-fab-primary-large';
+@use './wd-comp-fab-primary-small';
+@use './wd-comp-fab-secondary';
+@use './wd-comp-fab-secondary-large';
+@use './wd-comp-fab-secondary-small';
+@use './wd-comp-fab-surface';
+@use './wd-comp-fab-surface-large';
+@use './wd-comp-fab-surface-small';
+@use './wd-comp-fab-tertiary';
+@use './wd-comp-fab-tertiary-large';
+@use './wd-comp-fab-tertiary-small';
+@use './wd-comp-filled-autocomplete';
+@use './wd-comp-filled-button';
+@use './wd-comp-filled-card';
+@use './wd-comp-filled-icon-button';
+@use './wd-comp-filled-menu-button';
+@use './wd-comp-filled-select';
+@use './wd-comp-filled-text-field';
+@use './wd-comp-filled-tonal-button';
+@use './wd-comp-filled-tonal-icon-button';
+@use './wd-comp-filter-chip';
+@use './wd-comp-full-screen-dialog';
+@use './wd-comp-icon-button';
+@use './wd-comp-input-chip';
+@use './wd-comp-linear-progress-indicator';
+@use './wd-comp-list';
+@use './wd-comp-menu';
+@use './wd-comp-navigation-bar';
+@use './wd-comp-navigation-drawer';
+@use './wd-comp-navigation-rail';
+@use './wd-comp-outlined-autocomplete';
+@use './wd-comp-outlined-button';
+@use './wd-comp-outlined-card';
+@use './wd-comp-outlined-icon-button';
+@use './wd-comp-outlined-menu-button';
+@use './wd-comp-outlined-segmented-button';
+@use './wd-comp-outlined-select';
+@use './wd-comp-outlined-text-field';
+@use './wd-comp-plain-tooltip';
+@use './wd-comp-primary-navigation-tab';
+@use './wd-comp-radio-button';
+@use './wd-comp-rich-tooltip';
+@use './wd-comp-scrim';
+@use './wd-comp-search-bar';
+@use './wd-comp-search-view';
+@use './wd-comp-secondary-navigation-tab';
+@use './wd-comp-sheet-bottom';
+@use './wd-comp-sheet-floating';
+@use './wd-comp-sheet-side';
+@use './wd-comp-slider';
+@use './wd-comp-snackbar';
+@use './wd-comp-standard-menu-button';
+@use './wd-comp-suggestion-chip';
+@use './wd-comp-switch';
+@use './wd-comp-text-button';
+@use './wd-comp-time-input';
+@use './wd-comp-time-picker';
+@use './wd-comp-top-app-bar-large';
+@use './wd-comp-top-app-bar-medium';
+@use './wd-comp-top-app-bar-small';
+@use './wd-comp-top-app-bar-small-centered';
+@use './wd-ref-palette';
+@use './wd-ref-typeface';
+@use './wd-sys-color';
+@use './wd-sys-elevation';
+@use './wd-sys-motion';
+@use './wd-sys-shape';
+@use './wd-sys-state';
+@use './wd-sys-typescale';
+
+@include test.describe('lib') {
+  @include test.describe('wd-comp-assist-chip.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-assist-chip.values());
+    }
+  }
+
+  @include test.describe('wd-comp-badge.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-badge.values());
+    }
+  }
+
+  @include test.describe('wd-comp-banner.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-banner.values());
+    }
+  }
+
+  @include test.describe('wd-comp-bottom-app-bar.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-bottom-app-bar.values());
+    }
+  }
+
+  @include test.describe('wd-comp-carousel-item.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-carousel-item.values());
+    }
+  }
+
+  @include test.describe('wd-comp-checkbox.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-checkbox.values());
+    }
+  }
+
+  @include test.describe('wd-comp-circular-progress-indicator.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-circular-progress-indicator.values());
+    }
+  }
+
+  @include test.describe('wd-comp-data-table.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-data-table.values());
+    }
+  }
+
+  @include test.describe('wd-comp-date-input-modal.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-date-input-modal.values());
+    }
+  }
+
+  @include test.describe('wd-comp-date-picker-docked.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-date-picker-docked.values());
+    }
+  }
+
+  @include test.describe('wd-comp-date-picker-modal.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-date-picker-modal.values());
+    }
+  }
+
+  @include test.describe('wd-comp-dialog.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-dialog.values());
+    }
+  }
+
+  @include test.describe('wd-comp-divider.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-divider.values());
+    }
+  }
+
+  @include test.describe('wd-comp-elevated-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-elevated-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-elevated-card.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-elevated-card.values());
+    }
+  }
+
+  @include test.describe('wd-comp-extended-fab-branded.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-extended-fab-branded.values());
+    }
+  }
+
+  @include test.describe('wd-comp-extended-fab-primary.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-extended-fab-primary.values());
+    }
+  }
+
+  @include test.describe('wd-comp-extended-fab-secondary.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-extended-fab-secondary.values());
+    }
+  }
+
+  @include test.describe('wd-comp-extended-fab-surface.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-extended-fab-surface.values());
+    }
+  }
+
+  @include test.describe('wd-comp-extended-fab-tertiary.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-extended-fab-tertiary.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-branded.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-branded.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-branded-large.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-branded-large.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-primary.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-primary.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-primary-large.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-primary-large.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-primary-small.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-primary-small.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-secondary.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-secondary.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-secondary-large.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-secondary-large.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-secondary-small.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-secondary-small.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-surface.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-surface.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-surface-large.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-surface-large.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-surface-small.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-surface-small.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-tertiary.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-tertiary.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-tertiary-large.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-tertiary-large.values());
+    }
+  }
+
+  @include test.describe('wd-comp-fab-tertiary-small.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-fab-tertiary-small.values());
+    }
+  }
+
+  @include test.describe('wd-comp-filled-autocomplete.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-filled-autocomplete.values());
+    }
+  }
+
+  @include test.describe('wd-comp-filled-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-filled-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-filled-card.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-filled-card.values());
+    }
+  }
+
+  @include test.describe('wd-comp-filled-icon-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-filled-icon-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-filled-menu-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-filled-menu-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-filled-select.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-filled-select.values());
+    }
+  }
+
+  @include test.describe('wd-comp-filled-text-field.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-filled-text-field.values());
+    }
+  }
+
+  @include test.describe('wd-comp-filled-tonal-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-filled-tonal-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-filled-tonal-icon-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-filled-tonal-icon-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-filter-chip.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-filter-chip.values());
+    }
+  }
+
+  @include test.describe('wd-comp-full-screen-dialog.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-full-screen-dialog.values());
+    }
+  }
+
+  @include test.describe('wd-comp-icon-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-icon-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-input-chip.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-input-chip.values());
+    }
+  }
+
+  @include test.describe('wd-comp-linear-progress-indicator.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-linear-progress-indicator.values());
+    }
+  }
+
+  @include test.describe('wd-comp-list.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-list.values());
+    }
+  }
+
+  @include test.describe('wd-comp-menu.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-menu.values());
+    }
+  }
+
+  @include test.describe('wd-comp-navigation-bar.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-navigation-bar.values());
+    }
+  }
+
+  @include test.describe('wd-comp-navigation-drawer.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-navigation-drawer.values());
+    }
+  }
+
+  @include test.describe('wd-comp-navigation-rail.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-navigation-rail.values());
+    }
+  }
+
+  @include test.describe('wd-comp-outlined-autocomplete.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-outlined-autocomplete.values());
+    }
+  }
+
+  @include test.describe('wd-comp-outlined-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-outlined-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-outlined-card.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-outlined-card.values());
+    }
+  }
+
+  @include test.describe('wd-comp-outlined-icon-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-outlined-icon-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-outlined-menu-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-outlined-menu-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-outlined-segmented-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-outlined-segmented-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-outlined-select.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-outlined-select.values());
+    }
+  }
+
+  @include test.describe('wd-comp-outlined-text-field.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-outlined-text-field.values());
+    }
+  }
+
+  @include test.describe('wd-comp-plain-tooltip.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-plain-tooltip.values());
+    }
+  }
+
+  @include test.describe('wd-comp-primary-navigation-tab.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-primary-navigation-tab.values());
+    }
+  }
+
+  @include test.describe('wd-comp-radio-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-radio-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-rich-tooltip.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-rich-tooltip.values());
+    }
+  }
+
+  @include test.describe('wd-comp-scrim.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-scrim.values());
+    }
+  }
+
+  @include test.describe('wd-comp-search-bar.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-search-bar.values());
+    }
+  }
+
+  @include test.describe('wd-comp-search-view.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-search-view.values());
+    }
+  }
+
+  @include test.describe('wd-comp-secondary-navigation-tab.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-secondary-navigation-tab.values());
+    }
+  }
+
+  @include test.describe('wd-comp-sheet-bottom.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-sheet-bottom.values());
+    }
+  }
+
+  @include test.describe('wd-comp-sheet-floating.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-sheet-floating.values());
+    }
+  }
+
+  @include test.describe('wd-comp-sheet-side.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-sheet-side.values());
+    }
+  }
+
+  @include test.describe('wd-comp-slider.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-slider.values());
+    }
+  }
+
+  @include test.describe('wd-comp-snackbar.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-snackbar.values());
+    }
+  }
+
+  @include test.describe('wd-comp-standard-menu-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-standard-menu-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-suggestion-chip.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-suggestion-chip.values());
+    }
+  }
+
+  @include test.describe('wd-comp-switch.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-switch.values());
+    }
+  }
+
+  @include test.describe('wd-comp-text-button.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-text-button.values());
+    }
+  }
+
+  @include test.describe('wd-comp-time-input.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-time-input.values());
+    }
+  }
+
+  @include test.describe('wd-comp-time-picker.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-time-picker.values());
+    }
+  }
+
+  @include test.describe('wd-comp-top-app-bar-large.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-top-app-bar-large.values());
+    }
+  }
+
+  @include test.describe('wd-comp-top-app-bar-medium.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-top-app-bar-medium.values());
+    }
+  }
+
+  @include test.describe('wd-comp-top-app-bar-small.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-top-app-bar-small.values());
+    }
+  }
+
+  @include test.describe('wd-comp-top-app-bar-small-centered.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-comp-top-app-bar-small-centered.values());
+    }
+  }
+
+  @include test.describe('wd-ref-palette.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-ref-palette.values());
+    }
+  }
+
+  @include test.describe('wd-ref-typeface.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-ref-typeface.values());
+    }
+  }
+
+  @include test.describe('wd-sys-color.values-dark') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-sys-color.values-dark());
+    }
+  }
+
+  @include test.describe('wd-sys-color.values-light') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-sys-color.values-light());
+    }
+  }
+
+  @include test.describe('wd-sys-elevation.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-sys-elevation.values());
+    }
+  }
+
+  @include test.describe('wd-sys-motion.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-sys-motion.values());
+    }
+  }
+
+  @include test.describe('wd-sys-shape.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-sys-shape.values());
+    }
+  }
+
+  @include test.describe('wd-sys-state.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-sys-state.values());
+    }
+  }
+
+  @include test.describe('wd-sys-typescale.values') {
+    @include test.it('should return non-empty map') {
+      @include test.assert-true(wd-sys-typescale.values());
+    }
+  }
+}

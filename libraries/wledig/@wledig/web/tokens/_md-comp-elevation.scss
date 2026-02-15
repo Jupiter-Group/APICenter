@@ -1,0 +1,48 @@
+//
+// Copyright 2022 Google LLC
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// go/keep-sorted start
+@use 'sass:map';
+// go/keep-sorted end
+// go/keep-sorted start
+@use 'internal/validate';
+@use 'wd-sys-color';
+@use 'wd-sys-elevation';
+// go/keep-sorted end
+
+$supported-tokens: (
+  // go/keep-sorted start
+  'level',
+  'shadow-color',
+  // go/keep-sorted end
+);
+
+$_default: (
+  'wd-sys-color': wd-sys-color.values-light(),
+  'wd-sys-elevation': wd-sys-elevation.values(),
+);
+
+@function values(
+  $deps: $_default,
+  $exclude-hardcoded-values: false,
+  $exclude-custom-properties: false
+) {
+  $tokens: (
+    'level': map.get($deps, 'wd-sys-elevation', 'level0'),
+    'shadow-color': map.get($deps, 'wd-sys-color', 'shadow'),
+  );
+
+  @if not $exclude-custom-properties {
+    @each $token, $value in $tokens {
+      $tokens: map.set(
+        $tokens,
+        $token,
+        var(--wd-elevation-#{$token}, #{$value})
+      );
+    }
+  }
+
+  @return validate.values($tokens, $supported-tokens: $supported-tokens);
+}
