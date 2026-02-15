@@ -6,33 +6,24 @@
     <title>Material Web (Self Hosted)</title>
 
     <link rel="stylesheet" href="style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
 
     <!-- Import Map -->
-    <script type="importmap">
-        {
-            "imports": {
-                "tslib": "https://apicenter.pages.dev/libraries/wledig/tslib/tslib.es6.js",
-
-                "lit": "https://apicenter.pages.dev/libraries/wledig/lit/index.js",
-                "lit/": "https://apicenter.pages.dev/libraries/wledig/lit/",
-
-                "lit-html": "https://apicenter.pages.dev/libraries/wledig/lit-html/lit-html.js",
-                "lit-html/": "https://apicenter.pages.dev/libraries/wledig/lit-html/",
-
-                "lit-element": "https://apicenter.pages.dev/libraries/wledig/lit-element/lit-element.js",
-                "lit-element/": "https://apicenter.pages.dev/libraries/wledig/lit-element/",
-
-                "@lit/reactive-element": "https://apicenter.pages.dev/libraries/wledig/@lit/reactive-element/reactive-element.js",
-                "@lit/reactive-element/": "https://apicenter.pages.dev/libraries/wledig/@lit/reactive-element/",
-
-                "@wledig/web/": "https://apicenter.pages.dev/libraries/wledig/@wledig/web/"
-            }
-        }
-    </script>
+    <script type="importmap"> { "imports": { "tslib": "https://apicenter.pages.dev/libraries/wledig/tslib/tslib.es6.js", "lit": "https://apicenter.pages.dev/libraries/wledig/lit/index.js", "lit/": "https://apicenter.pages.dev/libraries/wledig/lit/", "lit-html": "https://apicenter.pages.dev/libraries/wledig/lit-html/lit-html.js", "lit-html/": "https://apicenter.pages.dev/libraries/wledig/lit-html/", "lit-element": "https://apicenter.pages.dev/libraries/wledig/lit-element/lit-element.js", "lit-element/": "https://apicenter.pages.dev/libraries/wledig/lit-element/", "@lit/reactive-element": "https://apicenter.pages.dev/libraries/wledig/@lit/reactive-element/reactive-element.js", "@lit/reactive-element/": "https://apicenter.pages.dev/libraries/wledig/@lit/reactive-element/", "@wledig/web/": "https://apicenter.pages.dev/libraries/wledig/@wledig/web/" } } </script>
 </head>
 <body>
     <h1>My Material Web Site</h1>
+    <wd-tabs>
+  <wd-primary-tab>Video</wd-primary-tab>
+  <wd-primary-tab>Photos</wd-primary-tab>
+  <wd-primary-tab>Audio</wd-primary-tab>
+</wd-tabs>
+
+<wd-tabs>
+  <wd-secondary-tab>Birds</wd-secondary-tab>
+  <wd-secondary-tab>Cats</wd-secondary-tab>
+  <wd-secondary-tab>Dogs</wd-secondary-tab>
+</wd-tabs>
+    
     <wd-filled-text-field
         id="name"
         label="Your Name">
@@ -44,8 +35,7 @@
 
     <!-- Load Wledig Web Components -->
     <script type="module">
-        import '@wledig/web/textfield/filled-text-field.js';
-        import '@wledig/web/button/filled-button.js';
+        import '@wledig/web/all.js';
 
         // Optional: Button test
         const btn = document.getElementById('btn');
@@ -54,7 +44,5 @@
             alert('Wledig Web Loaded!');
         });
     </script>
-
-    <!-- <script type="module" src="./main.js"></script> -->
 </body>
 </html>

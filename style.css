@@ -1,3 +1,5 @@
+@import url('https://fontapi.pages.dev/css/global.css');
+
 body {
   font-family: system-ui, sans-serif;
   padding: 2rem;
@@ -6,6 +8,8 @@ body {
 
 /* Override Material tokens */
 :root {
-  --md-sys-color-primary: #000;
-  --md-sys-color-secondary: #ff9800;
+  --wd-sys-color-primary: #000;
+  --wd-sys-color-secondary: #ff9800;
+  --wd-ref-typeface-brand: 'Jupiter Sans';
+  --wd-ref-typeface-plain: 'Kilroy';
 }
