@@ -6,24 +6,30 @@
     <title>Material Web (Self Hosted)</title>
 
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Import Map -->
     <script type="importmap">
-        {
-            "imports": {
-                "tslib": "https://apicenter.pages.dev/libraries/wledig/tslib/tslib.es6.js",
+    {
+        "imports": {
+            "tslib": "https://apicenter.pages.dev/libraries/wledig/tslib/tslib.es6.js",
 
-                "lit": "https://apicenter.pages.dev/libraries/wledig/lit/index.js",
-                "lit/": "https://apicenter.pages.dev/libraries/wledig/lit/",
+            "lit": "https://apicenter.pages.dev/libraries/wledig/lit/index.js",
+            "lit/": "https://apicenter.pages.dev/libraries/wledig/lit/",
 
-                "lit-html": "https://apicenter.pages.dev/libraries/wledig/lit/html.js",
-                "lit-html/": "https://apicenter.pages.dev/libraries/wledig/lit/",
+            "lit-html": "https://apicenter.pages.dev/libraries/wledig/lit/html.js",
+            "lit-html/": "https://apicenter.pages.dev/libraries/wledig/lit/",
 
-                "lit-element": "https://apicenter.pages.dev/libraries/wledig/lit/index.js",
-                "lit-element/": "https://apicenter.pages.dev/libraries/wledig/lit/"
-            }
+            "lit-element": "https://apicenter.pages.dev/libraries/wledig/lit/index.js",
+            "lit-element/": "https://apicenter.pages.dev/libraries/wledig/lit/",
+
+            "@material/web/": "https://apicenter.pages.dev/libraries/wledig/material-web/"
         }
+    }
     </script>
 </head>
+
 <body>
+
     <h1>My Material Web Site</h1>
 
     <md-filled-text-field
@@ -31,12 +37,28 @@
         label="Your Name">
     </md-filled-text-field>
 
-    <br /><br />
+    <br><br>
 
     <md-filled-button id="btn">
         Click Me
     </md-filled-button>
 
+
+    <!-- Load Material Web Components -->
+    <script type="module">
+        import '@material/web/textfield/filled-text-field.js';
+        import '@material/web/button/filled-button.js';
+
+        // Optional: Button test
+        const btn = document.getElementById('btn');
+
+        btn.addEventListener('click', () => {
+            alert('Material Web Loaded!');
+        });
+    </script>
+
+    <!-- Your Main Script -->
     <script type="module" src="./main.js"></script>
+
 </body>
 </html>
