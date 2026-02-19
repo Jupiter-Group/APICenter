@@ -15,19 +15,19 @@
     position: relative;
     overflow: visible;
     -webkit-text-size-adjust: 100%;
-    color: var(--vscode-editor-foreground);
-    background-color: var(--vscode-editor-background);
+    color: var(--andorra-editor-foreground);
+    background-color: var(--andorra-editor-background);
     overflow-wrap: initial
 }
 
 .andorra-editor-background {
-    background-color: var(--vscode-editor-background)
+    background-color: var(--andorra-editor-background)
 }
 
 .andorra-editor .rangeHighlight {
-    background-color: var(--vscode-editor-rangeHighlightBackground);
+    background-color: var(--andorra-editor-rangeHighlightBackground);
     box-sizing: border-box;
-    border: 1px solid var(--vscode-editor-rangeHighlightBorder)
+    border: 1px solid var(--andorra-editor-rangeHighlightBorder)
 }
 
 .andorra-editor.hc-black .rangeHighlight,
@@ -36,9 +36,9 @@
 }
 
 .andorra-editor .symbolHighlight {
-    background-color: var(--vscode-editor-symbolHighlightBackground);
+    background-color: var(--andorra-editor-symbolHighlightBackground);
     box-sizing: border-box;
-    border: 1px solid var(--vscode-editor-symbolHighlightBorder)
+    border: 1px solid var(--andorra-editor-symbolHighlightBorder)
 }
 
 .andorra-editor.hc-black .symbolHighlight,
@@ -71,7 +71,7 @@
 }
 
 .andorra-editor .squiggly-error {
-    border-bottom: 4px double var(--vscode-editorError-border)
+    border-bottom: 4px double var(--andorra-editorError-border)
 }
 
 .andorra-editor .squiggly-error:before {
@@ -79,11 +79,11 @@
     content: "";
     width: 100%;
     height: 100%;
-    background: var(--vscode-editorError-background)
+    background: var(--andorra-editorError-background)
 }
 
 .andorra-editor .squiggly-warning {
-    border-bottom: 4px double var(--vscode-editorWarning-border)
+    border-bottom: 4px double var(--andorra-editorWarning-border)
 }
 
 .andorra-editor .squiggly-warning:before {
@@ -91,11 +91,11 @@
     content: "";
     width: 100%;
     height: 100%;
-    background: var(--vscode-editorWarning-background)
+    background: var(--andorra-editorWarning-background)
 }
 
 .andorra-editor .squiggly-info {
-    border-bottom: 4px double var(--vscode-editorInfo-border)
+    border-bottom: 4px double var(--andorra-editorInfo-border)
 }
 
 .andorra-editor .squiggly-info:before {
@@ -103,20 +103,20 @@
     content: "";
     width: 100%;
     height: 100%;
-    background: var(--vscode-editorInfo-background)
+    background: var(--andorra-editorInfo-background)
 }
 
 .andorra-editor .squiggly-hint {
-    border-bottom: 2px dotted var(--vscode-editorHint-border)
+    border-bottom: 2px dotted var(--andorra-editorHint-border)
 }
 
 .andorra-editor.showUnused .squiggly-unnecessary {
-    border-bottom: 2px dashed var(--vscode-editorUnnecessaryCode-border)
+    border-bottom: 2px dashed var(--andorra-editorUnnecessaryCode-border)
 }
 
 .andorra-editor.showDeprecated .squiggly-inline-deprecated {
     text-decoration: line-through;
-    text-decoration-color: var(--vscode-editor-foreground, inherit)
+    text-decoration-color: var(--andorra-editor-foreground, inherit)
 }
 
 .andorra-scrollable-element>.scrollbar>.scra {
@@ -151,7 +151,7 @@
     left: 3px;
     height: 3px;
     width: 100%;
-    box-shadow: var(--vscode-scrollbar-shadow) 0 6px 6px -6px inset
+    box-shadow: var(--andorra-scrollbar-shadow) 0 6px 6px -6px inset
 }
 
 .andorra-scrollable-element>.shadow.left {
@@ -160,7 +160,7 @@
     left: 0;
     height: 100%;
     width: 3px;
-    box-shadow: var(--vscode-scrollbar-shadow) 6px 0 6px -6px inset
+    box-shadow: var(--andorra-scrollbar-shadow) 6px 0 6px -6px inset
 }
 
 .andorra-scrollable-element>.shadow.top-left-corner {
@@ -172,23 +172,23 @@
 }
 
 .andorra-scrollable-element>.shadow.top.left {
-    box-shadow: var(--vscode-scrollbar-shadow) 6px 0 6px -6px inset
+    box-shadow: var(--andorra-scrollbar-shadow) 6px 0 6px -6px inset
 }
 
 .andorra-scrollable-element>.scrollbar {
-    background: var(--vscode-scrollbar-background)
+    background: var(--andorra-scrollbar-background)
 }
 
 .andorra-scrollable-element>.scrollbar>.slider {
-    background: var(--vscode-scrollbarSlider-background)
+    background: var(--andorra-scrollbarSlider-background)
 }
 
 .andorra-scrollable-element>.scrollbar>.slider:hover {
-    background: var(--vscode-scrollbarSlider-hoverBackground)
+    background: var(--andorra-scrollbarSlider-hoverBackground)
 }
 
 .andorra-scrollable-element>.scrollbar>.slider.active {
-    background: var(--vscode-scrollbarSlider-activeBackground)
+    background: var(--andorra-scrollbarSlider-activeBackground)
 }
 
 .andorra-editor .blockDecorations-container {
@@ -268,11 +268,11 @@
 }
 
 .andorra-editor .line-numbers {
-    color: var(--vscode-editorLineNumber-foreground)
+    color: var(--andorra-editorLineNumber-foreground)
 }
 
 .andorra-editor .line-numbers.active-line-number {
-    color: var(--vscode-editorLineNumber-activeForeground)
+    color: var(--andorra-editorLineNumber-activeForeground)
 }
 
 .andorra-mouse-cursor-text {
@@ -285,18 +285,18 @@
 }
 
 .mtkoverflow {
-    background-color: var(--vscode-button-background, var(--vscode-editor-background));
-    color: var(--vscode-button-foreground, var(--vscode-editor-foreground));
+    background-color: var(--andorra-button-background, var(--andorra-editor-background));
+    color: var(--andorra-button-foreground, var(--andorra-editor-foreground));
     border-width: 1px;
     border-style: solid;
-    border-color: var(--vscode-contrastBorder);
+    border-color: var(--andorra-contrastBorder);
     border-radius: 2px;
     padding: 4px;
     cursor: pointer
 }
 
 .mtkoverflow:hover {
-    background-color: var(--vscode-button-hoverBackground)
+    background-color: var(--andorra-button-hoverBackground)
 }
 
 .andorra-editor.no-user-select .lines-content,
@@ -336,12 +336,12 @@
 }
 
 .andorra-editor .mtkw {
-    color: var(--vscode-editorWhitespace-foreground) !important
+    color: var(--andorra-editorWhitespace-foreground) !important
 }
 
 .andorra-editor .mtkz {
     display: inline-block;
-    color: var(--vscode-editorWhitespace-foreground) !important
+    color: var(--andorra-editorWhitespace-foreground) !important
 }
 
 .andorra-editor .lines-decorations {
@@ -356,7 +356,7 @@
 }
 
 .andorra-editor .margin {
-    background-color: var(--vscode-editorGutter-background)
+    background-color: var(--andorra-editorGutter-background)
 }
 
 .andorra-editor .margin-view-overlays .cmdr {
@@ -377,19 +377,19 @@
 }
 
 .andorra-editor .minimap-slider .minimap-slider-horizontal {
-    background: var(--vscode-minimapSlider-background)
+    background: var(--andorra-minimapSlider-background)
 }
 
 .andorra-editor .minimap-slider:hover .minimap-slider-horizontal {
-    background: var(--vscode-minimapSlider-hoverBackground)
+    background: var(--andorra-minimapSlider-hoverBackground)
 }
 
 .andorra-editor .minimap-slider.active .minimap-slider-horizontal {
-    background: var(--vscode-minimapSlider-activeBackground)
+    background: var(--andorra-minimapSlider-activeBackground)
 }
 
 .andorra-editor .minimap-shadow-visible {
-    box-shadow: var(--vscode-scrollbar-shadow) -6px 0 6px -6px inset
+    box-shadow: var(--andorra-scrollbar-shadow) -6px 0 6px -6px inset
 }
 
 .andorra-editor .minimap-shadow-hidden {
@@ -439,7 +439,7 @@
 .andorra-editor .view-ruler {
     position: absolute;
     top: 0;
-    box-shadow: 1px 0 0 0 var(--vscode-editorRuler-foreground) inset
+    box-shadow: 1px 0 0 0 var(--andorra-editorRuler-foreground) inset
 }
 
 .andorra-editor .scroll-decoration {
@@ -447,7 +447,7 @@
     top: 0;
     left: 0;
     height: 6px;
-    box-shadow: var(--vscode-scrollbar-shadow) 0 6px 6px -6px inset
+    box-shadow: var(--andorra-scrollbar-shadow) 0 6px 6px -6px inset
 }
 
 .andorra-editor .lines-content .cslr {
@@ -455,11 +455,11 @@
 }
 
 .andorra-editor .focused .selected-text {
-    background-color: var(--vscode-editor-selectionBackground)
+    background-color: var(--andorra-editor-selectionBackground)
 }
 
 .andorra-editor .selected-text {
-    background-color: var(--vscode-editor-inactiveSelectionBackground)
+    background-color: var(--andorra-editor-inactiveSelectionBackground)
 }
 
 .andorra-editor .top-left-radius {
@@ -596,7 +596,7 @@
 
 .andorra-editor .mwh {
     position: absolute;
-    color: var(--vscode-editorWhitespace-foreground) !important
+    color: var(--andorra-editorWhitespace-foreground) !important
 }
 
 .andorra-editor .andorra-decoration-css-rule-extractor {
@@ -621,8 +621,8 @@
 
 .andorra-editor .inputarea.ime-input {
     z-index: 10;
-    caret-color: var(--vscode-editorCursor-foreground);
-    color: var(--vscode-editor-foreground)
+    caret-color: var(--andorra-editorCursor-foreground);
+    color: var(--andorra-editor-foreground)
 }
 
 .andorra-editor .native-edit-context {
@@ -656,19 +656,19 @@
 }
 
 .andorra-editor :not(.hc-black, .hc-light) .edit-context-composition-secondary {
-    border-bottom: 1px solid var(--vscode-editor-compositionBorder)
+    border-bottom: 1px solid var(--andorra-editor-compositionBorder)
 }
 
 .andorra-editor :not(.hc-black, .hc-light) .edit-context-composition-primary {
-    border-bottom: 2px solid var(--vscode-editor-compositionBorder)
+    border-bottom: 2px solid var(--andorra-editor-compositionBorder)
 }
 
 .andorra-editor :is(.hc-black, .hc-light) .edit-context-composition-secondary {
-    border: 1px solid var(--vscode-editor-compositionBorder)
+    border: 1px solid var(--andorra-editor-compositionBorder)
 }
 
 .andorra-editor :is(.hc-black, .hc-light) .edit-context-composition-primary {
-    border: 2px solid var(--vscode-editor-compositionBorder)
+    border: 2px solid var(--andorra-editor-compositionBorder)
 }
 
 .andorra-editor .margin-view-overlays .gpu-mark {
@@ -678,13 +678,13 @@
     left: 0;
     width: 100%;
     display: inline-block;
-    border-left: solid 2px var(--vscode-editorWarning-foreground);
+    border-left: solid 2px var(--andorra-editorWarning-foreground);
     opacity: .2;
     transition: background-color .1s linear
 }
 
 .andorra-editor .margin-view-overlays .gpu-mark:hover {
-    background-color: var(--vscode-editorWarning-foreground)
+    background-color: var(--andorra-editorWarning-foreground)
 }
 
 .andorra-select-box {
@@ -795,9 +795,9 @@
     font-size: 12px;
     position: absolute;
     z-index: 1000;
-    background-color: var(--vscode-list-activeSelectionBackground);
-    color: var(--vscode-list-activeSelectionForeground);
-    outline: 1px solid var(--vscode-list-focusOutline);
+    background-color: var(--andorra-list-activeSelectionBackground);
+    color: var(--andorra-list-activeSelectionForeground);
+    outline: 1px solid var(--andorra-list-focusOutline);
     outline-offset: -1px;
     max-width: 120px;
     overflow: hidden;
@@ -973,7 +973,7 @@
 .andorra-action-bar .action-item.disabled .action-label:not(.icon),
 .andorra-action-bar .action-item.disabled .action-label:not(.icon):before,
 .andorra-action-bar .action-item.disabled .action-label:not(.icon):hover {
-    color: var(--vscode-disabledForeground)
+    color: var(--andorra-disabledForeground)
 }
 
 .andorra-action-bar .action-item.disabled .action-label.icon,
@@ -992,7 +992,7 @@
 
 .andorra-action-bar.vertical .action-label.separator {
     display: block;
-    border-bottom: 1px solid var(--vscode-disabledForeground);
+    border-bottom: 1px solid var(--andorra-disabledForeground);
     padding-top: 1px;
     margin-left: .8em;
     margin-right: .8em
@@ -1005,7 +1005,7 @@
     cursor: default;
     min-width: 1px;
     padding: 0;
-    background-color: var(--vscode-disabledForeground)
+    background-color: var(--andorra-disabledForeground)
 }
 
 .secondary-actions .andorra-action-bar .action-label {
@@ -1050,7 +1050,7 @@
 .andorra-component.diff-review .diff-review-line-number {
     text-align: right;
     display: inline-block;
-    color: var(--vscode-editorLineNumber-foreground)
+    color: var(--andorra-editorLineNumber-foreground)
 }
 
 .andorra-component.diff-review .diff-review-summary {
@@ -1059,7 +1059,7 @@
 
 .andorra-component.diff-review .diff-review-shadow {
     position: absolute;
-    box-shadow: var(--vscode-scrollbar-shadow) 0 -6px 6px -6px inset
+    box-shadow: var(--andorra-scrollbar-shadow) 0 -6px 6px -6px inset
 }
 
 .andorra-component.diff-review .diff-review-row {
@@ -1105,12 +1105,12 @@
 }
 
 .andorra-component.diff-review .action-label {
-    background: var(--vscode-editorActionList-background)
+    background: var(--andorra-editorActionList-background)
 }
 
 :root {
-    --vscode-sash-size: 4px;
-    --vscode-sash-hover-size: 4px
+    --andorra-sash-size: 4px;
+    --andorra-sash-hover-size: 4px
 }
 
 .andorra-sash {
@@ -1155,7 +1155,7 @@
 .andorra-sash.vertical {
     cursor: ew-resize;
     top: 0;
-    width: var(--vscode-sash-size);
+    width: var(--andorra-sash-size);
     height: 100%
 }
 
@@ -1163,13 +1163,13 @@
     cursor: ns-resize;
     left: 0;
     width: 100%;
-    height: var(--vscode-sash-size)
+    height: var(--andorra-sash-size)
 }
 
 .andorra-sash:not(.disabled)>.orthogonal-drag-handle {
     content: " ";
-    height: calc(var(--vscode-sash-size) * 2);
-    width: calc(var(--vscode-sash-size) * 2);
+    height: calc(var(--andorra-sash-size) * 2);
+    width: calc(var(--andorra-sash-size) * 2);
     z-index: 100;
     display: block;
     cursor: all-scroll;
@@ -1187,23 +1187,23 @@
 }
 
 .andorra-sash.vertical>.orthogonal-drag-handle.start {
-    left: calc(var(--vscode-sash-size) * -.5);
-    top: calc(var(--vscode-sash-size) * -1)
+    left: calc(var(--andorra-sash-size) * -.5);
+    top: calc(var(--andorra-sash-size) * -1)
 }
 
 .andorra-sash.vertical>.orthogonal-drag-handle.end {
-    left: calc(var(--vscode-sash-size) * -.5);
-    bottom: calc(var(--vscode-sash-size) * -1)
+    left: calc(var(--andorra-sash-size) * -.5);
+    bottom: calc(var(--andorra-sash-size) * -1)
 }
 
 .andorra-sash.horizontal>.orthogonal-drag-handle.start {
-    top: calc(var(--vscode-sash-size) * -.5);
-    left: calc(var(--vscode-sash-size) * -1)
+    top: calc(var(--andorra-sash-size) * -.5);
+    left: calc(var(--andorra-sash-size) * -1)
 }
 
 .andorra-sash.horizontal>.orthogonal-drag-handle.end {
-    top: calc(var(--vscode-sash-size) * -.5);
-    right: calc(var(--vscode-sash-size) * -1)
+    top: calc(var(--andorra-sash-size) * -.5);
+    right: calc(var(--andorra-sash-size) * -1)
 }
 
 .andorra-sash:before {
@@ -1221,17 +1221,17 @@
 
 .andorra-sash.hover:before,
 .andorra-sash.active:before {
-    background: var(--vscode-sash-hoverBorder)
+    background: var(--andorra-sash-hoverBorder)
 }
 
 .andorra-sash.vertical:before {
-    width: var(--vscode-sash-hover-size);
-    left: calc(50% - (var(--vscode-sash-hover-size) / 2))
+    width: var(--andorra-sash-hover-size);
+    left: calc(50% - (var(--andorra-sash-hover-size) / 2))
 }
 
 .andorra-sash.horizontal:before {
-    height: var(--vscode-sash-hover-size);
-    top: calc(50% - (var(--vscode-sash-hover-size) / 2))
+    height: var(--andorra-sash-hover-size);
+    top: calc(50% - (var(--andorra-sash-hover-size) / 2))
 }
 
 .pointer-events-disabled {
@@ -1315,7 +1315,7 @@
 }
 
 .andorra-action-bar .action-item.menu-entry.text-only .action-label {
-    color: var(--vscode-descriptionForeground);
+    color: var(--andorra-descriptionForeground);
     overflow: hidden;
     border-radius: 2px
 }
@@ -1325,7 +1325,7 @@
 }
 
 .andorra-action-bar .action-item.menu-entry.text-only+.action-item:not(.text-only)>.andorra-dropdown .action-label {
-    color: var(--vscode-descriptionForeground)
+    color: var(--andorra-descriptionForeground)
 }
 
 .andorra-dropdown-with-default {
@@ -1347,7 +1347,7 @@
 }
 
 .andorra-dropdown-with-default:hover {
-    background-color: var(--vscode-toolbar-hoverBackground)
+    background-color: var(--andorra-toolbar-hoverBackground)
 }
 
 .andorra-dropdown-with-default>.dropdown-action-container>.andorra-dropdown>.dropdown-label .codicon[class*=codicon-] {
@@ -1380,7 +1380,7 @@
 .andorra-editor .diff-hidden-lines:not(.dragging) .bottom:hover,
 .andorra-editor .diff-hidden-lines .top.dragging,
 .andorra-editor .diff-hidden-lines .bottom.dragging {
-    background-color: var(--vscode-focusBorder)
+    background-color: var(--andorra-focusBorder)
 }
 
 .andorra-editor .diff-hidden-lines .top,
@@ -1420,26 +1420,26 @@
 }
 
 .andorra-editor .diff-unchanged-lines {
-    background: var(--vscode-diffEditor-unchangedCodeBackground)
+    background: var(--andorra-diffEditor-unchangedCodeBackground)
 }
 
 .andorra-editor .noModificationsOverlay {
     z-index: 1;
-    background: var(--vscode-editor-background);
+    background: var(--andorra-editor-background);
     display: flex;
     justify-content: center;
     align-items: center
 }
 
 .andorra-editor .diff-hidden-lines .center {
-    background: var(--vscode-diffEditor-unchangedRegionBackground);
-    color: var(--vscode-diffEditor-unchangedRegionForeground);
+    background: var(--andorra-diffEditor-unchangedRegionBackground);
+    color: var(--andorra-diffEditor-unchangedRegionForeground);
     overflow: hidden;
     display: block;
     text-overflow: ellipsis;
     white-space: nowrap;
     height: 24px;
-    box-shadow: inset 0 -5px 5px -7px var(--vscode-diffEditor-unchangedRegionShadow), inset 0 5px 5px -7px var(--vscode-diffEditor-unchangedRegionShadow)
+    box-shadow: inset 0 -5px 5px -7px var(--andorra-diffEditor-unchangedRegionShadow), inset 0 5px 5px -7px var(--andorra-diffEditor-unchangedRegionShadow)
 }
 
 .andorra-editor .diff-hidden-lines .center span.codicon {
@@ -1448,7 +1448,7 @@
 
 .andorra-editor .diff-hidden-lines .center a:hover .codicon {
     cursor: pointer;
-    color: var(--vscode-editorLink-activeForeground) !important
+    color: var(--andorra-editorLink-activeForeground) !important
 }
 
 .andorra-editor .diff-hidden-lines div.breadcrumb-item {
@@ -1456,21 +1456,21 @@
 }
 
 .andorra-editor .diff-hidden-lines div.breadcrumb-item:hover {
-    color: var(--vscode-editorLink-activeForeground)
+    color: var(--andorra-editorLink-activeForeground)
 }
 
 .andorra-editor .movedOriginal,
 .andorra-editor .movedModified {
-    border: 2px solid var(--vscode-diffEditor-move-border)
+    border: 2px solid var(--andorra-diffEditor-move-border)
 }
 
 .andorra-editor .movedOriginal.currentMove,
 .andorra-editor .movedModified.currentMove {
-    border: 2px solid var(--vscode-diffEditor-moveActive-border)
+    border: 2px solid var(--andorra-diffEditor-moveActive-border)
 }
 
 .andorra-diff-editor .moved-blocks-lines path.currentMove {
-    stroke: var(--vscode-diffEditor-moveActive-border)
+    stroke: var(--andorra-diffEditor-moveActive-border)
 }
 
 .andorra-diff-editor .moved-blocks-lines path {
@@ -1478,15 +1478,15 @@
 }
 
 .andorra-diff-editor .moved-blocks-lines .arrow {
-    fill: var(--vscode-diffEditor-move-border)
+    fill: var(--andorra-diffEditor-move-border)
 }
 
 .andorra-diff-editor .moved-blocks-lines .arrow.currentMove {
-    fill: var(--vscode-diffEditor-moveActive-border)
+    fill: var(--andorra-diffEditor-moveActive-border)
 }
 
 .andorra-diff-editor .moved-blocks-lines .arrow-rectangle {
-    fill: var(--vscode-editor-background)
+    fill: var(--andorra-editor-background)
 }
 
 .andorra-diff-editor .moved-blocks-lines {
@@ -1496,17 +1496,17 @@
 
 .andorra-diff-editor .moved-blocks-lines path {
     fill: none;
-    stroke: var(--vscode-diffEditor-move-border);
+    stroke: var(--andorra-diffEditor-move-border);
     stroke-width: 2
 }
 
 .andorra-editor .char-delete.diff-range-empty {
     margin-left: -1px;
-    border-left: solid var(--vscode-diffEditor-removedTextBackground) 3px
+    border-left: solid var(--andorra-diffEditor-removedTextBackground) 3px
 }
 
 .andorra-editor .char-insert.diff-range-empty {
-    border-left: solid var(--vscode-diffEditor-insertedTextBackground) 3px
+    border-left: solid var(--andorra-diffEditor-insertedTextBackground) 3px
 }
 
 .andorra-editor .fold-unchanged {
@@ -1609,18 +1609,18 @@
 
 .andorra-editor .char-insert,
 .andorra-diff-editor .char-insert {
-    background-color: var(--vscode-diffEditor-insertedTextBackground)
+    background-color: var(--andorra-diffEditor-insertedTextBackground)
 }
 
 .andorra-editor .line-insert,
 .andorra-diff-editor .line-insert {
-    background-color: var(--vscode-diffEditor-insertedLineBackground, var(--vscode-diffEditor-insertedTextBackground))
+    background-color: var(--andorra-diffEditor-insertedLineBackground, var(--andorra-diffEditor-insertedTextBackground))
 }
 
 .andorra-editor .line-insert,
 .andorra-editor .char-insert {
     box-sizing: border-box;
-    border: 1px solid var(--vscode-diffEditor-insertedTextBorder)
+    border: 1px solid var(--andorra-diffEditor-insertedTextBorder)
 }
 
 .andorra-editor.hc-black .line-insert,
@@ -1633,7 +1633,7 @@
 .andorra-editor .line-delete,
 .andorra-editor .char-delete {
     box-sizing: border-box;
-    border: 1px solid var(--vscode-diffEditor-removedTextBorder)
+    border: 1px solid var(--andorra-diffEditor-removedTextBorder)
 }
 
 .andorra-editor.hc-black .line-delete,
@@ -1646,13 +1646,13 @@
 .andorra-editor .inline-added-margin-view-zone,
 .andorra-editor .gutter-insert,
 .andorra-diff-editor .gutter-insert {
-    background-color: var(--vscode-diffEditorGutter-insertedLineBackground, var(--vscode-diffEditor-insertedLineBackground), var(--vscode-diffEditor-insertedTextBackground))
+    background-color: var(--andorra-diffEditorGutter-insertedLineBackground, var(--andorra-diffEditor-insertedLineBackground), var(--andorra-diffEditor-insertedTextBackground))
 }
 
 .andorra-editor .char-delete,
 .andorra-diff-editor .char-delete,
 .andorra-editor .inline-deleted-text {
-    background-color: var(--vscode-diffEditor-removedTextBackground)
+    background-color: var(--andorra-diffEditor-removedTextBackground)
 }
 
 .andorra-editor .inline-deleted-text {
@@ -1661,39 +1661,39 @@
 
 .andorra-editor .line-delete,
 .andorra-diff-editor .line-delete {
-    background-color: var(--vscode-diffEditor-removedLineBackground, var(--vscode-diffEditor-removedTextBackground))
+    background-color: var(--andorra-diffEditor-removedLineBackground, var(--andorra-diffEditor-removedTextBackground))
 }
 
 .andorra-editor .inline-deleted-margin-view-zone,
 .andorra-editor .gutter-delete,
 .andorra-diff-editor .gutter-delete {
-    background-color: var(--vscode-diffEditorGutter-removedLineBackground, var(--vscode-diffEditor-removedLineBackground), var(--vscode-diffEditor-removedTextBackground))
+    background-color: var(--andorra-diffEditorGutter-removedLineBackground, var(--andorra-diffEditor-removedLineBackground), var(--andorra-diffEditor-removedTextBackground))
 }
 
 .andorra-diff-editor.side-by-side .editor.modified {
-    box-shadow: -6px 0 5px -5px var(--vscode-scrollbar-shadow);
-    border-left: 1px solid var(--vscode-diffEditor-border)
+    box-shadow: -6px 0 5px -5px var(--andorra-scrollbar-shadow);
+    border-left: 1px solid var(--andorra-diffEditor-border)
 }
 
 .andorra-diff-editor.side-by-side .editor.original {
-    box-shadow: 6px 0 5px -5px var(--vscode-scrollbar-shadow);
-    border-right: 1px solid var(--vscode-diffEditor-border)
+    box-shadow: 6px 0 5px -5px var(--andorra-scrollbar-shadow);
+    border-right: 1px solid var(--andorra-diffEditor-border)
 }
 
 .andorra-diff-editor .diffViewport {
-    background: var(--vscode-scrollbarSlider-background)
+    background: var(--andorra-scrollbarSlider-background)
 }
 
 .andorra-diff-editor .diffViewport:hover {
-    background: var(--vscode-scrollbarSlider-hoverBackground)
+    background: var(--andorra-scrollbarSlider-hoverBackground)
 }
 
 .andorra-diff-editor .diffViewport:active {
-    background: var(--vscode-scrollbarSlider-activeBackground)
+    background: var(--andorra-scrollbarSlider-activeBackground)
 }
 
 .andorra-editor .diagonal-fill {
-    background-image: linear-gradient(-45deg, var(--vscode-diffEditor-diagonalFill) 12.5%, #0000 12.5%, #0000 50%, var(--vscode-diffEditor-diagonalFill) 50%, var(--vscode-diffEditor-diagonalFill) 62.5%, #0000 62.5%, #0000 100%);
+    background-image: linear-gradient(-45deg, var(--andorra-diffEditor-diagonalFill) 12.5%, #0000 12.5%, #0000 50%, var(--andorra-diffEditor-diagonalFill) 50%, var(--andorra-diffEditor-diagonalFill) 62.5%, #0000 62.5%, #0000 100%);
     background-size: 8px 8px
 }
 
@@ -1732,7 +1732,7 @@
     height: 100%;
     left: 50%;
     width: 1px;
-    border-left: 2px var(--vscode-menu-separatorBackground) solid
+    border-left: 2px var(--andorra-menu-separatorBackground) solid
 }
 
 .andorra-diff-editor .gutter .gutterItem .buttons {
@@ -1754,15 +1754,15 @@
 .andorra-diff-editor .gutter .gutterItem .buttons .andorra-toolbar .andorra-action-bar .actions-container {
     width: fit-content;
     border-radius: 4px;
-    background: var(--vscode-editorGutter-itemBackground)
+    background: var(--andorra-editorGutter-itemBackground)
 }
 
 .andorra-diff-editor .gutter .gutterItem .buttons .andorra-toolbar .andorra-action-bar .actions-container .action-item:hover {
-    background: var(--vscode-toolbar-hoverBackground)
+    background: var(--andorra-toolbar-hoverBackground)
 }
 
 .andorra-diff-editor .gutter .gutterItem .buttons .andorra-toolbar .andorra-action-bar .actions-container .action-item .action-label {
-    color: var(--vscode-editorGutter-itemGlyphForeground);
+    color: var(--andorra-editorGutter-itemGlyphForeground);
     padding: 1px 2px
 }
 
@@ -1775,7 +1775,7 @@
 .andorra-diff-editor .diff-hidden-lines-compact .line-right {
     height: 1px;
     border-top: 1px solid;
-    border-color: var(--vscode-editorCodeLens-foreground);
+    border-color: var(--andorra-editorCodeLens-foreground);
     opacity: .5;
     margin: auto;
     width: 100%
@@ -1786,7 +1786,7 @@
 }
 
 .andorra-diff-editor .diff-hidden-lines-compact .text {
-    color: var(--vscode-editorCodeLens-foreground);
+    color: var(--andorra-editorCodeLens-foreground);
     text-wrap: nowrap;
     font-size: 11px;
     line-height: 11px;
@@ -1811,8 +1811,8 @@
 
 .andorra-editor .bracket-match {
     box-sizing: border-box;
-    background-color: var(--vscode-editorBracketMatch-background);
-    border: 1px solid var(--vscode-editorBracketMatch-border)
+    background-color: var(--andorra-editorBracketMatch-background);
+    border: 1px solid var(--andorra-editorBracketMatch-border)
 }
 
 .inline-editor-progress-decoration {
@@ -1837,8 +1837,8 @@
 }
 
 .inline-progress-widget:hover .icon:before {
-    content: var(--vscode-icon-x-content);
-    font-family: var(--vscode-icon-x-font-family)
+    content: var(--andorra-icon-x-content);
+    font-family: var(--andorra-icon-x-font-family)
 }
 
 .andorra-editor .andorra-editor-overlaymessage {
@@ -1882,9 +1882,9 @@
 
 .andorra-editor .andorra-editor-overlaymessage .message {
     padding: 2px 4px;
-    color: var(--vscode-editorHoverWidget-foreground);
-    background-color: var(--vscode-editorHoverWidget-background);
-    border: 1px solid var(--vscode-inputValidation-infoBorder);
+    color: var(--andorra-editorHoverWidget-foreground);
+    background-color: var(--andorra-editorHoverWidget-background);
+    border: 1px solid var(--andorra-inputValidation-infoBorder);
     border-radius: 3px
 }
 
@@ -1893,11 +1893,11 @@
 }
 
 .andorra-editor .andorra-editor-overlaymessage .message a {
-    color: var(--vscode-textLink-foreground)
+    color: var(--andorra-textLink-foreground)
 }
 
 .andorra-editor .andorra-editor-overlaymessage .message a:hover {
-    color: var(--vscode-textLink-activeForeground)
+    color: var(--andorra-textLink-activeForeground)
 }
 
 .andorra-editor.hc-black .andorra-editor-overlaymessage .message,
@@ -1917,11 +1917,11 @@
 }
 
 .andorra-editor .andorra-editor-overlaymessage .anchor.top {
-    border-bottom-color: var(--vscode-inputValidation-infoBorder)
+    border-bottom-color: var(--andorra-inputValidation-infoBorder)
 }
 
 .andorra-editor .andorra-editor-overlaymessage .anchor.below {
-    border-top-color: var(--vscode-inputValidation-infoBorder)
+    border-top-color: var(--andorra-inputValidation-infoBorder)
 }
 
 .andorra-editor .andorra-editor-overlaymessage:not(.below) .anchor.top,
@@ -1945,7 +1945,7 @@
     cursor: pointer;
     justify-content: center;
     align-items: center;
-    border: 1px solid var(--vscode-button-border, transparent);
+    border: 1px solid var(--andorra-button-border, transparent);
     line-height: 18px
 }
 
@@ -2030,7 +2030,7 @@
 }
 
 .andorra-button-dropdown>.andorra-button.andorra-dropdown-button {
-    border: 1px solid var(--vscode-button-border, transparent);
+    border: 1px solid var(--andorra-button-border, transparent);
     border-left-width: 0 !important;
     border-radius: 0 2px 2px 0;
     display: flex;
@@ -2069,38 +2069,38 @@
 
 .andorra-button.default-colors,
 .andorra-button-dropdown.default-colors>.andorra-button {
-    color: var(--vscode-button-foreground);
-    background-color: var(--vscode-button-background)
+    color: var(--andorra-button-foreground);
+    background-color: var(--andorra-button-background)
 }
 
 .andorra-button.default-colors:hover,
 .andorra-button-dropdown.default-colors>.andorra-button:hover {
-    background-color: var(--vscode-button-hoverBackground)
+    background-color: var(--andorra-button-hoverBackground)
 }
 
 .andorra-button.default-colors.secondary,
 .andorra-button-dropdown.default-colors>.andorra-button.secondary {
-    color: var(--vscode-button-secondaryForeground);
-    background-color: var(--vscode-button-secondaryBackground)
+    color: var(--andorra-button-secondaryForeground);
+    background-color: var(--andorra-button-secondaryBackground)
 }
 
 .andorra-button.default-colors.secondary:hover,
 .andorra-button-dropdown.default-colors>.andorra-button.secondary:hover {
-    background-color: var(--vscode-button-secondaryHoverBackground)
+    background-color: var(--andorra-button-secondaryHoverBackground)
 }
 
 .andorra-button-dropdown.default-colors .andorra-button-dropdown-separator {
-    background-color: var(--vscode-button-background);
-    border-top: 1px solid var(--vscode-button-border);
-    border-bottom: 1px solid var(--vscode-button-border)
+    background-color: var(--andorra-button-background);
+    border-top: 1px solid var(--andorra-button-border);
+    border-bottom: 1px solid var(--andorra-button-border)
 }
 
 .andorra-button-dropdown.default-colors .andorra-button.secondary+.andorra-button-dropdown-separator {
-    background-color: var(--vscode-button-secondaryBackground)
+    background-color: var(--andorra-button-secondaryBackground)
 }
 
 .andorra-button-dropdown.default-colors .andorra-button-dropdown-separator>div {
-    background-color: var(--vscode-button-separator)
+    background-color: var(--andorra-button-separator)
 }
 
 .action-widget {
@@ -2110,12 +2110,12 @@
     z-index: 40;
     display: block;
     width: 100%;
-    border: 1px solid var(--vscode-menu-border) !important;
+    border: 1px solid var(--andorra-menu-border) !important;
     border-radius: 5px;
-    background-color: var(--vscode-menu-background);
-    color: var(--vscode-menu-foreground);
+    background-color: var(--andorra-menu-background);
+    color: var(--andorra-menu-foreground);
     padding: 4px;
-    box-shadow: 0 2px 8px var(--vscode-widget-shadow)
+    box-shadow: 0 2px 8px var(--andorra-widget-shadow)
 }
 
 .context-view-block {
@@ -2163,14 +2163,14 @@
 }
 
 .action-widget .andorra-list .andorra-list-row.action.focused:not(.option-disabled) {
-    background-color: var(--vscode-list-activeSelectionBackground) !important;
-    color: var(--vscode-list-activeSelectionForeground);
-    outline: 1px solid var(--vscode-menu-selectionBorder, transparent);
+    background-color: var(--andorra-list-activeSelectionBackground) !important;
+    color: var(--andorra-list-activeSelectionForeground);
+    outline: 1px solid var(--andorra-menu-selectionBorder, transparent);
     outline-offset: -1px
 }
 
 .action-widget .andorra-list-row.group-header {
-    color: var(--vscode-descriptionForeground) !important;
+    color: var(--andorra-descriptionForeground) !important;
     font-weight: 600;
     font-size: 13px
 }
@@ -2180,8 +2180,8 @@
 }
 
 .action-widget .andorra-scrollable-element .andorra-list-rows .andorra-list-row.separator {
-    border-top: 1px solid var(--vscode-editorHoverWidget-border);
-    color: var(--vscode-descriptionForeground);
+    border-top: 1px solid var(--andorra-editorHoverWidget-border);
+    color: var(--andorra-descriptionForeground);
     font-size: 12px;
     padding: 0;
     margin: 4px 0 0;
@@ -2225,7 +2225,7 @@
 .action-widget .andorra-list:focus .andorra-list-row.focused.action.option-disabled,
 .action-widget .andorra-list-row.action.option-disabled .codicon,
 .action-widget .andorra-list:not(.drop-target):not(.dragging) .andorra-list-row:hover:not(.selected):not(.focused).option-disabled {
-    color: var(--vscode-disabledForeground)
+    color: var(--andorra-disabledForeground)
 }
 
 .action-widget .andorra-list-row.action:not(.option-disabled) .codicon {
@@ -2239,19 +2239,19 @@
 }
 
 .action-widget .andorra-list-row.action .andorra-keybinding>.andorra-keybinding-key {
-    background-color: var(--vscode-keybindingLabel-background);
-    color: var(--vscode-keybindingLabel-foreground);
+    background-color: var(--andorra-keybindingLabel-background);
+    color: var(--andorra-keybindingLabel-foreground);
     border-style: solid;
     border-width: 1px;
     border-radius: 3px;
-    border-color: var(--vscode-keybindingLabel-border);
-    border-bottom-color: var(--vscode-keybindingLabel-bottomBorder);
-    box-shadow: inset 0 -1px 0 var(--vscode-widget-shadow)
+    border-color: var(--andorra-keybindingLabel-border);
+    border-bottom-color: var(--andorra-keybindingLabel-bottomBorder);
+    box-shadow: inset 0 -1px 0 var(--andorra-widget-shadow)
 }
 
 .action-widget .action-widget-action-bar {
-    background-color: var(--vscode-menu-background);
-    border-top: 1px solid var(--vscode-menu-border);
+    background-color: var(--andorra-menu-background);
+    border-top: 1px solid var(--andorra-menu-border);
     margin-top: 2px
 }
 
@@ -2266,7 +2266,7 @@
 }
 
 .action-widget-action-bar .action-label {
-    color: var(--vscode-textLink-activeForeground);
+    color: var(--andorra-textLink-activeForeground);
     font-size: 13px;
     line-height: 22px;
     padding: 0;
@@ -2283,7 +2283,7 @@
 }
 
 .andorra-action-bar .actions-container.highlight-toggled .action-label.checked {
-    background: var(--vscode-actionBar-toggledBackground) !important
+    background: var(--andorra-actionBar-toggledBackground) !important
 }
 
 .action-widget .andorra-list .andorra-list-row .description {
@@ -2325,11 +2325,11 @@
 }
 
 .post-edit-widget {
-    box-shadow: 0 0 8px 2px var(--vscode-widget-shadow);
-    border: 1px solid var(--vscode-widget-border, transparent);
+    box-shadow: 0 0 8px 2px var(--andorra-widget-shadow);
+    border: 1px solid var(--andorra-widget-border, transparent);
     border-radius: 4px;
-    color: var(--vscode-button-foreground);
-    background-color: var(--vscode-button-background);
+    color: var(--andorra-button-foreground);
+    background-color: var(--andorra-button-background);
     overflow: hidden
 }
 
@@ -2340,7 +2340,7 @@
 }
 
 .post-edit-widget .andorra-button:hover {
-    background-color: var(--vscode-button-hoverBackground) !important
+    background-color: var(--andorra-button-hoverBackground) !important
 }
 
 .post-edit-widget .andorra-button .codicon {
@@ -2395,169 +2395,169 @@
 
 .andorra-editor .codicon.codicon-symbol-array,
 .andorra-workbench .codicon.codicon-symbol-array {
-    color: var(--vscode-symbolIcon-arrayForeground)
+    color: var(--andorra-symbolIcon-arrayForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-boolean,
 .andorra-workbench .codicon.codicon-symbol-boolean {
-    color: var(--vscode-symbolIcon-booleanForeground)
+    color: var(--andorra-symbolIcon-booleanForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-class,
 .andorra-workbench .codicon.codicon-symbol-class {
-    color: var(--vscode-symbolIcon-classForeground)
+    color: var(--andorra-symbolIcon-classForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-method,
 .andorra-workbench .codicon.codicon-symbol-method {
-    color: var(--vscode-symbolIcon-methodForeground)
+    color: var(--andorra-symbolIcon-methodForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-color,
 .andorra-workbench .codicon.codicon-symbol-color {
-    color: var(--vscode-symbolIcon-colorForeground)
+    color: var(--andorra-symbolIcon-colorForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-constant,
 .andorra-workbench .codicon.codicon-symbol-constant {
-    color: var(--vscode-symbolIcon-constantForeground)
+    color: var(--andorra-symbolIcon-constantForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-constructor,
 .andorra-workbench .codicon.codicon-symbol-constructor {
-    color: var(--vscode-symbolIcon-constructorForeground)
+    color: var(--andorra-symbolIcon-constructorForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-value,
 .andorra-workbench .codicon.codicon-symbol-value,
 .andorra-editor .codicon.codicon-symbol-enum,
 .andorra-workbench .codicon.codicon-symbol-enum {
-    color: var(--vscode-symbolIcon-enumeratorForeground)
+    color: var(--andorra-symbolIcon-enumeratorForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-enum-member,
 .andorra-workbench .codicon.codicon-symbol-enum-member {
-    color: var(--vscode-symbolIcon-enumeratorMemberForeground)
+    color: var(--andorra-symbolIcon-enumeratorMemberForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-event,
 .andorra-workbench .codicon.codicon-symbol-event {
-    color: var(--vscode-symbolIcon-eventForeground)
+    color: var(--andorra-symbolIcon-eventForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-field,
 .andorra-workbench .codicon.codicon-symbol-field {
-    color: var(--vscode-symbolIcon-fieldForeground)
+    color: var(--andorra-symbolIcon-fieldForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-file,
 .andorra-workbench .codicon.codicon-symbol-file {
-    color: var(--vscode-symbolIcon-fileForeground)
+    color: var(--andorra-symbolIcon-fileForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-folder,
 .andorra-workbench .codicon.codicon-symbol-folder {
-    color: var(--vscode-symbolIcon-folderForeground)
+    color: var(--andorra-symbolIcon-folderForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-function,
 .andorra-workbench .codicon.codicon-symbol-function {
-    color: var(--vscode-symbolIcon-functionForeground)
+    color: var(--andorra-symbolIcon-functionForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-interface,
 .andorra-workbench .codicon.codicon-symbol-interface {
-    color: var(--vscode-symbolIcon-interfaceForeground)
+    color: var(--andorra-symbolIcon-interfaceForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-key,
 .andorra-workbench .codicon.codicon-symbol-key {
-    color: var(--vscode-symbolIcon-keyForeground)
+    color: var(--andorra-symbolIcon-keyForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-keyword,
 .andorra-workbench .codicon.codicon-symbol-keyword {
-    color: var(--vscode-symbolIcon-keywordForeground)
+    color: var(--andorra-symbolIcon-keywordForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-module,
 .andorra-workbench .codicon.codicon-symbol-module {
-    color: var(--vscode-symbolIcon-moduleForeground)
+    color: var(--andorra-symbolIcon-moduleForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-namespace,
 .andorra-workbench .codicon.codicon-symbol-namespace {
-    color: var(--vscode-symbolIcon-namespaceForeground)
+    color: var(--andorra-symbolIcon-namespaceForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-null,
 .andorra-workbench .codicon.codicon-symbol-null {
-    color: var(--vscode-symbolIcon-nullForeground)
+    color: var(--andorra-symbolIcon-nullForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-number,
 .andorra-workbench .codicon.codicon-symbol-number {
-    color: var(--vscode-symbolIcon-numberForeground)
+    color: var(--andorra-symbolIcon-numberForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-object,
 .andorra-workbench .codicon.codicon-symbol-object {
-    color: var(--vscode-symbolIcon-objectForeground)
+    color: var(--andorra-symbolIcon-objectForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-operator,
 .andorra-workbench .codicon.codicon-symbol-operator {
-    color: var(--vscode-symbolIcon-operatorForeground)
+    color: var(--andorra-symbolIcon-operatorForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-package,
 .andorra-workbench .codicon.codicon-symbol-package {
-    color: var(--vscode-symbolIcon-packageForeground)
+    color: var(--andorra-symbolIcon-packageForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-property,
 .andorra-workbench .codicon.codicon-symbol-property {
-    color: var(--vscode-symbolIcon-propertyForeground)
+    color: var(--andorra-symbolIcon-propertyForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-reference,
 .andorra-workbench .codicon.codicon-symbol-reference {
-    color: var(--vscode-symbolIcon-referenceForeground)
+    color: var(--andorra-symbolIcon-referenceForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-snippet,
 .andorra-workbench .codicon.codicon-symbol-snippet {
-    color: var(--vscode-symbolIcon-snippetForeground)
+    color: var(--andorra-symbolIcon-snippetForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-string,
 .andorra-workbench .codicon.codicon-symbol-string {
-    color: var(--vscode-symbolIcon-stringForeground)
+    color: var(--andorra-symbolIcon-stringForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-struct,
 .andorra-workbench .codicon.codicon-symbol-struct {
-    color: var(--vscode-symbolIcon-structForeground)
+    color: var(--andorra-symbolIcon-structForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-text,
 .andorra-workbench .codicon.codicon-symbol-text {
-    color: var(--vscode-symbolIcon-textForeground)
+    color: var(--andorra-symbolIcon-textForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-type-parameter,
 .andorra-workbench .codicon.codicon-symbol-type-parameter {
-    color: var(--vscode-symbolIcon-typeParameterForeground)
+    color: var(--andorra-symbolIcon-typeParameterForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-unit,
 .andorra-workbench .codicon.codicon-symbol-unit {
-    color: var(--vscode-symbolIcon-unitForeground)
+    color: var(--andorra-symbolIcon-unitForeground)
 }
 
 .andorra-editor .codicon.codicon-symbol-variable,
 .andorra-workbench .codicon.codicon-symbol-variable {
-    color: var(--vscode-symbolIcon-variableForeground)
+    color: var(--andorra-symbolIcon-variableForeground)
 }
 
 .andorra-editor .lightBulbWidget {
@@ -2572,16 +2572,16 @@
 
 .andorra-editor .lightBulbWidget.codicon-light-bulb,
 .andorra-editor .lightBulbWidget.codicon-lightbulb-sparkle {
-    color: var(--vscode-editorLightBulb-foreground)
+    color: var(--andorra-editorLightBulb-foreground)
 }
 
 .andorra-editor .lightBulbWidget.codicon-lightbulb-autofix,
 .andorra-editor .lightBulbWidget.codicon-lightbulb-sparkle-autofix {
-    color: var(--vscode-editorLightBulbAutoFix-foreground, var(--vscode-editorLightBulb-foreground))
+    color: var(--andorra-editorLightBulbAutoFix-foreground, var(--andorra-editorLightBulb-foreground))
 }
 
 .andorra-editor .lightBulbWidget.codicon-sparkle-filled {
-    color: var(--vscode-editorLightBulbAi-foreground, var(--vscode-icon-foreground))
+    color: var(--andorra-editorLightBulbAi-foreground, var(--andorra-icon-foreground))
 }
 
 .andorra-editor .lightBulbWidget:before {
@@ -2608,16 +2608,16 @@
 
 .andorra-editor .glyph-margin-widgets .cgmr.codicon-gutter-lightbulb,
 .andorra-editor .glyph-margin-widgets .cgmr.codicon-gutter-lightbulb-sparkle {
-    color: var(--vscode-editorLightBulb-foreground)
+    color: var(--andorra-editorLightBulb-foreground)
 }
 
 .andorra-editor .glyph-margin-widgets .cgmr.codicon-gutter-lightbulb-auto-fix,
 .andorra-editor .glyph-margin-widgets .cgmr.codicon-gutter-lightbulb-aifix-auto-fix {
-    color: var(--vscode-editorLightBulbAutoFix-foreground, var(--vscode-editorLightBulb-foreground))
+    color: var(--andorra-editorLightBulbAutoFix-foreground, var(--andorra-editorLightBulb-foreground))
 }
 
 .andorra-editor .glyph-margin-widgets .cgmr.codicon-gutter-lightbulb-sparkle-filled {
-    color: var(--vscode-editorLightBulbAi-foreground, var(--vscode-icon-foreground))
+    color: var(--andorra-editorLightBulbAi-foreground, var(--andorra-icon-foreground))
 }
 
 .andorra-editor .codelens-decoration {
@@ -2626,12 +2626,12 @@
     align-items: center;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: var(--vscode-editorCodeLens-foreground);
-    line-height: var(--vscode-editorCodeLens-lineHeight);
-    font-size: var(--vscode-editorCodeLens-fontSize);
-    padding-right: calc(var(--vscode-editorCodeLens-fontSize)*.5);
-    font-feature-settings: var(--vscode-editorCodeLens-fontFeatureSettings);
-    font-family: var(--vscode-editorCodeLens-fontFamily), var(--vscode-editorCodeLens-fontFamilyDefault)
+    color: var(--andorra-editorCodeLens-foreground);
+    line-height: var(--andorra-editorCodeLens-lineHeight);
+    font-size: var(--andorra-editorCodeLens-fontSize);
+    padding-right: calc(var(--andorra-editorCodeLens-fontSize)*.5);
+    font-feature-settings: var(--andorra-editorCodeLens-fontFeatureSettings);
+    font-family: var(--andorra-editorCodeLens-fontFamily), var(--andorra-editorCodeLens-fontFamilyDefault)
 }
 
 .andorra-editor .codelens-decoration>span,
@@ -2650,19 +2650,19 @@
 
 .andorra-editor .codelens-decoration>a:hover {
     cursor: pointer;
-    color: var(--vscode-editorLink-activeForeground) !important
+    color: var(--andorra-editorLink-activeForeground) !important
 }
 
 .andorra-editor .codelens-decoration>a:hover .codicon {
-    color: var(--vscode-editorLink-activeForeground) !important
+    color: var(--andorra-editorLink-activeForeground) !important
 }
 
 .andorra-editor .codelens-decoration .codicon[class*=codicon-] {
     vertical-align: middle;
     color: currentColor !important;
-    color: var(--vscode-editorCodeLens-foreground);
-    line-height: var(--vscode-editorCodeLens-lineHeight);
-    font-size: var(--vscode-editorCodeLens-fontSize)
+    color: var(--andorra-editorCodeLens-foreground);
+    line-height: var(--andorra-editorCodeLens-lineHeight);
+    font-size: var(--andorra-editorCodeLens-fontSize)
 }
 
 .andorra-editor .codelens-decoration>a:hover .codicon:before {
@@ -2693,14 +2693,14 @@
 
 .andorra-editor .inlineSuggestionsHints.withBorder {
     z-index: 39;
-    color: var(--vscode-editorHoverWidget-foreground);
-    background-color: var(--vscode-editorHoverWidget-background);
-    border: 1px solid var(--vscode-editorHoverWidget-border)
+    color: var(--andorra-editorHoverWidget-foreground);
+    background-color: var(--andorra-editorHoverWidget-background);
+    border: 1px solid var(--andorra-editorHoverWidget-border)
 }
 
 .andorra-editor .inlineSuggestionsHints a,
 .andorra-editor .inlineSuggestionsHints a:hover {
-    color: var(--vscode-foreground) !important
+    color: var(--andorra-foreground) !important
 }
 
 .andorra-editor .inlineSuggestionsHints .keybinding {
@@ -2732,7 +2732,7 @@
     -webkit-user-select: text;
     box-sizing: border-box;
     line-height: 1.5em;
-    white-space: var(--vscode-hover-whiteSpace, normal)
+    white-space: var(--andorra-hover-whiteSpace, normal)
 }
 
 .andorra-hover.fade-in {
@@ -2752,7 +2752,7 @@
 }
 
 .andorra-hover .markdown-hover>.hover-contents:not(.code-hover-contents) {
-    max-width: var(--vscode-hover-maxWidth, 500px);
+    max-width: var(--andorra-hover-maxWidth, 500px);
     word-wrap: break-word
 }
 
@@ -2824,7 +2824,7 @@
 }
 
 .andorra-hover .andorra-tokenized-source {
-    white-space: var(--vscode-hover-sourceWhiteSpace, pre-wrap)
+    white-space: var(--andorra-hover-sourceWhiteSpace, pre-wrap)
 }
 
 .andorra-hover .hover-row.status-bar {
@@ -2857,12 +2857,12 @@
 }
 
 .andorra-hover .hover-row.status-bar .actions .action-container a {
-    color: var(--vscode-textLink-foreground);
+    color: var(--andorra-textLink-foreground);
     text-decoration: var(--text-link-decoration)
 }
 
 .andorra-hover .hover-row.status-bar .actions .action-container a .icon.codicon {
-    color: var(--vscode-textLink-foreground)
+    color: var(--andorra-textLink-foreground)
 }
 
 .andorra-hover .markdown-hover .hover-contents .codicon {
@@ -2888,11 +2888,11 @@
     text-decoration: underline;
     border-bottom: 1px solid transparent;
     text-underline-position: under;
-    color: var(--vscode-textLink-foreground)
+    color: var(--andorra-textLink-foreground)
 }
 
 .andorra-hover .hover-contents a.code-link>span:hover {
-    color: var(--vscode-textLink-activeForeground)
+    color: var(--andorra-textLink-activeForeground)
 }
 
 .andorra-hover .markdown-hover .hover-contents:not(.code-hover-contents):not(.html-hover-contents) p:last-child [style*=background-color] {
@@ -2941,12 +2941,12 @@
 }
 
 .andorra-custom-toggle:hover {
-    background-color: var(--vscode-inputOption-hoverBackground)
+    background-color: var(--andorra-inputOption-hoverBackground)
 }
 
 .hc-black .andorra-custom-toggle:hover,
 .hc-light .andorra-custom-toggle:hover {
-    border: 1px dashed var(--vscode-focusBorder)
+    border: 1px dashed var(--andorra-focusBorder)
 }
 
 .hc-black .andorra-custom-toggle,
@@ -2976,7 +2976,7 @@
 }
 
 .andorra-action-bar .checkbox-action-item:hover {
-    background-color: var(--vscode-toolbar-hoverBackground)
+    background-color: var(--andorra-toolbar-hoverBackground)
 }
 
 .andorra-action-bar .checkbox-action-item>.andorra-custom-toggle.andorra-checkbox {
@@ -2997,14 +2997,14 @@
     padding: 0 4px;
     box-sizing: border-box;
     transform: translateY(calc(-100% - 10px));
-    box-shadow: 0 0 8px 2px var(--vscode-widget-shadow);
-    color: var(--vscode-editorWidget-foreground);
-    border-left: 1px solid var(--vscode-widget-border);
-    border-right: 1px solid var(--vscode-widget-border);
-    border-bottom: 1px solid var(--vscode-widget-border);
+    box-shadow: 0 0 8px 2px var(--andorra-widget-shadow);
+    color: var(--andorra-editorWidget-foreground);
+    border-left: 1px solid var(--andorra-widget-border);
+    border-right: 1px solid var(--andorra-widget-border);
+    border-bottom: 1px solid var(--andorra-widget-border);
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
-    background-color: var(--vscode-editorWidget-background)
+    background-color: var(--andorra-editorWidget-background)
 }
 
 .andorra-reduce-motion .andorra-editor .find-widget {
@@ -3030,7 +3030,7 @@
 .andorra-editor .find-widget .andorra-inputbox.synthetic-focus {
     outline: 1px solid -webkit-focus-ring-color;
     outline-offset: -1px;
-    outline-color: var(--vscode-focusBorder)
+    outline-color: var(--andorra-focusBorder)
 }
 
 .andorra-editor .find-widget .andorra-inputbox .input {
@@ -3152,7 +3152,7 @@
 }
 
 .andorra-editor .find-widget .disabled {
-    color: var(--vscode-disabledForeground);
+    color: var(--andorra-disabledForeground);
     cursor: default
 }
 
@@ -3196,29 +3196,29 @@
 }
 
 .andorra-editor .find-widget.no-results .matchesCount {
-    color: var(--vscode-errorForeground)
+    color: var(--andorra-errorForeground)
 }
 
 .andorra-editor .findMatch {
     animation-duration: 0;
     animation-name: inherit !important;
-    background-color: var(--vscode-editor-findMatchHighlightBackground)
+    background-color: var(--andorra-editor-findMatchHighlightBackground)
 }
 
 .andorra-editor .currentFindMatch {
-    background-color: var(--vscode-editor-findMatchBackground);
-    border: 2px solid var(--vscode-editor-findMatchBorder);
+    background-color: var(--andorra-editor-findMatchBackground);
+    border: 2px solid var(--andorra-editor-findMatchBorder);
     padding: 1px;
     box-sizing: border-box
 }
 
 .andorra-editor .findScope {
-    background-color: var(--vscode-editor-findRangeHighlightBackground)
+    background-color: var(--andorra-editor-findRangeHighlightBackground)
 }
 
 .andorra-editor .find-widget .andorra-sash {
     left: 0 !important;
-    background-color: var(--vscode-editorWidget-resizeBorder, var(--vscode-editorWidget-border))
+    background-color: var(--andorra-editorWidget-resizeBorder, var(--andorra-editorWidget-border))
 }
 
 .andorra-editor.hc-black .find-widget .button:before {
@@ -3229,23 +3229,23 @@
 
 .andorra-editor .find-widget .button:not(.disabled):hover,
 .andorra-editor .find-widget .codicon-find-selection:hover {
-    background-color: var(--vscode-toolbar-hoverBackground) !important
+    background-color: var(--andorra-toolbar-hoverBackground) !important
 }
 
 .andorra-editor.findMatch {
-    background-color: var(--vscode-editor-findMatchHighlightBackground)
+    background-color: var(--andorra-editor-findMatchHighlightBackground)
 }
 
 .andorra-editor.currentFindMatch {
-    background-color: var(--vscode-editor-findMatchBackground)
+    background-color: var(--andorra-editor-findMatchBackground)
 }
 
 .andorra-editor.findScope {
-    background-color: var(--vscode-editor-findRangeHighlightBackground)
+    background-color: var(--andorra-editor-findRangeHighlightBackground)
 }
 
 .andorra-editor.findMatch {
-    background-color: var(--vscode-editorWidget-background)
+    background-color: var(--andorra-editorWidget-background)
 }
 
 .andorra-editor .find-widget>.button.codicon-widget-close {
@@ -3499,9 +3499,9 @@
 }
 
 .standalone-colorpicker {
-    color: var(--vscode-editorHoverWidget-foreground);
-    background-color: var(--vscode-editorHoverWidget-background);
-    border: 1px solid var(--vscode-editorHoverWidget-border)
+    color: var(--andorra-editorHoverWidget-foreground);
+    background-color: var(--andorra-editorHoverWidget-background);
+    border: 1px solid var(--andorra-editorHoverWidget-border)
 }
 
 .colorpicker-header.standalone-colorpicker {
@@ -3510,8 +3510,8 @@
 
 .colorpicker-header .close-button {
     cursor: pointer;
-    background-color: var(--vscode-editorHoverWidget-background);
-    border-left: 1px solid var(--vscode-editorHoverWidget-border)
+    background-color: var(--andorra-editorHoverWidget-background);
+    border-left: 1px solid var(--andorra-editorHoverWidget-border)
 }
 
 .colorpicker-header .close-button-inner-div {
@@ -3521,7 +3521,7 @@
 }
 
 .colorpicker-header .close-button-inner-div:hover {
-    background-color: var(--vscode-toolbar-hoverBackground)
+    background-color: var(--andorra-toolbar-hoverBackground)
 }
 
 .colorpicker-header .close-icon {
@@ -3611,7 +3611,7 @@
 .standalone-colorpicker-body {
     display: block;
     border: 1px solid transparent;
-    border-bottom: 1px solid var(--vscode-editorHoverWidget-border);
+    border-bottom: 1px solid var(--andorra-editorHoverWidget-border);
     overflow: hidden
 }
 
@@ -3622,15 +3622,15 @@
     padding: 0;
     right: 8px;
     bottom: 8px;
-    background: var(--vscode-button-background);
-    color: var(--vscode-button-foreground);
+    background: var(--andorra-button-background);
+    color: var(--andorra-button-foreground);
     border-radius: 2px;
     border: none;
     cursor: pointer
 }
 
 .colorpicker-body .insert-button:hover {
-    background: var(--vscode-button-hoverBackground)
+    background: var(--andorra-button-hoverBackground)
 }
 
 .andorra-editor .peekview-widget .head {
@@ -3828,7 +3828,7 @@
 .andorra-table>.andorra-split-view2 .andorra-sash.vertical:before {
     content: "";
     position: absolute;
-    left: calc(var(--vscode-sash-size) / 2);
+    left: calc(var(--andorra-sash-size) / 2);
     width: 0;
     border-left: 1px solid transparent
 }
@@ -3916,7 +3916,7 @@
     max-width: 200px;
     z-index: 100;
     margin: 0 10px 0 6px;
-    border: 1px solid var(--vscode-widget-border);
+    border: 1px solid var(--andorra-widget-border);
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px
 }
@@ -3961,7 +3961,7 @@
     width: 100%;
     height: 0;
     z-index: 13;
-    background-color: var(--vscode-sideBar-background)
+    background-color: var(--andorra-sideBar-background)
 }
 
 .andorra-list .andorra-scrollable-element .andorra-tree-sticky-container .andorra-tree-sticky-row.andorra-list-row {
@@ -3969,11 +3969,11 @@
     width: 100%;
     opacity: 1 !important;
     overflow: hidden;
-    background-color: var(--vscode-sideBar-background)
+    background-color: var(--andorra-sideBar-background)
 }
 
 .andorra-list .andorra-scrollable-element .andorra-tree-sticky-container .andorra-tree-sticky-row:hover {
-    background-color: var(--vscode-list-hoverBackground) !important;
+    background-color: var(--andorra-list-hoverBackground) !important;
     cursor: pointer
 }
 
@@ -4013,8 +4013,8 @@
 
 .andorra-editor .reference-zone-widget .ref-tree {
     line-height: 23px;
-    background-color: var(--vscode-peekViewResult-background);
-    color: var(--vscode-peekViewResult-lineForeground)
+    background-color: var(--andorra-peekViewResult-background);
+    color: var(--andorra-peekViewResult-lineForeground)
 }
 
 .andorra-editor .reference-zone-widget .ref-tree .reference {
@@ -4026,7 +4026,7 @@
     display: inline-flex;
     width: 100%;
     height: 100%;
-    color: var(--vscode-peekViewResult-fileForeground)
+    color: var(--andorra-peekViewResult-fileForeground)
 }
 
 .andorra-editor .reference-zone-widget .ref-tree .andorra-list:focus .selected .reference-file {
@@ -4034,8 +4034,8 @@
 }
 
 .andorra-editor .reference-zone-widget .ref-tree .andorra-list:focus .andorra-list-rows>.andorra-list-row.selected:not(.highlighted) {
-    background-color: var(--vscode-peekViewResult-selectionBackground);
-    color: var(--vscode-peekViewResult-selectionForeground) !important
+    background-color: var(--andorra-peekViewResult-selectionBackground);
+    color: var(--andorra-peekViewResult-selectionForeground) !important
 }
 
 .andorra-editor .reference-zone-widget .ref-tree .reference-file .count {
@@ -4044,23 +4044,23 @@
 }
 
 .andorra-editor .reference-zone-widget .ref-tree .referenceMatch .highlight {
-    color: var(--vscode-peekViewResult-fileForeground) !important;
-    background-color: var(--vscode-peekViewResult-matchHighlightBackground) !important
+    color: var(--andorra-peekViewResult-fileForeground) !important;
+    background-color: var(--andorra-peekViewResult-matchHighlightBackground) !important
 }
 
 .andorra-editor .reference-zone-widget .preview .reference-decoration {
-    background-color: var(--vscode-peekViewEditor-matchHighlightBackground);
-    border: 2px solid var(--vscode-peekViewEditor-matchHighlightBorder);
+    background-color: var(--andorra-peekViewEditor-matchHighlightBackground);
+    border: 2px solid var(--andorra-peekViewEditor-matchHighlightBorder);
     box-sizing: border-box
 }
 
 .andorra-editor .reference-zone-widget .preview .andorra-editor .andorra-editor-background,
 .andorra-editor .reference-zone-widget .preview .andorra-editor .inputarea.ime-input {
-    background-color: var(--vscode-peekViewEditor-background)
+    background-color: var(--andorra-peekViewEditor-background)
 }
 
 .andorra-editor .reference-zone-widget .preview .andorra-editor .margin {
-    background-color: var(--vscode-peekViewEditorGutter-background)
+    background-color: var(--andorra-peekViewEditorGutter-background)
 }
 
 .andorra-editor.hc-black .reference-zone-widget .ref-tree .reference-file,
@@ -4070,7 +4070,7 @@
 
 .andorra-editor.hc-black .reference-zone-widget .ref-tree .referenceMatch .highlight,
 .andorra-editor.hc-light .reference-zone-widget .ref-tree .referenceMatch .highlight {
-    border: 1px dotted var(--vscode-contrastActiveBorder, transparent);
+    border: 1px dotted var(--andorra-contrastActiveBorder, transparent);
     box-sizing: border-box
 }
 
@@ -4123,7 +4123,7 @@
 }
 
 .andorra-icon-label-container.disabled {
-    color: var(--vscode-disabledForeground)
+    color: var(--andorra-disabledForeground)
 }
 
 .andorra-icon-label>.andorra-icon-label-container {
@@ -4261,12 +4261,12 @@
     text-decoration: underline;
     border-bottom: 1px solid transparent;
     text-underline-position: under;
-    color: var(--vscode-textLink-activeForeground)
+    color: var(--andorra-textLink-activeForeground)
 }
 
 .andorra-editor .marker-widget .descriptioncontainer .filename {
     cursor: pointer;
-    color: var(--vscode-textLink-activeForeground)
+    color: var(--andorra-textLink-activeForeground)
 }
 
 .andorra-editor .zone-widget .codicon.codicon-error,
@@ -4276,7 +4276,7 @@
 .extensions-viewlet>.extensions .codicon.codicon-error,
 .extension-editor .codicon.codicon-error,
 .chat-attached-context-attachment .codicon.codicon-error {
-    color: var(--vscode-problemsErrorIcon-foreground)
+    color: var(--andorra-problemsErrorIcon-foreground)
 }
 
 .andorra-editor .zone-widget .codicon.codicon-warning,
@@ -4286,7 +4286,7 @@
 .extensions-viewlet>.extensions .codicon.codicon-warning,
 .extension-editor .codicon.codicon-warning,
 .preferences-editor .codicon.codicon-warning {
-    color: var(--vscode-problemsWarningIcon-foreground)
+    color: var(--andorra-problemsWarningIcon-foreground)
 }
 
 .andorra-editor .zone-widget .codicon.codicon-info,
@@ -4295,15 +4295,15 @@
 .text-search-provider-messages .providerMessage .codicon.codicon-info,
 .extensions-viewlet>.extensions .codicon.codicon-info,
 .extension-editor .codicon.codicon-info {
-    color: var(--vscode-problemsInfoIcon-foreground)
+    color: var(--andorra-problemsInfoIcon-foreground)
 }
 
 .andorra-editor .hoverHighlight {
-    background-color: var(--vscode-editor-hoverHighlightBackground)
+    background-color: var(--andorra-editor-hoverHighlightBackground)
 }
 
 .andorra-editor .andorra-resizable-hover {
-    border: 1px solid var(--vscode-editorHoverWidget-border);
+    border: 1px solid var(--andorra-editorHoverWidget-border);
     border-radius: 3px;
     box-sizing: content-box
 }
@@ -4314,18 +4314,18 @@
 }
 
 .andorra-editor .andorra-hover {
-    border: 1px solid var(--vscode-editorHoverWidget-border);
+    border: 1px solid var(--andorra-editorHoverWidget-border);
     border-radius: 3px;
-    color: var(--vscode-editorHoverWidget-foreground);
-    background-color: var(--vscode-editorHoverWidget-background)
+    color: var(--andorra-editorHoverWidget-foreground);
+    background-color: var(--andorra-editorHoverWidget-background)
 }
 
 .andorra-editor .andorra-hover a {
-    color: var(--vscode-textLink-foreground)
+    color: var(--andorra-textLink-foreground)
 }
 
 .andorra-editor .andorra-hover a:hover {
-    color: var(--vscode-textLink-activeForeground)
+    color: var(--andorra-textLink-activeForeground)
 }
 
 .andorra-editor .andorra-hover .hover-row {
@@ -4344,7 +4344,7 @@
 }
 
 .andorra-editor .andorra-hover .hover-row .verbosity-actions {
-    border-right: 1px solid var(--vscode-editorHoverWidget-border);
+    border-right: 1px solid var(--andorra-editorHoverWidget-border);
     width: 22px;
     overflow-y: clip
 }
@@ -4364,7 +4364,7 @@
 }
 
 .andorra-editor .andorra-hover .hover-row .verbosity-actions-inner .codicon.enabled {
-    color: var(--vscode-textLink-foreground)
+    color: var(--andorra-textLink-foreground)
 }
 
 .andorra-editor .andorra-hover .hover-row .verbosity-actions-inner .codicon.disabled {
@@ -4372,11 +4372,11 @@
 }
 
 .andorra-editor .andorra-hover .hover-row .actions {
-    background-color: var(--vscode-editorHoverWidget-statusBarBackground)
+    background-color: var(--andorra-editorHoverWidget-statusBarBackground)
 }
 
 .andorra-editor .andorra-hover code {
-    background-color: var(--vscode-textCodeBlock-background)
+    background-color: var(--andorra-textCodeBlock-background)
 }
 
 .andorra-editor .andorra-hover .hover-copy-button {
@@ -4397,18 +4397,18 @@
 }
 
 .andorra-editor .andorra-hover .hover-copy-button:hover {
-    background-color: var(--vscode-toolbar-hoverBackground);
+    background-color: var(--andorra-toolbar-hoverBackground);
     cursor: pointer
 }
 
 .andorra-editor .andorra-hover .hover-copy-button:focus {
-    outline: 1px solid var(--vscode-focusBorder);
+    outline: 1px solid var(--andorra-focusBorder);
     outline-offset: -1px
 }
 
 .andorra-editor .andorra-hover .hover-copy-button .codicon {
     font-size: 16px;
-    color: var(--vscode-foreground)
+    color: var(--andorra-foreground)
 }
 
 .andorra-editor.vs .dnd-target,
@@ -4442,10 +4442,10 @@
 }
 
 .andorra-editor .findOptionsWidget {
-    background-color: var(--vscode-editorWidget-background);
-    color: var(--vscode-editorWidget-foreground);
-    box-shadow: 0 0 8px 2px var(--vscode-widget-shadow);
-    border: 2px solid var(--vscode-contrastBorder)
+    background-color: var(--andorra-editorWidget-background);
+    color: var(--andorra-editorWidget-foreground);
+    box-shadow: 0 0 8px 2px var(--andorra-widget-shadow);
+    border: 2px solid var(--andorra-contrastBorder)
 }
 
 .andorra-editor .margin-view-overlays .codicon-folding-manual-collapsed,
@@ -4477,7 +4477,7 @@
 }
 
 .andorra-editor .inline-folded:after {
-    color: var(--vscode-editor-foldPlaceholderForeground);
+    color: var(--andorra-editor-foldPlaceholderForeground);
     margin: .1em .2em 0;
     content: "⋯";
     display: inline;
@@ -4486,29 +4486,29 @@
 }
 
 .andorra-editor .folded-background {
-    background-color: var(--vscode-editor-foldBackground)
+    background-color: var(--andorra-editor-foldBackground)
 }
 
 .andorra-editor .cldr.codicon.codicon-folding-expanded,
 .andorra-editor .cldr.codicon.codicon-folding-collapsed,
 .andorra-editor .cldr.codicon.codicon-folding-manual-expanded,
 .andorra-editor .cldr.codicon.codicon-folding-manual-collapsed {
-    color: var(--vscode-editorGutter-foldingControlForeground) !important
+    color: var(--andorra-editorGutter-foldingControlForeground) !important
 }
 
 .andorra-editor .snippet-placeholder {
     min-width: 2px;
     outline-style: solid;
     outline-width: 1px;
-    background-color: var(--vscode-editor-snippetTabstopHighlightBackground, transparent);
-    outline-color: var(--vscode-editor-snippetTabstopHighlightBorder, transparent)
+    background-color: var(--andorra-editor-snippetTabstopHighlightBackground, transparent);
+    outline-color: var(--andorra-editor-snippetTabstopHighlightBorder, transparent)
 }
 
 .andorra-editor .finish-snippet-placeholder {
     outline-style: solid;
     outline-width: 1px;
-    background-color: var(--vscode-editor-snippetFinalTabstopHighlightBackground, transparent);
-    outline-color: var(--vscode-editor-snippetFinalTabstopHighlightBorder, transparent)
+    background-color: var(--andorra-editor-snippetFinalTabstopHighlightBackground, transparent);
+    outline-color: var(--andorra-editor-snippetFinalTabstopHighlightBorder, transparent)
 }
 
 .andorra-editor .suggest-widget {
@@ -4530,8 +4530,8 @@
     width: 100%;
     border-style: solid;
     border-width: 1px;
-    border-color: var(--vscode-editorSuggestWidget-border);
-    background-color: var(--vscode-editorSuggestWidget-background)
+    border-color: var(--andorra-editorSuggestWidget-border);
+    background-color: var(--andorra-editorSuggestWidget-background)
 }
 
 .andorra-editor.hc-black .suggest-widget,
@@ -4549,7 +4549,7 @@
     width: 100%;
     font-size: 80%;
     padding: 0 4px;
-    border-top: 1px solid var(--vscode-editorSuggestWidget-border);
+    border-top: 1px solid var(--andorra-editorSuggestWidget-border);
     overflow: hidden
 }
 
@@ -4562,7 +4562,7 @@
 }
 
 .andorra-editor .suggest-widget.with-status-bar .suggest-status-bar .action-label {
-    color: var(--vscode-editorSuggestWidgetStatus-foreground)
+    color: var(--andorra-editorSuggestWidgetStatus-foreground)
 }
 
 .andorra-editor .suggest-widget.with-status-bar .suggest-status-bar .action-item:not(:last-of-type) .action-label {
@@ -4610,11 +4610,11 @@
 }
 
 .andorra-editor .suggest-widget .andorra-list .andorra-list-row.focused {
-    color: var(--vscode-editorSuggestWidget-selectedForeground)
+    color: var(--andorra-editorSuggestWidget-selectedForeground)
 }
 
 .andorra-editor .suggest-widget .andorra-list .andorra-list-row.focused .codicon {
-    color: var(--vscode-editorSuggestWidget-selectedIconForeground)
+    color: var(--andorra-editorSuggestWidget-selectedIconForeground)
 }
 
 .andorra-editor .suggest-widget .andorra-list .andorra-list-row>.contents {
@@ -4638,7 +4638,7 @@
 }
 
 .andorra-editor .suggest-widget .andorra-list .andorra-list-row:not(.focused)>.contents>.main .andorra-icon-label {
-    color: var(--vscode-editorSuggestWidget-foreground)
+    color: var(--andorra-editorSuggestWidget-foreground)
 }
 
 .andorra-editor .suggest-widget:not(.frozen) .andorra-highlighted-label .highlight {
@@ -4646,11 +4646,11 @@
 }
 
 .andorra-editor .suggest-widget .andorra-list .andorra-list-row>.contents>.main .andorra-highlighted-label .highlight {
-    color: var(--vscode-editorSuggestWidget-highlightForeground)
+    color: var(--andorra-editorSuggestWidget-highlightForeground)
 }
 
 .andorra-editor .suggest-widget .andorra-list .andorra-list-row.focused>.contents>.main .andorra-highlighted-label .highlight {
-    color: var(--vscode-editorSuggestWidget-focusHighlightForeground)
+    color: var(--andorra-editorSuggestWidget-focusHighlightForeground)
 }
 
 .andorra-editor .suggest-details>.andorra-scrollable-element>.body>.header>.codicon-close,
@@ -4824,23 +4824,23 @@
     display: flex;
     flex-direction: column;
     cursor: default;
-    color: var(--vscode-editorSuggestWidget-foreground)
+    color: var(--andorra-editorSuggestWidget-foreground)
 }
 
 .andorra-editor .suggest-details:focus {
-    border-color: var(--vscode-focusBorder)
+    border-color: var(--andorra-focusBorder)
 }
 
 .andorra-editor .suggest-details a {
-    color: var(--vscode-textLink-foreground)
+    color: var(--andorra-textLink-foreground)
 }
 
 .andorra-editor .suggest-details a:hover {
-    color: var(--vscode-textLink-activeForeground)
+    color: var(--andorra-textLink-activeForeground)
 }
 
 .andorra-editor .suggest-details code {
-    background-color: var(--vscode-textCodeBlock-background)
+    background-color: var(--andorra-textCodeBlock-background)
 }
 
 .andorra-editor .suggest-details.no-docs {
@@ -4981,8 +4981,8 @@
 .andorra-editor .ghost-text-decoration,
 .andorra-editor .ghost-text-decoration-preview,
 .andorra-editor .suggest-preview-text .ghost-text {
-    background-color: var(--vscode-editorGhostText-background);
-    border: 1px solid var(--vscode-editorGhostText-border)
+    background-color: var(--andorra-editorGhostText-background);
+    border: 1px solid var(--andorra-editorGhostText-border)
 }
 
 :is(.andorra-editor .ghost-text-decoration, .andorra-editor .ghost-text-decoration-preview, .andorra-editor .suggest-preview-text .ghost-text).syntax-highlighted {
@@ -4990,30 +4990,30 @@
 }
 
 :is(.andorra-editor .ghost-text-decoration, .andorra-editor .ghost-text-decoration-preview, .andorra-editor .suggest-preview-text .ghost-text):not(.syntax-highlighted) {
-    color: var(--vscode-editorGhostText-foreground)
+    color: var(--andorra-editorGhostText-foreground)
 }
 
 .andorra-editor .ghost-text-decoration.warning,
 .andorra-editor .ghost-text-decoration-preview.warning,
 .andorra-editor .suggest-preview-text .ghost-text.warning {
     background: var(--andorra-editor-warning-decoration) repeat-x bottom left;
-    border-bottom: 4px double var(--vscode-editorWarning-border)
+    border-bottom: 4px double var(--andorra-editorWarning-border)
 }
 
 .ghost-text-view-warning-widget-icon .codicon {
-    color: var(--vscode-editorWarning-foreground) !important
+    color: var(--andorra-editorWarning-foreground) !important
 }
 
 .andorra-editor .edits-fadeout-decoration {
     opacity: var(--animation-opacity, 1);
-    background-color: var(--vscode-inlineEdit-modifiedChangedTextBackground)
+    background-color: var(--andorra-inlineEdit-modifiedChangedTextBackground)
 }
 
 .andorra-editor .sticky-widget {
     overflow: hidden;
-    border-bottom: 1px solid var(--vscode-editorStickyScroll-border);
+    border-bottom: 1px solid var(--andorra-editorStickyScroll-border);
     width: 100%;
-    box-shadow: var(--vscode-editorStickyScroll-shadow) 0 4px 2px -2px;
+    box-shadow: var(--andorra-editorStickyScroll-shadow) 0 4px 2px -2px;
     z-index: 4;
     right: initial !important;
     margin-left: "0px"
@@ -5021,23 +5021,23 @@
 
 .andorra-editor .sticky-widget .sticky-widget-line-numbers {
     float: left;
-    background-color: var(--vscode-editorStickyScrollGutter-background)
+    background-color: var(--andorra-editorStickyScrollGutter-background)
 }
 
 .andorra-editor .sticky-widget.peek .sticky-widget-line-numbers {
-    background-color: var(--vscode-peekViewEditorStickyScrollGutter-background)
+    background-color: var(--andorra-peekViewEditorStickyScrollGutter-background)
 }
 
 .andorra-editor .sticky-widget .sticky-widget-lines-scrollable {
     display: inline-block;
     position: absolute;
     overflow: hidden;
-    width: var(--vscode-editorStickyScroll-scrollableWidth);
-    background-color: var(--vscode-editorStickyScroll-background)
+    width: var(--andorra-editorStickyScroll-scrollableWidth);
+    background-color: var(--andorra-editorStickyScroll-background)
 }
 
 .andorra-editor .sticky-widget.peek .sticky-widget-lines-scrollable {
-    background-color: var(--vscode-peekViewEditorStickyScroll-background)
+    background-color: var(--andorra-peekViewEditorStickyScroll-background)
 }
 
 .andorra-editor .sticky-widget .sticky-widget-lines {
@@ -5047,7 +5047,7 @@
 
 .andorra-editor .sticky-widget .sticky-line-number,
 .andorra-editor .sticky-widget .sticky-line-content {
-    color: var(--vscode-editorLineNumber-foreground);
+    color: var(--andorra-editorLineNumber-foreground);
     white-space: nowrap;
     display: inline-block;
     position: absolute;
@@ -5057,13 +5057,13 @@
 .andorra-editor .sticky-widget .sticky-line-number .codicon-folding-expanded,
 .andorra-editor .sticky-widget .sticky-line-number .codicon-folding-collapsed {
     float: right;
-    transition: var(--vscode-editorStickyScroll-foldingOpacityTransition);
+    transition: var(--andorra-editorStickyScroll-foldingOpacityTransition);
     position: absolute;
     margin-left: 2px
 }
 
 .andorra-editor .sticky-widget .sticky-line-content {
-    width: var(--vscode-editorStickyScroll-scrollableWidth);
+    width: var(--andorra-editorStickyScroll-scrollableWidth);
     background-color: inherit;
     white-space: nowrap
 }
@@ -5074,7 +5074,7 @@
 }
 
 .andorra-editor .sticky-widget .sticky-line-content:hover {
-    background-color: var(--vscode-editorStickyScrollHover-background);
+    background-color: var(--andorra-editorStickyScrollHover-background);
     cursor: pointer
 }
 
@@ -5082,9 +5082,9 @@
     display: flex;
     z-index: 34;
     height: 20px;
-    color: var(--vscode-inlineEdit-gutterIndicator-primaryForeground);
-    background-color: var(--vscode-inlineEdit-gutterIndicator-background);
-    border: 1px solid var(--vscode-inlineEdit-gutterIndicator-primaryBorder);
+    color: var(--andorra-inlineEdit-gutterIndicator-primaryForeground);
+    background-color: var(--andorra-inlineEdit-gutterIndicator-background);
+    border: 1px solid var(--andorra-inlineEdit-gutterIndicator-primaryBorder);
     border-radius: 3px;
     align-items: center;
     padding: 2px 10px 2px 2px;
@@ -5123,7 +5123,7 @@
 }
 
 .andorra-editor .inline-edits-view-indicator .icon .codicon {
-    color: var(--vscode-inlineEdit-gutterIndicator-primaryForeground)
+    color: var(--andorra-inlineEdit-gutterIndicator-primaryForeground)
 }
 
 .andorra-editor .inline-edits-view-indicator .label {
@@ -5147,51 +5147,51 @@
 }
 
 .andorra-editor .inlineCompletions-line-insert {
-    background: var(--vscode-inlineEdit-modifiedChangedLineBackground)
+    background: var(--andorra-inlineEdit-modifiedChangedLineBackground)
 }
 
 .andorra-editor .inlineCompletions-line-delete {
-    background: var(--vscode-inlineEdit-originalChangedLineBackground)
+    background: var(--andorra-inlineEdit-originalChangedLineBackground)
 }
 
 .andorra-editor .inlineCompletions-char-insert {
-    background: var(--vscode-inlineEdit-modifiedChangedTextBackground);
+    background: var(--andorra-inlineEdit-modifiedChangedTextBackground);
     cursor: pointer
 }
 
 .andorra-editor .inlineCompletions-char-delete {
-    background: var(--vscode-inlineEdit-originalChangedTextBackground)
+    background: var(--andorra-inlineEdit-originalChangedTextBackground)
 }
 
 .andorra-editor .inlineCompletions-char-delete.diff-range-empty {
     margin-left: -1px;
-    border-left: solid var(--vscode-inlineEdit-originalChangedTextBackground) 3px
+    border-left: solid var(--andorra-inlineEdit-originalChangedTextBackground) 3px
 }
 
 .andorra-editor .inlineCompletions-char-insert.diff-range-empty {
-    border-left: solid var(--vscode-inlineEdit-modifiedChangedTextBackground) 3px
+    border-left: solid var(--andorra-inlineEdit-modifiedChangedTextBackground) 3px
 }
 
 .andorra-editor .inlineCompletions-char-delete.single-line-inline {
-    border: 1px solid var(--vscode-editorHoverWidget-border);
+    border: 1px solid var(--andorra-editorHoverWidget-border);
     margin: -2px 0 0 -2px
 }
 
 .andorra-editor .inlineCompletions-char-insert.single-line-inline {
-    border-top: 1px solid var(--vscode-inlineEdit-modifiedBorder);
-    border-bottom: 1px solid var(--vscode-inlineEdit-modifiedBorder)
+    border-top: 1px solid var(--andorra-inlineEdit-modifiedBorder);
+    border-bottom: 1px solid var(--andorra-inlineEdit-modifiedBorder)
 }
 
 .andorra-editor .inlineCompletions-char-insert.single-line-inline.start {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
-    border-left: 1px solid var(--vscode-inlineEdit-modifiedBorder)
+    border-left: 1px solid var(--andorra-inlineEdit-modifiedBorder)
 }
 
 .andorra-editor .inlineCompletions-char-insert.single-line-inline.end {
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
-    border-right: 1px solid var(--vscode-inlineEdit-modifiedBorder)
+    border-right: 1px solid var(--andorra-inlineEdit-modifiedBorder)
 }
 
 .andorra-editor .inlineCompletions-char-delete.single-line-inline.empty,
@@ -5204,11 +5204,11 @@
 }
 
 .andorra-editor .inlineCompletions-modified-bubble {
-    background: var(--vscode-inlineEdit-modifiedChangedTextBackground)
+    background: var(--andorra-inlineEdit-modifiedChangedTextBackground)
 }
 
 .andorra-editor .inlineCompletions-original-bubble {
-    background: var(--vscode-inlineEdit-originalChangedTextBackground)
+    background: var(--andorra-inlineEdit-originalChangedTextBackground)
 }
 
 .andorra-editor .inlineCompletions-modified-bubble,
@@ -5232,16 +5232,16 @@
 .andorra-editor .inline-edit.modified-background.ghost-text-decoration,
 .andorra-editor .inline-edit.modified-background.ghost-text-decoration-preview,
 .andorra-editor .inline-edit.modified-background.suggest-preview-text .ghost-text {
-    background: var(--vscode-inlineEdit-modifiedChangedTextBackground) !important;
+    background: var(--andorra-inlineEdit-modifiedChangedTextBackground) !important;
     display: inline-block !important
 }
 
 .andorra-editor .inlineCompletions-original-lines {
-    background: var(--vscode-editor-background)
+    background: var(--andorra-editor-background)
 }
 
 .andorra-menu-option {
-    color: var(--vscode-editorActionList-foreground);
+    color: var(--andorra-editorActionList-foreground);
     font-size: 13px;
     padding: 0 4px;
     line-height: 28px;
@@ -5258,28 +5258,28 @@
 }
 
 .andorra-menu-option.active {
-    background: var(--vscode-editorActionList-focusBackground);
-    color: var(--vscode-editorActionList-focusForeground);
-    outline: 1px solid var(--vscode-menu-selectionBorder, transparent);
+    background: var(--andorra-editorActionList-focusBackground);
+    color: var(--andorra-editorActionList-focusForeground);
+    outline: 1px solid var(--andorra-menu-selectionBorder, transparent);
     outline-offset: -1px
 }
 
 .andorra-menu-option.active .andorra-keybinding-key {
-    color: var(--vscode-editorActionList-focusForeground)
+    color: var(--andorra-editorActionList-focusForeground)
 }
 
 .andorra-editor .goto-definition-link {
     text-decoration: underline;
     cursor: pointer;
-    color: var(--vscode-editorLink-activeForeground) !important
+    color: var(--andorra-editorLink-activeForeground) !important
 }
 
 .andorra-editor.vs .valueSetReplacement {
-    outline: solid 2px var(--vscode-editorBracketMatch-border)
+    outline: solid 2px var(--andorra-editorBracketMatch-border)
 }
 
 .andorra-editor .linked-editing-decoration {
-    background-color: var(--vscode-editor-linkedEditingBackground);
+    background-color: var(--andorra-editor-linkedEditingBackground);
     min-width: 1px
 }
 
@@ -5291,15 +5291,15 @@
 
 .andorra-editor .detected-link-active {
     cursor: pointer;
-    color: var(--vscode-editorLink-activeForeground) !important
+    color: var(--andorra-editorLink-activeForeground) !important
 }
 
 .andorra-editor .scroll-editor-on-middle-click-dot {
     cursor: all-scroll;
     position: absolute;
     z-index: 1;
-    background-color: var(--vscode-editor-foreground, white);
-    border: 1px solid var(--vscode-editor-background, black);
+    background-color: var(--andorra-editor-foreground, white);
+    border: 1px solid var(--andorra-editor-background, black);
     opacity: .5;
     width: 5px;
     height: 5px;
@@ -5316,9 +5316,9 @@
 }
 
 .andorra-editor .focused .selectionHighlight {
-    background-color: var(--vscode-editor-selectionHighlightBackground);
+    background-color: var(--andorra-editor-selectionHighlightBackground);
     box-sizing: border-box;
-    border: 1px solid var(--vscode-editor-selectionHighlightBorder)
+    border: 1px solid var(--andorra-editor-selectionHighlightBorder)
 }
 
 .andorra-editor.hc-black .focused .selectionHighlight,
@@ -5327,9 +5327,9 @@
 }
 
 .andorra-editor .wordHighlight {
-    background-color: var(--vscode-editor-wordHighlightBackground);
+    background-color: var(--andorra-editor-wordHighlightBackground);
     box-sizing: border-box;
-    border: 1px solid var(--vscode-editor-wordHighlightBorder)
+    border: 1px solid var(--andorra-editor-wordHighlightBorder)
 }
 
 .andorra-editor.hc-black .wordHighlight,
@@ -5338,9 +5338,9 @@
 }
 
 .andorra-editor .wordHighlightStrong {
-    background-color: var(--vscode-editor-wordHighlightStrongBackground);
+    background-color: var(--andorra-editor-wordHighlightStrongBackground);
     box-sizing: border-box;
-    border: 1px solid var(--vscode-editor-wordHighlightStrongBorder)
+    border: 1px solid var(--andorra-editor-wordHighlightStrongBorder)
 }
 
 .andorra-editor.hc-black .wordHighlightStrong,
@@ -5349,9 +5349,9 @@
 }
 
 .andorra-editor .wordHighlightText {
-    background-color: var(--vscode-editor-wordHighlightTextBackground);
+    background-color: var(--andorra-editor-wordHighlightTextBackground);
     box-sizing: border-box;
-    border: 1px solid var(--vscode-editor-wordHighlightTextBorder)
+    border: 1px solid var(--andorra-editor-wordHighlightTextBorder)
 }
 
 .andorra-editor.hc-black .wordHighlightText,
@@ -5365,9 +5365,9 @@
     flex-direction: column;
     line-height: 1.5em;
     cursor: default;
-    color: var(--vscode-editorHoverWidget-foreground);
-    background-color: var(--vscode-editorHoverWidget-background);
-    border: 1px solid var(--vscode-editorHoverWidget-border)
+    color: var(--andorra-editorHoverWidget-foreground);
+    background-color: var(--andorra-editorHoverWidget-background);
+    border: 1px solid var(--andorra-editorHoverWidget-border)
 }
 
 .hc-black .andorra-editor .parameter-hints-widget,
@@ -5392,7 +5392,7 @@
     height: 100%;
     position: absolute;
     opacity: .5;
-    border-left: 1px solid var(--vscode-editorHoverWidget-border)
+    border-left: 1px solid var(--andorra-editorHoverWidget-border)
 }
 
 .andorra-editor .parameter-hints-widget p,
@@ -5421,11 +5421,11 @@
     width: 100%;
     padding-top: 4px;
     opacity: .5;
-    border-bottom: 1px solid var(--vscode-editorHoverWidget-border)
+    border-bottom: 1px solid var(--andorra-editorHoverWidget-border)
 }
 
 .andorra-editor .parameter-hints-widget .code {
-    font-family: var(--vscode-parameterHintsWidget-editorFontFamily), var(--vscode-parameterHintsWidget-editorFontFamilyDefault)
+    font-family: var(--andorra-parameterHintsWidget-editorFontFamily), var(--andorra-parameterHintsWidget-editorFontFamilyDefault)
 }
 
 .andorra-editor .parameter-hints-widget .docs {
@@ -5438,11 +5438,11 @@
 }
 
 .andorra-editor .parameter-hints-widget .docs a {
-    color: var(--vscode-textLink-foreground)
+    color: var(--andorra-textLink-foreground)
 }
 
 .andorra-editor .parameter-hints-widget .docs a:hover {
-    color: var(--vscode-textLink-activeForeground);
+    color: var(--andorra-textLink-activeForeground);
     cursor: pointer
 }
 
@@ -5454,7 +5454,7 @@
     font-family: var(--andorra-monospace-font);
     border-radius: 3px;
     padding: 0 .4em;
-    background-color: var(--vscode-textCodeBlock-background)
+    background-color: var(--andorra-textCodeBlock-background)
 }
 
 .andorra-editor .parameter-hints-widget .docs .andorra-tokenized-source,
@@ -5494,7 +5494,7 @@
 }
 
 .andorra-editor .parameter-hints-widget .signature .parameter.active {
-    color: var(--vscode-editorHoverWidget-highlightForeground);
+    color: var(--andorra-editorHoverWidget-highlightForeground);
     font-weight: 700
 }
 
@@ -5510,7 +5510,7 @@
     text-overflow: ellipsis;
     text-wrap: nowrap;
     pointer-events: none;
-    color: var(--vscode-editor-placeholder-foreground)
+    color: var(--andorra-editor-placeholder-foreground)
 }
 
 .andorra-editor .rename-box {
@@ -5549,7 +5549,7 @@
 }
 
 .andorra-editor .rename-box .rename-suggestions-button:hover {
-    background-color: var(--vscode-toolbar-hoverBackground)
+    background-color: var(--andorra-toolbar-hoverBackground)
 }
 
 .andorra-editor .rename-box .rename-candidate-list-container .andorra-list-row {
@@ -5566,8 +5566,8 @@
 }
 
 .andorra-editor .unicode-highlight {
-    border: 1px solid var(--vscode-editorUnicodeHighlight-border);
-    background-color: var(--vscode-editorUnicodeHighlight-background);
+    border: 1px solid var(--andorra-editorUnicodeHighlight-border);
+    background-color: var(--andorra-editorUnicodeHighlight-background);
     box-sizing: border-box
 }
 
@@ -5579,7 +5579,7 @@
     display: flex;
     overflow: visible;
     height: 26px;
-    background: var(--vscode-banner-background)
+    background: var(--andorra-banner-background)
 }
 
 .editor-banner .icon-container {
@@ -5636,37 +5636,37 @@
 }
 
 .editor-banner {
-    background-color: var(--vscode-banner-background)
+    background-color: var(--andorra-banner-background)
 }
 
 .editor-banner,
 .editor-banner .action-container .codicon,
 .editor-banner .message-actions-container .andorra-link {
-    color: var(--vscode-banner-foreground)
+    color: var(--andorra-banner-foreground)
 }
 
 .editor-banner .icon-container .codicon {
-    color: var(--vscode-banner-iconForeground)
+    color: var(--andorra-banner-iconForeground)
 }
 
 .andorra-link {
-    color: var(--vscode-textLink-foreground)
+    color: var(--andorra-textLink-foreground)
 }
 
 .andorra-link:hover {
-    color: var(--vscode-textLink-activeForeground)
+    color: var(--andorra-textLink-activeForeground)
 }
 
 .floating-menu-overlay-widget {
     padding: 0;
-    color: var(--vscode-button-foreground);
-    background-color: var(--vscode-button-background);
+    color: var(--andorra-button-foreground);
+    background-color: var(--andorra-button-background);
     border-radius: 2px;
-    border: 1px solid var(--vscode-contrastBorder);
+    border: 1px solid var(--andorra-contrastBorder);
     display: flex;
     align-items: center;
     z-index: 10;
-    box-shadow: 0 2px 8px var(--vscode-widget-shadow);
+    box-shadow: 0 2px 8px var(--andorra-widget-shadow);
     overflow: hidden
 }
 
@@ -5677,7 +5677,7 @@
 }
 
 .floating-menu-overlay-widget .action-item>.action-label.codicon {
-    color: var(--vscode-button-foreground)
+    color: var(--andorra-button-foreground)
 }
 
 .floating-menu-overlay-widget .action-item>.action-label.codicon:not(.separator) {
@@ -5694,7 +5694,7 @@
 }
 
 .floating-menu-overlay-widget .action-item .action-label.separator {
-    background-color: var(--vscode-menu-separatorBackground)
+    background-color: var(--andorra-menu-separatorBackground)
 }
 
 .andorra-editor .iPadShowKeyboard {
@@ -5722,9 +5722,9 @@
     user-select: text;
     -webkit-user-select: text;
     padding: 10px;
-    color: var(--vscode-editorHoverWidget-foreground);
-    background-color: var(--vscode-editorHoverWidget-background);
-    border: 1px solid var(--vscode-editorHoverWidget-border)
+    color: var(--andorra-editorHoverWidget-foreground);
+    background-color: var(--andorra-editorHoverWidget-background);
+    border: 1px solid var(--andorra-editorHoverWidget-border)
 }
 
 .andorra-editor.hc-black .tokens-inspect-widget,
@@ -5735,7 +5735,7 @@
 .andorra-editor .tokens-inspect-widget .tokens-inspect-separator {
     height: 1px;
     border: 0;
-    background-color: var(--vscode-editorHoverWidget-border)
+    background-color: var(--andorra-editorHoverWidget-border)
 }
 
 .andorra-editor .tokens-inspect-widget .tm-token {
@@ -5817,7 +5817,7 @@
     outline-width: 1px;
     outline-style: solid;
     outline-offset: -1px;
-    outline-color: var(--vscode-focusBorder);
+    outline-color: var(--andorra-focusBorder);
     opacity: 1
 }
 
@@ -5828,11 +5828,11 @@
     z-index: 40;
     overflow: hidden;
     max-width: 700px;
-    background: var(--vscode-editorHoverWidget-background);
-    border: 1px solid var(--vscode-editorHoverWidget-border);
+    background: var(--andorra-editorHoverWidget-background);
+    border: 1px solid var(--andorra-editorHoverWidget-border);
     border-radius: 5px;
-    color: var(--vscode-editorHoverWidget-foreground);
-    box-shadow: 0 2px 8px var(--vscode-widget-shadow)
+    color: var(--andorra-editorHoverWidget-foreground);
+    box-shadow: 0 2px 8px var(--andorra-widget-shadow)
 }
 
 .andorra-hover.workbench-hover .andorra-action-bar .action-item .codicon {
@@ -5858,11 +5858,11 @@
 }
 
 .workbench-hover-container.locked .andorra-hover.workbench-hover {
-    outline: 1px solid var(--vscode-editorHoverWidget-border)
+    outline: 1px solid var(--andorra-editorHoverWidget-border)
 }
 
 .workbench-hover-container:focus-within.locked .andorra-hover.workbench-hover {
-    outline-color: var(--vscode-focusBorder)
+    outline-color: var(--andorra-focusBorder)
 }
 
 .workbench-hover-pointer {
@@ -5876,9 +5876,9 @@
     position: absolute;
     width: 5px;
     height: 5px;
-    background-color: var(--vscode-editorHoverWidget-background);
-    border-right: 1px solid var(--vscode-editorHoverWidget-border);
-    border-bottom: 1px solid var(--vscode-editorHoverWidget-border)
+    background-color: var(--andorra-editorHoverWidget-background);
+    border-right: 1px solid var(--andorra-editorHoverWidget-border);
+    border-bottom: 1px solid var(--andorra-editorHoverWidget-border)
 }
 
 .workbench-hover-container:not(:focus-within).locked .workbench-hover-pointer:after {
@@ -5889,8 +5889,8 @@
 }
 
 .workbench-hover-container:focus-within .workbench-hover-pointer:after {
-    border-right: 1px solid var(--vscode-focusBorder);
-    border-bottom: 1px solid var(--vscode-focusBorder)
+    border-right: 1px solid var(--andorra-focusBorder);
+    border-bottom: 1px solid var(--andorra-focusBorder)
 }
 
 .workbench-hover-pointer.left {
@@ -5926,14 +5926,14 @@
 }
 
 .andorra-hover.workbench-hover a {
-    color: var(--vscode-textLink-foreground)
+    color: var(--andorra-textLink-foreground)
 }
 
 .andorra-hover.workbench-hover a:focus {
     outline: 1px solid;
     outline-offset: -1px;
     text-decoration: underline;
-    outline-color: var(--vscode-focusBorder)
+    outline-color: var(--andorra-focusBorder)
 }
 
 .andorra-hover.workbench-hover a.codicon:focus,
@@ -5943,15 +5943,15 @@
 
 .andorra-hover.workbench-hover a:hover,
 .andorra-hover.workbench-hover a:active {
-    color: var(--vscode-textLink-activeForeground)
+    color: var(--andorra-textLink-activeForeground)
 }
 
 .andorra-hover.workbench-hover code {
-    background: var(--vscode-textCodeBlock-background)
+    background: var(--andorra-textCodeBlock-background)
 }
 
 .andorra-hover.workbench-hover .hover-row .actions {
-    background: var(--vscode-editorHoverWidget-statusBarBackground)
+    background: var(--andorra-editorHoverWidget-statusBarBackground)
 }
 
 .andorra-hover.workbench-hover.right-aligned {
@@ -6305,11 +6305,11 @@
 .quick-input-list .andorra-list .andorra-list-row .andorra-highlighted-label .highlight {
     font-weight: 700;
     background-color: unset;
-    color: var(--vscode-list-highlightForeground) !important
+    color: var(--andorra-list-highlightForeground) !important
 }
 
 .quick-input-list .andorra-list .andorra-list-row.focused .andorra-highlighted-label .highlight {
-    color: var(--vscode-list-focusHighlightForeground) !important
+    color: var(--andorra-list-focusHighlightForeground) !important
 }
 
 .quick-input-list .quick-input-list-entry .quick-input-list-separator {
@@ -6348,7 +6348,7 @@
 }
 
 .quick-input-list>.andorra-list:focus .andorra-list-row.focused {
-    outline: 1px solid var(--vscode-list-focusOutline) !important;
+    outline: 1px solid var(--andorra-list-focusOutline) !important;
     outline-offset: -1px
 }
 
@@ -6482,7 +6482,7 @@
 }
 
 .quick-input-tree>.andorra-list:focus .andorra-list-row.focused {
-    outline: 1px solid var(--vscode-list-focusOutline) !important;
+    outline: 1px solid var(--andorra-list-focusOutline) !important;
     outline-offset: -1px
 }
 
@@ -6540,14 +6540,14 @@
 }
 
 .andorra-editor .rendered-markdown kbd {
-    background-color: var(--vscode-keybindingLabel-background);
-    color: var(--vscode-keybindingLabel-foreground);
+    background-color: var(--andorra-keybindingLabel-background);
+    color: var(--andorra-keybindingLabel-foreground);
     border-style: solid;
     border-width: 1px;
     border-radius: 3px;
-    border-color: var(--vscode-keybindingLabel-border);
-    border-bottom-color: var(--vscode-keybindingLabel-bottomBorder);
-    box-shadow: inset 0 -1px 0 var(--vscode-widget-shadow);
+    border-color: var(--andorra-keybindingLabel-border);
+    border-bottom-color: var(--andorra-keybindingLabel-bottomBorder);
+    box-shadow: inset 0 -1px 0 var(--andorra-widget-shadow);
     vertical-align: middle;
     padding: 1px 3px
 }
@@ -6557,7 +6557,7 @@
 }
 
 .andorra-component.multiDiffEditor {
-    background: var(--vscode-multiDiffEditor-background);
+    background: var(--andorra-multiDiffEditor-background);
     position: relative;
     height: 100%;
     width: 100%;
@@ -6584,7 +6584,7 @@
 }
 
 .andorra-component.multiDiffEditor .active {
-    --vscode-multiDiffEditor-border: var(--vscode-focusBorder)
+    --andorra-multiDiffEditor-border: var(--andorra-focusBorder)
 }
 
 .andorra-component.multiDiffEditor .multiDiffEntry {
@@ -6605,25 +6605,25 @@
 
 .andorra-component.multiDiffEditor .multiDiffEntry .header {
     z-index: 1000;
-    background: var(--vscode-editor-background)
+    background: var(--andorra-editor-background)
 }
 
 .andorra-component.multiDiffEditor .multiDiffEntry .header:not(.collapsed) .header-content {
-    border-bottom: 1px solid var(--vscode-sideBarSectionHeader-border)
+    border-bottom: 1px solid var(--andorra-sideBarSectionHeader-border)
 }
 
 .andorra-component.multiDiffEditor .multiDiffEntry .header .header-content {
     margin: 8px 0 0;
     padding: 4px 5px;
-    border-top: 1px solid var(--vscode-multiDiffEditor-border);
+    border-top: 1px solid var(--andorra-multiDiffEditor-border);
     display: flex;
     align-items: center;
-    color: var(--vscode-foreground);
-    background: var(--vscode-multiDiffEditor-headerBackground)
+    color: var(--andorra-foreground);
+    background: var(--andorra-multiDiffEditor-headerBackground)
 }
 
 .andorra-component.multiDiffEditor .multiDiffEntry .header .header-content.shadow {
-    box-shadow: var(--vscode-scrollbar-shadow) 0 6px 6px -6px
+    box-shadow: var(--andorra-scrollbar-shadow) 0 6px 6px -6px
 }
 
 .andorra-component.multiDiffEditor .multiDiffEntry .header .header-content .file-path {
@@ -6658,7 +6658,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    border-bottom: 1px solid var(--vscode-multiDiffEditor-border);
+    border-bottom: 1px solid var(--andorra-multiDiffEditor-border);
     overflow: hidden
 }
 
