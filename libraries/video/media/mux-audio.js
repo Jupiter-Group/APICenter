@@ -1,0 +1,2 @@
+import{t as e}from"../media-attach-mixin-C2wz0Qbd.js";import{o as t}from"../context-CEFisYD0.js";import{n}from"../video-host-LeB1FKfO.js";import"../hls-Dl2v35sW.js";import{t as r}from"../mux-BgWl50KW.js";var i=class extends e(n(`audio`,r)){static get observedAttributes(){return[...super.observedAttributes,`type`,`prefer-playback`,`debug`]}};t(class extends i{static{this.tagName=`mux-audio`}});
+//# sourceMappingURL=mux-audio.js.map

@@ -1,0 +1,2 @@
+import{t as e}from"../media-attach-mixin-C2wz0Qbd.js";import{o as t}from"../context-CEFisYD0.js";import{n}from"../video-host-LeB1FKfO.js";import{t as r}from"../hls-Dl2v35sW.js";var i=class extends e(n(`video`,r)){static get observedAttributes(){return[...super.observedAttributes,`type`,`prefer-playback`,`debug`]}};t(class extends i{static{this.tagName=`hls-video`}});
+//# sourceMappingURL=hls-video.js.map

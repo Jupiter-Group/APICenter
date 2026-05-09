@@ -1,0 +1,2 @@
+import{t as e}from"../media-attach-mixin-C2wz0Qbd.js";import{o as t}from"../context-CEFisYD0.js";import{n}from"../video-host-LeB1FKfO.js";import{t as r}from"../native-hls-odPBXxK7.js";var i=class extends e(n(`video`,r)){};t(class extends i{static{this.tagName=`native-hls-video`}});
+//# sourceMappingURL=native-hls-video.js.map

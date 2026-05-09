@@ -1,0 +1,2 @@
+import{O as e,i as t,k as n,t as r}from"./create-player-B-PGzhq2.js";import{o as i}from"./context-CEFisYD0.js";const{ProviderMixin:a}=r({features:t});var o=class extends a(n){static{this.tagName=`audio-player`}};i(o),i(e);export{o as t};
+//# sourceMappingURL=player-ChdQN3H5.js.map
