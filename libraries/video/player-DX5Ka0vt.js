@@ -125,7 +125,7 @@ var CastButtonCore = class CastButtonCore {
 		} else if (label) return label;
 		if (state.castState === "connected") return "Stop casting";
 		if (state.castState === "connecting") return "Connecting";
-		return "Start casting";
+		return "Play on TV";
 	}
 	getAttrs(state) {
 		return {
@@ -187,7 +187,7 @@ var FullscreenButtonCore = class FullscreenButtonCore {
 			const customLabel = label(state);
 			if (customLabel) return customLabel;
 		} else if (label) return label;
-		return state.fullscreen ? "Exit fullscreen" : "Enter fullscreen";
+		return state.fullscreen ? "Exit full screen" : "Full screen";
 	}
 	getAttrs(state) {
 		return {
