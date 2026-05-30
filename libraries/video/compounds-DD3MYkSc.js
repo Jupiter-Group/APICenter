@@ -417,7 +417,7 @@ var PlaybackRateButtonCore = class PlaybackRateButtonCore {
 			const customLabel = label(state);
 			if (customLabel) return customLabel;
 		} else if (label) return label;
-		return `Playback rate ${state.rate}`;
+		return `Playback speed ${state.rate}`;
 	}
 	getAttrs(state) {
 		return {
