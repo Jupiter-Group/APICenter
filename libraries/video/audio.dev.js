@@ -48,7 +48,7 @@ function getTemplateHTML() {
               </span>
             </media-seek-button>
             <media-tooltip id="seek-backward-tooltip" side="top" class="media-surface media-tooltip">
-              Seek backward ${SEEK_TIME} seconds
+              Rewind ${SEEK_TIME} seconds
             </media-tooltip>
 
             <media-seek-button commandfor="seek-forward-tooltip" seconds="${SEEK_TIME}" class="media-button media-button--subtle media-button--icon media-button--seek">
@@ -58,7 +58,7 @@ function getTemplateHTML() {
               </span>
             </media-seek-button>
             <media-tooltip id="seek-forward-tooltip" side="top" class="media-surface media-tooltip">
-              Seek forward ${SEEK_TIME} seconds
+              Fast forward ${SEEK_TIME} seconds
             </media-tooltip>
           </div>
 

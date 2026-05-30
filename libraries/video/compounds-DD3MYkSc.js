@@ -550,7 +550,7 @@ var SeekButtonCore = class SeekButtonCore {
 			if (customLabel) return customLabel;
 		} else if (label) return label;
 		const abs = Math.abs(this.#props.seconds);
-		return state.direction === "backward" ? `Seek backward ${abs} seconds` : `Seek forward ${abs} seconds`;
+		return state.direction === "backward" ? `Rewind ${abs} seconds` : `Fast forward ${abs} seconds`;
 	}
 	getAttrs(state) {
 		return {
